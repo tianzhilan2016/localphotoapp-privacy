@@ -1,1 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+    font-family: Arial, "Microsoft Yahei", sans-serif;
+    max-width:820px;
+    margin:40px auto;
+    padding:0 20px;
+    line-height:1.8;
+    color:#333;
+    background:#fff;
+}
+h1 {
+    text-align:center;
+    font-size:28px;
+    margin-bottom:20px;
+}
+h2 {
+    font-size:20px;
+    margin-top:30px;
+    margin-bottom:12px;
+}
+p {margin:10px 0;font-size:16px;}
+ul {padding-left:22px;}
+</style>
+</head>
+<body>
+<h1>Privacy Policy</h1>
+<p><strong>Last Updated: 2026-10-11</strong></p>
+
+<p>This Privacy Policy applies to the mobile application 【LocalPhoto】 (hereinafter referred to as the "Application"), developed and operated by 【zhangchaochao】. This policy clearly explains the handling of user information, application behavior, and data compliance standards for all users who download and use this Application on Android devices via Google Play.</p>
+
+<h2>1. Introduction & Policy Acceptance</h2>
+<p>By accessing, installing, and using this Application, you fully acknowledge, understand, and agree to the terms stated in this Privacy Policy. If you do not agree with any part of this policy, please discontinue the use of this Application immediately. This Privacy Policy is formulated in accordance with Google Play User Data Policy and global general data protection compliance requirements.</p>
+
+<h2>2. Information Collection Statement (Core Declaration)</h2>
+<p><strong>This Application strictly does NOT collect, store, record, transmit, or share any personal or sensitive user data in any form.</strong></p>
+<p>The Application is a fully offline functional tool with no network server backend, no user registration system, no login mechanism, and no user behavior tracking. Specifically, this Application will never access or process the following information:</p>
+<ul>
+<li>Personal identity information (name, ID number, nickname, profile information)</li>
+<li>Device information (IMEI, Android ID, device serial number, MAC address)</li>
+<li>Sensitive permissions data (camera, microphone, location, contacts, storage private files)</li>
+<li>User usage logs, browsing records, operation records</li>
+<li>IP address, network information, and geographic location information</li>
+</ul>
+
+<h2>3. No Third-Party Services & SDKs</h2>
+<p>This Application does not integrate any third-party software development kits (SDKs), third-party statistical tools, advertising modules, analytics tools, or social sharing plugins. There is no third-party entity authorized to collect or process user data through this Application. All functional logic of the Application runs completely locally on the user’s mobile device without any external data interaction.</p>
+
+<h2>4. Data Storage & Data Retention</h2>
+<p>Since the Application does not collect any user personal data, no user data will be generated, stored, or retained on any server, local cache, or cloud service. All application configurations only exist in the user’s local device cache and can be completely cleared by the user through the system application settings or uninstalling the Application.</p>
+<p>No automated data retention, backup, or synchronization behavior exists in this Application.</p>
+
+<h2>5. Data Security Protection</h2>
+<p>Although this Application does not involve any user personal data processing, the developer still attaches great importance to user privacy and data security. The Application adopts standardized Android system security specifications during development, does not apply for unnecessary system permissions, does not read private device data, and does not transmit any local information to the outside world. The application code does not contain malicious collection, monitoring, or data leakage behaviors.</p>
+
+<h2>6. Children's Privacy Protection</h2>
+<p>This Application is not targeted at users under the age of 13. The Application does not intentionally collect any personal information from children or minors of any age. If you are a parent or guardian and believe that your child has used this Application and provided any personal information, please contact us promptly, and we will take measures to remove relevant information immediately.</p>
+
+<h2>7. Policy Updates & Modifications</h2>
+<p>The developer reserves the right to update and revise this Privacy Policy irregularly in response to application function upgrades, system rule adjustments, and platform policy updates. Once the policy is updated, the latest content will be published on the official privacy policy webpage. The continued use of the Application after policy updates constitutes your acceptance of the revised Privacy Policy.</p>
+
+<h2>8. User Rights</h2>
+<p>Since no user personal data is collected, stored, or processed by this Application, there is no scenario requiring users to inquire, export, delete, or correct personal data. Users have full independent control over the use, installation, and uninstallation rights of this Application.</p>
+
+<h2>9. Contact Information</h2>
+<p>If you have any questions, suggestions, or disputes regarding this Privacy Policy and privacy protection issues of the Application, please contact the developer through the following email:</p>
+<p>Contact Email: 【chao86825@gmail.com】<br>
+Developer: 【zhangchaochao】</p>
+
+</body>
+</html>
 
