@@ -13,21 +13,23 @@
   html{scroll-behavior:smooth}
   body{
     margin:0; background:var(--bg); color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,"Noto Sans Thai","Noto Naskh Arabic",sans-serif;
     line-height:1.85; font-size:15px;
   }
   .wrap{max-width:1080px; margin:0 auto; padding:0 20px 80px;}
-  /* language switch bar */
+  /* language switch bar：9 种语言，小屏横向滚动 */
   .langbar{
-    position:sticky; top:0; z-index:20; background:rgba(247,248,250,.92);
+    position:sticky; top:0; z-index:20; background:rgba(247,248,250,.94);
     backdrop-filter:blur(6px); border-bottom:1px solid var(--line);
-    display:flex; align-items:center; justify-content:flex-end; gap:8px;
+    display:flex; align-items:center; justify-content:flex-start; gap:8px;
     padding:10px 20px; margin:0 -20px 22px;
+    overflow-x:auto; -webkit-overflow-scrolling:touch; white-space:nowrap;
   }
+  .langbar::-webkit-scrollbar{height:0}
   .lang-btn{
-    border:1px solid var(--line); background:var(--card); color:var(--ink-2);
+    flex:0 0 auto; border:1px solid var(--line); background:var(--card); color:var(--ink-2);
     padding:6px 14px; border-radius:999px; font-size:13px; cursor:pointer;
-    transition:all .15s ease;
+    transition:all .15s ease; font-family:inherit;
   }
   .lang-btn:hover{border-color:var(--brand); color:var(--brand)}
   .lang-btn.active{background:var(--brand); border-color:var(--brand); color:#fff; font-weight:600}
@@ -37,6 +39,7 @@
   }
   header.hero h1{margin:0 0 8px; font-size:24px; letter-spacing:.5px}
   header.hero p{margin:4px 0; opacity:.92; font-size:14px}
+  header.hero a{color:#dbeafe}
   .doc{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:28px 30px; min-width:0}
   .doc h2{font-size:20px; border-left:5px solid var(--brand); padding-left:12px; margin:30px 0 14px}
   .doc h2:first-child{margin-top:4px}
@@ -48,11 +51,12 @@
   .doc th,.doc td{border:1px solid var(--line); padding:9px 11px; text-align:left; vertical-align:top}
   .doc th{background:var(--brand-soft); color:#1e3a8a; font-weight:600}
   .doc code{background:#f1f5f9; padding:1px 6px; border-radius:5px; font-size:13px}
-  .divider{height:1px; background:var(--line); margin:36px 0; border:0}
-  .section-title{display:flex; align-items:center; gap:10px; margin-top:8px}
-  .section-title .num{background:var(--brand); color:#fff; min-width:28px; height:28px; border-radius:8px;
-    display:inline-flex; align-items:center; justify-content:center; font-size:14px; font-weight:700}
-  /* language blocks */
+  .note{background:#f8fafc; border:1px dashed var(--line); border-radius:10px; padding:12px 14px; margin:14px 0; font-size:14px}
+  /* 阿拉伯语：整块 RTL */
+  .lang-block[dir="rtl"]{direction:rtl; text-align:right}
+  .lang-block[dir="rtl"] .doc h2{border-left:0; border-right:5px solid var(--brand); padding-left:0; padding-right:12px}
+  .lang-block[dir="rtl"] .doc th,.lang-block[dir="rtl"] .doc td{text-align:right}
+  .lang-block[dir="rtl"] .doc ul,.lang-block[dir="rtl"] .doc ol{padding-left:0; padding-right:22px}
   .lang-block{display:none}
   .lang-block.active{display:block}
   a{color:#2563eb}
@@ -67,242 +71,1233 @@
 <body>
 <div class="langbar">
   <button class="lang-btn" data-lang="en" onclick="switchLang('en')">English</button>
-  <button class="lang-btn" data-lang="zh" onclick="switchLang('zh')">中文</button>
+  <button class="lang-btn" data-lang="zh" onclick="switchLang('zh')">简体中文</button>
+  <button class="lang-btn" data-lang="zh-TW" onclick="switchLang('zh-TW')">繁體中文</button>
+  <button class="lang-btn" data-lang="ja" onclick="switchLang('ja')">日本語</button>
+  <button class="lang-btn" data-lang="ko" onclick="switchLang('ko')">한국어</button>
+  <button class="lang-btn" data-lang="vi" onclick="switchLang('vi')">Tiếng Việt</button>
+  <button class="lang-btn" data-lang="pt-BR" onclick="switchLang('pt-BR')">Português</button>
+  <button class="lang-btn" data-lang="th" onclick="switchLang('th')">ไทย</button>
+  <button class="lang-btn" data-lang="ar" onclick="switchLang('ar')">العربية</button>
 </div>
 <div class="wrap">
-  <!-- ENGLISH -->
+
+  <!-- ==================== ENGLISH ==================== -->
   <div class="lang-block" data-lang="en">
     <header class="hero">
       <h1>Privacy Policy</h1>
       <p>Product: <strong>Light English (轻英语)</strong></p>
-      <p>Operator: <strong>zhangchaochao (individual developer)</strong></p>
+      <p>Developer: <strong>zhangchaochao (individual developer)</strong></p>
       <p>Contact: <strong>chao86825@gmail.com</strong></p>
-      <p>Version v1.1 &nbsp;|&nbsp; Effective: <strong>2026-10-17</strong></p>
+      <p>Version v1.2 &nbsp;|&nbsp; Effective: <strong>2026-11-17</strong></p>
       <p><a href="terms.html">View Terms of Service</a></p>
     </header>
     <main class="doc">
       <h2>1 Introduction &amp; Scope</h2>
-      <p>This Privacy Policy explains how zhangchaochao ("we", "us", "our"), the individual developer of the Light English mobile application (轻英语, the "App" or the "Service"), collects, uses, stores, shares, and protects your personal data when you use the App and its related services.</p>
-      <p>Light English is a language‑learning and speaking‑practice tool. Its core features include scenario‑dialogue lessons, vocabulary memorization, pronunciation scoring and shadowing, text‑to‑speech (TTS) reading, learning‑progress tracking, and optional membership subscriptions.</p>
-      <p>This Policy applies worldwide. Where you are located in the European Economic Area (EEA), the United Kingdom, or California, the regional provisions in Section 13 apply. Where you are in mainland China, China's Personal Information Protection Law (PIPL) applies alongside this Policy. We process personal data lawfully, fairly, and transparently, and only to the extent necessary.</p>
-      <p><strong>This privacy policy page shall be publicly accessible via web browser without login, password or file download.</strong> Please also read our <a href="terms.html">Terms of Service</a>. Matters concerning personal data are governed by this Policy; matters concerning use of the Service, accounts, and payments are governed by the Terms.</p>
+      <p>This Privacy Policy explains how zhangchaochao ("we", "us", "our"), the individual developer of the Light English mobile application (轻英语, the "App"), processes your personal information when you use the App.</p>
+      <p>Light English is a language-learning and speaking-practice tool. Its features include scenario-dialogue lessons, vocabulary memorization, pronunciation practice with shadowing, text-to-speech (TTS) reading, a daily check-in and points system, learning-progress tracking stored on your device, feedback submission, an optional membership subscription, and account management.</p>
+      <p>This Policy applies worldwide. Regional provisions in Section 15 apply if you are in the EEA, the UK, California, or mainland China. Please also read our <a href="terms.html">Terms of Service</a>; matters concerning personal information are governed by this Policy.</p>
 
       <h2>2 Who We Are (Data Controller)</h2>
-      <p>The data controller is zhangchaochao, an individual developer operating the App. You can contact us at <strong>chao86825@gmail.com</strong>. We do not operate a customer phone line or a physical mailing address; the email above is our primary and sufficient contact channel.</p>
+      <p>The data controller is <strong>zhangchaochao</strong>, an individual developer operating the App. Contact: <strong>chao86825@gmail.com</strong>. This email is our channel for privacy questions, data-subject requests, complaints and account deletion; we reply within 15 working days.</p>
 
-      <h2>3 Information We Collect</h2>
-      <p><strong>3.1 Information you provide to us</strong></p>
+      <h2>3 Information We Actually Process</h2>
+      <p>The table below is the complete list of what the current version processes. Features not listed here do not collect your personal information.</p>
+      <table>
+        <thead><tr><th>Feature</th><th>Information (required?)</th><th>Purpose</th><th>Stored where</th></tr></thead>
+        <tbody>
+          <tr><td>Email code sign-in</td><td>Email address, verification code, sign-in time, session token (required)</td><td>Create and secure your account, verify identity, prevent code abuse</td><td>Our server</td></tr>
+          <tr><td>Nickname</td><td>Nickname you enter (optional; a default is used otherwise)</td><td>Display in the App, distinguish your account</td><td>Our server</td></tr>
+          <tr><td>Membership purchase</td><td>Order number, plan, amount, currency, payment channel, status and time (required only when purchasing; we never receive your card number or payment password)</td><td>Complete the transaction, activate and verify membership, handle refunds and reconciliation</td><td>Our server</td></tr>
+          <tr><td>Feedback</td><td>Message, contact details (optional), app version, OS version, device model, hashed device identifier (required when submitting)</td><td>Reproduce and fix the issue, reply to you</td><td>Our server</td></tr>
+          <tr><td>Daily check-in &amp; points</td><td>Check-in dates, points balance and change records (required to use)</td><td>Provide the rewards feature, prevent point abuse</td><td>Our server</td></tr>
+          <tr><td>Pronunciation / shadowing</td><td>Audio captured through your microphone (required to use)</td><td><strong>Processed entirely on your device.</strong> The temporary audio file is deleted immediately after scoring; audio is never uploaded and never retained.</td><td>Device only (deleted after scoring)</td></tr>
+          <tr><td>Learning progress</td><td>Completed items and counters (required to use)</td><td>Show your progress and let you continue learning</td><td>Device only (local database)</td></tr>
+          <tr><td>System speech recognition (if supported)</td><td>Voice handled by your device's system speech service (optional)</td><td>Improve scoring accuracy; we never receive the audio</td><td>System provider</td></tr>
+          <tr><td>Text-to-speech</td><td>Text to be read aloud (required to use)</td><td>Read words and sentences aloud</td><td>Device / system TTS engine</td></tr>
+          <tr><td>Server access logs</td><td>IP address, request time, endpoint, error information (required for security)</td><td>Keep the Service secure and stable, troubleshoot faults</td><td>Our server, no longer than 30 days</td></tr>
+        </tbody>
+      </table>
+
+      <h3>3.1 What we do NOT collect</h3>
+      <p>We do <strong>not</strong> collect or request: phone number (phone sign-in is disabled in the current version and the App no longer reads your phone number or phone state), contacts, SMS, call logs, location, photos or camera, clipboard, IMEI / MAC address / hardware serial number, advertising identifiers (GAID / OAID), your list of installed apps, or biometric data. We never record audio in the background.</p>
+      <p>The App contains no advertising, analytics, push-notification, social-login, or third-party crash-reporting SDK. We do not build user profiles, do not run targeted advertising, and do not sell personal information.</p>
+
+      <h2>4 Device Permissions</h2>
+      <table>
+        <thead><tr><th>Permission</th><th>When requested</th><th>Purpose</th><th>If you refuse</th></tr></thead>
+        <tbody>
+          <tr><td><code>INTERNET</code></td><td>Granted at install (normal permission, no prompt)</td><td>Download lessons and synchronize your account</td><td>The App cannot work</td></tr>
+          <tr><td><code>ACCESS_NETWORK_STATE</code></td><td>Granted at install (normal permission, no prompt)</td><td>Detect network availability before requesting content</td><td>The App cannot work reliably</td></tr>
+          <tr><td><code>RECORD_AUDIO</code> (microphone)</td><td>Only when you first tap the record button; a system dialog asks for consent</td><td>Record your voice for pronunciation practice, processed locally</td><td>Only the pronunciation feature is unavailable</td></tr>
+        </tbody>
+      </table>
+      <p>The App requests <strong>no</strong> other sensitive permission: no location, camera, storage, contacts, SMS, phone state, calendar, or body sensors; it does not auto-start and does not launch other apps.</p>
+
+      <h2>5 Third-Party SDKs and Services</h2>
+      <p>Which SDKs are included depends on the channel of the build you installed.</p>
+      <table>
+        <thead><tr><th>SDK / Service</th><th>Provider</th><th>Included in</th><th>Purpose / information involved</th></tr></thead>
+        <tbody>
+          <tr><td>Google Play Billing Library</td><td>Google LLC</td><td>Google Play build only</td><td>In-app purchases; purchase token, product ID, order status. We do not receive card data.</td></tr>
+          <tr><td>WeChat OpenSDK</td><td>Tencent</td><td>Mainland-China build only</td><td>WeChat Pay; order and device information needed to launch payment, governed by Tencent's privacy policy</td></tr>
+          <tr><td>Alipay SDK</td><td>Alipay (China) Network Technology Co., Ltd.</td><td>Mainland-China build only</td><td>Alipay payment; order and device information needed to launch payment, governed by Alipay's privacy policy</td></tr>
+          <tr><td>System speech recognition &amp; system TTS</td><td>Your device manufacturer or its system speech provider</td><td>All builds (system capability, not a bundled SDK)</td><td>Pronunciation support and reading text aloud; the system service processes it under its own policy, we do not receive the audio</td></tr>
+          <tr><td>AndroidX / Material / OkHttp / Retrofit / Gson</td><td>Open-source components</td><td>All builds</td><td>User interface and network requests; no personal information collected</td></tr>
+        </tbody>
+      </table>
+      <p class="note">We do <strong>not</strong> integrate Firebase, Crashlytics, Google Analytics or AdMob. If this changes in a future version, we will update this Policy and the store data-safety disclosures before release.</p>
+
+      <h2>6 How We Use Information</h2>
+      <p>We use the information in Section 3 only to: (a) provide and maintain the features you request; (b) secure accounts and prevent abuse, including rate-limiting verification codes; (c) respond to your feedback; (d) troubleshoot faults; and (e) comply with legal obligations. We do not use it for advertising, profiling, or automated decision-making that has legal effects on you.</p>
+
+      <h2>7 Where Data Is Stored</h2>
       <ul>
-        <li><strong>Account information</strong>: when you register or sign in (including via third‑party accounts such as Google), we collect your email address, third‑party account identifier (e.g., Google account ID), display name, and avatar.</li>
-        <li><strong>Membership and transaction information</strong>: if you purchase a membership or paid feature, we collect order identifiers, purchase time, membership tier, and expiry. Payment is processed by the app store / payment provider (e.g., Google Play Billing); we do not store your full card number or payment credentials.</li>
-        <li><strong>Support communications</strong>: when you contact us for support or feedback, we collect the contact details you provide and the content of your message.</li>
+        <li><strong>Mainland-China build:</strong> stored on servers located within mainland China.</li>
+        <li><strong>Builds distributed outside mainland China (e.g. Google Play):</strong> stored on servers outside your country of residence, using HTTPS in transit, access control and data minimization.</li>
+        <li><strong>We do not transfer mainland-China users' personal information outside mainland China.</strong> If cross-border transfer ever becomes necessary, we will inform you of the recipient, purpose, categories and retention period, obtain your separate consent under Articles 38–39 of the PIPL, and complete any required assessment or filing first.</li>
       </ul>
-      <p><strong>3.2 Information collected automatically</strong></p>
+
+      <h2>8 Retention</h2>
       <ul>
-        <li><strong>Device information</strong>: device model, operating system version, language setting, app version, and a resettable device identifier (we use resettable identifiers such as the Android Advertising ID in accordance with platform policies, and do not use permanent non‑resettable identifiers for advertising).</li>
-        <li><strong>Usage and logs</strong>: access times, modules accessed, study duration, and crash logs used to diagnose issues and improve the product.</li>
-        <li><strong>Learning records</strong>: your progress, favorites, mistake logs, and pronunciation scores, used for sync and review.</li>
-        <li><strong>Voice / audio</strong>: when you use pronunciation scoring or shadowing, we access your microphone and capture your voice. <strong>We will NEVER record audio in the background; microphone access is only triggered when you actively tap the speaking feature with your explicit consent.</strong> Voice is sensitive data. Audio is used locally or uploaded for pronunciation scoring only and is NOT used for advertising, user profiling or any unrelated purposes.</li>
+        <li>Account data (email, nickname, points, check-in records): while the account exists; deleted or anonymized within <strong>30 days</strong> after deletion.</li>
+        <li>Verification codes: valid for 5 minutes, invalidated after use.</li>
+        <li>Server access logs: no longer than 30 days.</li>
+        <li>Membership orders: up to <strong>3 years</strong> where required by accounting, tax or e-commerce law, then deleted or anonymized.</li>
+        <li>Feedback: deleted within 30 days after resolution unless you ask us to keep it.</li>
+        <li>Audio and learning progress: never leave your device, so there is nothing for us to retain.</li>
       </ul>
 
-      <h2>4 How We Use Your Information</h2>
-      <p>We use the information to: (a) provide, maintain, and secure the core Service; (b) manage accounts and memberships; (c) personalize learning recommendations and sync progress; (d) analyze and improve the product and troubleshoot; and (e) comply with legal obligations and protect the security of the Service.</p>
-
-      <h2>5 Legal Bases (EEA / UK)</h2>
-      <p>Where the GDPR applies, we rely on the following legal bases:</p>
+      <h2>9 Sharing, Transfer, Public Disclosure</h2>
+      <p>We do not sell your personal information and do not share it with third parties for their own marketing. We disclose information only:</p>
       <ul>
-        <li><strong>Performance of a contract</strong>: to provide the Service you request (e.g., account, lessons, membership).</li>
-        <li><strong>Consent</strong>: for optional processing such as microphone / voice capture and non‑essential analytics.</li>
-        <li><strong>Legitimate interests</strong>: for security, fraud prevention, and product improvement, balanced against your rights.</li>
-        <li><strong>Legal obligation</strong>: where we must retain or disclose data to comply with law.</li>
-      </ul>
-
-      <h2>6 Sharing &amp; Disclosure</h2>
-      <p>We do not sell your personal data. We may share data only as necessary:</p>
-      <ul>
+        <li>to the payment providers in Section 5, strictly to complete your transaction;</li>
         <li>with your separate consent;</li>
-        <li>payment provider <strong>Google Play Billing</strong>: to complete in‑app purchase transactions;</li>
-        <li>analytics / crash‑reporting service provider <strong>Firebase (Google)</strong>: for crash diagnostics, usage analytics and cloud sync; shared data is de‑identified or device‑level where possible;</li>
-        <li>where required by law, regulation, or legal process;</li>
-        <li>to protect our or our users' legitimate rights (e.g., preventing fraud).</li>
+        <li>where required by law, regulation, judicial or administrative order, or to protect the rights and safety of users and the public;</li>
+        <li>in a merger, acquisition or asset transfer, where we require the successor to remain bound by this Policy and will notify you.</li>
       </ul>
-      <p>If we undergo a merger, acquisition, or asset transfer, we will require the successor to remain bound by this Policy or obtain your renewed consent.</p>
+      <p>We do not publicly disclose personal information.</p>
 
-      <h2>7 International Data Transfers</h2>
-      <p>Because the App is distributed internationally (including via Google Play) and serves users worldwide, your personal data is stored on servers located outside your country of residence, including outside the European Economic Area and outside mainland China (the specific hosting region and cloud provider depend on our deployment).</p>
-      <p>As an individual developer, we apply reasonable safeguards for cross‑border data transfers, including HTTPS encryption in transit, access controls, data minimization, and regular security audits. For transfers involving users in mainland China, we have obtained your separate consent and implement above‑mentioned protective measures. If you do not agree to this cross‑border storage and transfer, please do not use the Service, or withdraw your consent as described in Section 9.</p>
+      <h2>10 Your Rights</h2>
+      <p>Subject to applicable law you may access and obtain a copy of your information, correct it, delete it, withdraw consent, restrict or object to certain processing, request portability, and delete your account. Email <strong>chao86825@gmail.com</strong> to exercise them; we verify identity and respond within <strong>15 working days</strong>.</p>
+      <p>You can revoke the microphone permission at any time in system settings (Settings → Apps → Light English → Permissions), and can stop all collection by deleting your account and uninstalling the App.</p>
 
-      <h2>8 Data Retention</h2>
-      <p>We retain personal data only for as long as necessary to provide the Service and fulfill the purposes described in this Policy. We delete or anonymize your personal data within <strong>30 working days</strong> after you delete your account or request erasure, except where we must retain certain records to comply with law or for security. Support communications and related logs are retained for a limited period (generally no longer than 30 working days after resolution) and then deleted.</p>
-
-      <h2>9 Your Rights</h2>
-      <p>Subject to applicable law, you have the right to: access and obtain a copy of your data; rectify inaccurate data; erase your data ("right to be forgotten"); restrict or object to certain processing; data portability; and withdraw consent at any time (without affecting processing already carried out). To exercise these rights, contact us at <strong>chao86825@gmail.com</strong>. We will respond within the timeframe required by applicable law (generally within one month under the GDPR).</p>
-      <p>If you are in the EEA or UK, you also have the right to lodge a complaint with your local supervisory authority. If you are in mainland China, you may report concerns to the Cyberspace Administration of China.</p>
-
-      <h2>10 Account Deletion</h2>
-      <p>You have two independent ways to submit account deletion requests:</p>
+      <h2>11 Account Deletion</h2>
       <ol>
-        <li><strong>In‑App deletion</strong>: Delete account from within the App (Settings → Account → Delete Account). This satisfies Google Play's in‑app account‑deletion requirement.</li>
-        <li><strong>Email external deletion request</strong>: Send email to <strong>chao86825@gmail.com</strong> with subject "Account Deletion". You need to provide your registered account information for ownership verification.</li>
+        <li><strong>In the App:</strong> Settings → Account → Delete Account (recommended).</li>
+        <li><strong>By email:</strong> send a message to <strong>chao86825@gmail.com</strong> with the subject "Account Deletion" and your registered email address for ownership verification.</li>
       </ol>
-      <p>Both methods trigger permanent deletion of your account and associated personal data following Section 8 retention rules. <strong>Temporary account suspension / freeze does NOT constitute full account deletion.</strong> If we are required by law to preserve partial records, we will notify you explicitly in our reply email.</p>
+      <p>We process the request within 15 working days and delete or anonymize the account and associated information within 30 days, except records we must keep by law (Section 8). <strong>Account suspension or freezing is not deletion.</strong> Deleting the account does not cancel a subscription purchased through Google Play; please cancel it in the store's subscription settings to avoid further charges.</p>
 
-      <h2>11 Children's Privacy</h2>
-      <p>The App is intended for general audiences and is not directed to children. We do not knowingly collect personal data from children under 16 (or under 13 in jurisdictions such as the United States under COPPA) without verifiable parental consent. If you are under 16, please use the App only with parental consent. If we learn that we have collected personal data from a child without verifiable parental consent, we will delete it promptly.</p>
+      <h2>12 Children's Privacy</h2>
+      <p>The App is aimed at a general audience and is not directed to children. We do not knowingly collect personal information from children under 16 (under 13 where COPPA applies; under 14 in mainland China, where the guardian's separate consent is required). The App has no social, chat or user-generated-content features. If you are a parent or guardian and believe a child provided us with personal information, email us and we will delete it promptly.</p>
 
-      <h2>12 Security</h2>
-      <p>We use encryption in transit (HTTPS), access controls, data minimization, and regular security audits to protect your data. However, no method of transmission or storage is completely secure, and we cannot guarantee absolute security.</p>
-
-      <h2>13 Regional Provisions</h2>
-      <ul>
-        <li><strong>EEA / UK (GDPR / UK GDPR)</strong>: Sections 5, 9, and 7 describe your rights and the safeguards for transfers. Nothing in this Policy limits your mandatory rights under the GDPR / UK GDPR.</li>
-        <li><strong>California (CCPA / CPRA)</strong>: we do not "sell" or "share" personal information as those terms are defined under California law. California residents may exercise the rights described in Section 9.</li>
-        <li><strong>Mainland China (PIPL)</strong>: where the PIPL applies, we process your personal data in accordance with its requirements, including separate consent for cross‑border transfer, and you may exercise your PIPL rights by contacting us.</li>
-      </ul>
+      <h2>13 Security</h2>
+      <p>We use HTTPS encryption in transit, server access controls, data minimization, and separation of production and test environments. No method of transmission or storage is completely secure. If a personal-information security incident occurs, we will notify affected users and the competent authorities as required by law.</p>
 
       <h2>14 Changes to This Policy</h2>
-      <p>We may update this Policy from time to time. For material changes (e.g., new purposes, new categories of data, or new recipients), we will notify you via in‑app notice or announcement and, where required, obtain your renewed consent.</p>
+      <p>We may update this Policy. For material changes (new purposes, categories, recipients, or cross-border transfers) we will notify you in the App and, where required, obtain your renewed consent before they take effect. The version number and effective date above always reflect the current Policy.</p>
 
-      <h2>15 Contact</h2>
-      <p>Questions or requests regarding this Policy can be sent to <strong>chao86825@gmail.com</strong>.</p>
+      <h2>15 Regional Provisions</h2>
+      <ul>
+        <li><strong>EEA / UK (GDPR):</strong> legal bases are performance of a contract (sign-in, lessons, membership), consent (microphone), legitimate interests (security, abuse prevention, fault diagnosis) and legal obligation. You may complain to your local supervisory authority.</li>
+        <li><strong>California (CCPA / CPRA):</strong> we do not "sell" or "share" personal information as defined by California law. California residents may exercise the rights in Section 10.</li>
+        <li><strong>Mainland China (PIPL):</strong> we process personal information based on your consent and on the necessity of performing our contract with you, following lawfulness, legitimacy, necessity and good faith. You may exercise your rights to know, decide, access, copy, correct, delete and withdraw consent, and to request an explanation of our rules; you may also complain to the cyberspace administration.</li>
+      </ul>
+
+      <h2>16 Contact Us</h2>
+      <p>For any question, request or complaint about this Policy or your personal information, contact <strong>chao86825@gmail.com</strong>. If you are not satisfied with our reply, you may also complain to the competent authority in your jurisdiction (in mainland China: cyberspace administration 12377, or the 12321 reporting center).</p>
     </main>
   </div>
 
-  <!-- 中文 -->
+  <!-- ==================== 简体中文 ==================== -->
   <div class="lang-block" data-lang="zh">
     <header class="hero">
       <h1>隐私政策</h1>
       <p>适用产品：<strong>轻英语（Light English）</strong></p>
-      <p>运营者：<strong>zhangchaochao（个人开发者）</strong></p>
+      <p>开发者：<strong>zhangchaochao（个人开发者）</strong></p>
       <p>联系邮箱：<strong>chao86825@gmail.com</strong></p>
-      <p>版本 v1.1　|　生效日期：<strong>2026-10-17</strong></p>
+      <p>版本 v1.2　|　生效日期：<strong>2026-11-17</strong></p>
       <p><a href="terms.html">查看用户协议</a></p>
     </header>
     <main class="doc">
       <h2>1 导言与适用范围</h2>
-      <p>本隐私政策说明 zhangchaochao（"我们"）作为轻英语移动客户端软件（轻英语，以下简称"本应用"或"本服务"）的个人开发者，在您使用本应用及相关服务时，如何收集、使用、存储、共享和保护您的个人信息。</p>
-      <p>轻英语是一款外语学习与口语练习工具，核心功能包括场景对话学习、单词记忆、发音评测与跟读、语音朗读（TTS）、学习进度记录以及可选的会员订阅。</p>
-      <p>本政策适用于全球范围。若您位于欧洲经济区（EEA）、英国或加利福尼亚州，适用第 13 条的补充地区条款；若您位于中国大陆，本政策与中国《个人信息保护法》（PIPL）同时适用。我们按照合法、正当、透明及必要原则处理个人信息。</p>
-      <p><strong>本隐私政策网页必须可通过普通浏览器公开访问，无需登录、密码，不可作为PDF文件下载查看。</strong>请同时阅读我们的<a href="terms.html">用户协议</a>。涉及个人信息处理的内容以本政策为准；涉及服务使用、账号与付费的内容以用户协议为准。</p>
+      <p>本隐私政策说明 zhangchaochao（"我们"）作为轻英语移动客户端软件（轻英语，以下简称"本应用"）的个人开发者，在您使用本应用时如何收集、使用、存储、共享和保护您的个人信息。</p>
+      <p>轻英语是一款外语学习与口语练习工具，功能包括：场景对话学习、单词记忆、口语跟读与发音练习、语音朗读（TTS）、每日打卡与积分、保存在设备本地的学习进度、意见反馈、可选的会员订阅以及账号管理。</p>
+      <p>本政策适用于全球范围。若您位于欧洲经济区、英国、加利福尼亚州或中国大陆，适用第 15 条的补充条款。请同时阅读我们的<a href="terms.html">用户协议</a>；涉及个人信息处理的内容以本政策为准。</p>
 
       <h2>2 我们是谁（个人信息处理者）</h2>
-      <p>个人信息处理者为 zhangchaochao，本应用的个人开发者。您可通过 <strong>chao86825@gmail.com</strong> 联系我们。我们不设客服电话与实体邮寄地址，上述邮箱是我们主要且充分的联系渠道。</p>
+      <p>个人信息处理者为 <strong>zhangchaochao</strong>，本应用的个人开发者。联系方式：<strong>chao86825@gmail.com</strong>。该邮箱是我们处理隐私问题、个人信息权利请求、投诉与账号注销的联系渠道，我们将在 <strong>15 个工作日</strong>内回复。</p>
 
-      <h2>3 我们收集的个人信息</h2>
-      <p><strong>3.1 您主动提供的信息</strong></p>
+      <h2>3 我们实际处理的个人信息</h2>
+      <p>下表是本应用当前版本处理的全部个人信息。未在下表中列出的功能，不会收集您的个人信息。</p>
+      <table>
+        <thead><tr><th>功能场景</th><th>涉及的信息（是否必要）</th><th>使用目的</th><th>存储位置</th></tr></thead>
+        <tbody>
+          <tr><td>邮箱验证码登录</td><td>邮箱地址、验证码、登录时间、登录令牌（必要）</td><td>创建账号、验证身份、保持登录、防止验证码滥用</td><td>我们的服务器</td></tr>
+          <tr><td>昵称设置</td><td>您填写的昵称（非必要，不填则用默认昵称）</td><td>在应用内展示、区分账号</td><td>我们的服务器</td></tr>
+          <tr><td>会员购买</td><td>订单号、会员类型、金额、币种、支付渠道、订单状态与时间（仅购买时必要；我们<strong>不获取</strong>银行卡号、支付密码）</td><td>完成交易、开通与核对会员权益、退款与对账</td><td>我们的服务器</td></tr>
+          <tr><td>意见反馈</td><td>反馈内容、联系方式（选填）、应用版本、系统版本、设备型号、设备标识（哈希，提交时必要）</td><td>定位并复现问题、回复您的反馈</td><td>我们的服务器</td></tr>
+          <tr><td>每日打卡与积分</td><td>打卡日期、积分余额与变动记录（使用该功能时必要）</td><td>提供打卡积分功能、防止积分刷取</td><td>我们的服务器</td></tr>
+          <tr><td>口语跟读与发音练习</td><td>麦克风采集的语音（使用该功能时必要）</td><td><strong>完全在设备本地处理</strong>，评分后立即删除临时录音文件，<strong>不上传、不保存</strong></td><td>仅设备本地（评分后删除）</td></tr>
+          <tr><td>学习进度</td><td>已完成项、进度计数（使用该功能时必要）</td><td>展示学习进度、继续学习</td><td>仅设备本地（本地数据库）</td></tr>
+          <tr><td>系统语音识别（如设备支持）</td><td>语音，由设备系统语音服务处理（可选）</td><td>提升评分准确度；我们不接收录音</td><td>由系统服务商处理</td></tr>
+          <tr><td>语音朗读（TTS）</td><td>待朗读的文本（使用该功能时必要）</td><td>朗读单词与句子</td><td>设备本地／系统语音引擎</td></tr>
+          <tr><td>服务端访问日志</td><td>IP 地址、请求时间、接口、错误信息（安全所必要）</td><td>保障服务安全稳定、排查故障</td><td>我们的服务器，不超过 30 天</td></tr>
+        </tbody>
+      </table>
+
+      <h3>3.1 我们不会收集的信息</h3>
+      <p>我们<strong>不收集、不申请</strong>：手机号（当前版本已关闭手机号登录，且应用不再读取手机号或电话状态）、通讯录、短信、通话记录、位置信息、相册与摄像头、剪贴板内容、IMEI／MAC 地址／硬件序列号、广告标识符（GAID／OAID）、已安装应用列表、生物识别信息。<strong>我们不会在任何情况下后台录音。</strong></p>
+      <p>本应用<strong>未接入</strong>任何广告、统计分析、消息推送、第三方社交登录或第三方崩溃上报 SDK；<strong>不做用户画像、不做定向广告、不出售个人信息</strong>。</p>
+
+      <h2>4 系统权限调用说明</h2>
+      <table>
+        <thead><tr><th>权限</th><th>申请时机</th><th>使用目的</th><th>拒绝的后果</th></tr></thead>
+        <tbody>
+          <tr><td><code>INTERNET</code>（网络访问）</td><td>安装时由系统授予（普通权限，无弹窗）</td><td>获取课程内容、同步账号数据</td><td>应用无法使用</td></tr>
+          <tr><td><code>ACCESS_NETWORK_STATE</code>（网络状态）</td><td>安装时由系统授予（普通权限，无弹窗）</td><td>请求内容前判断网络是否可用</td><td>应用无法稳定使用</td></tr>
+          <tr><td><code>RECORD_AUDIO</code>（麦克风）</td><td>仅首次点击"跟读／录音"时由系统弹窗征求同意</td><td>录制您的发音用于口语练习，本地处理</td><td>仅口语跟读功能不可用</td></tr>
+        </tbody>
+      </table>
+      <p>除上表外，本应用<strong>不申请</strong>任何其他敏感权限：不申请位置、相机、存储、通讯录、短信、电话状态、日历、身体传感器权限；不自启动、不关联启动其他应用。</p>
+
+      <h2>5 第三方 SDK 与服务</h2>
+      <p>您所安装版本包含的 SDK 取决于分发渠道。</p>
+      <table>
+        <thead><tr><th>SDK／服务</th><th>提供方</th><th>包含于</th><th>使用目的／涉及的信息</th></tr></thead>
+        <tbody>
+          <tr><td>Google Play Billing Library</td><td>Google LLC</td><td>仅 Google Play 版本</td><td>应用内购买；购买令牌、商品 ID、订单状态；我们不获取银行卡信息</td></tr>
+          <tr><td>微信 OpenSDK</td><td>深圳市腾讯计算机系统有限公司</td><td>仅中国大陆版本</td><td>微信支付；拉起支付所需的订单与设备信息，适用腾讯隐私政策</td></tr>
+          <tr><td>支付宝 SDK</td><td>支付宝（中国）网络技术有限公司</td><td>仅中国大陆版本</td><td>支付宝支付；拉起支付所需的订单与设备信息，适用支付宝隐私政策</td></tr>
+          <tr><td>系统语音识别与系统 TTS</td><td>您的设备厂商或其系统语音服务商</td><td>所有版本（系统能力，非内置 SDK）</td><td>辅助发音评分、朗读文本；由该系统服务按其政策处理，我们不接收录音</td></tr>
+          <tr><td>AndroidX／Material／OkHttp／Retrofit／Gson</td><td>开源组件</td><td>所有版本</td><td>界面与网络请求；不收集个人信息</td></tr>
+        </tbody>
+      </table>
+      <p class="note">我们<strong>未接入</strong> Firebase、Crashlytics、Google Analytics、AdMob。若未来版本新增，我们会在发布前更新本政策及各应用市场的"数据安全"声明。</p>
+
+      <h2>6 我们如何使用信息</h2>
+      <p>我们仅将第 3 条列明的信息用于：（a）提供并维护您所请求的功能；（b）保障账号安全、防止滥用，包括限制验证码发送频率；（c）回复您的反馈；（d）排查故障；（e）履行法律义务。我们不会将其用于广告、用户画像，或对您产生法律影响的自动化决策。</p>
+
+      <h2>7 信息存储地点</h2>
       <ul>
-        <li><strong>账号信息</strong>：当您注册或登录（包括通过 Google 等第三方账号）时，我们收集您的邮箱地址、第三方账号标识（如 Google 账号 ID）、昵称与头像。</li>
-        <li><strong>会员与交易信息</strong>：当您购买会员或付费功能时，我们收集订单标识、购买时间、会员等级与到期时间。支付由应用商店/支付机构（如 Google Play Billing）处理，我们不存储您的完整卡号或支付凭据。</li>
-        <li><strong>客服与反馈</strong>：当您联系我们寻求支持或反馈时，我们收集您提供的联系方式及留言内容。</li>
+        <li><strong>中国大陆版本</strong>：存储于中华人民共和国境内的服务器。</li>
+        <li><strong>面向中国大陆以外分发的版本（如 Google Play）</strong>：存储于您所在国家／地区以外的服务器，采用 HTTPS 传输加密、访问权限控制与数据最小化措施。</li>
+        <li><strong>我们不会将中国大陆用户的个人信息传输至境外。</strong>如未来确需跨境传输，我们将告知境外接收方、目的、信息类型与保存期限，依《个人信息保护法》第三十八、三十九条取得您的单独同意，并先行完成必要的安全评估或备案。</li>
       </ul>
-      <p><strong>3.2 服务过程中自动收集的信息</strong></p>
-      <ul>
-        <li><strong>设备信息</strong>：设备型号、操作系统版本、语言设置、应用版本及设备标识符（我们遵循平台政策使用 Android 广告标识符等可重置标识符，不将永久不可重置的标识符用于广告）。</li>
-        <li><strong>日志与使用</strong>：访问时间、访问的学习模块、学习时长以及用于排查问题与改进产品的崩溃日志。</li>
-        <li><strong>学习记录</strong>：您的学习进度、收藏、错题与发音评测成绩，用于同步与回顾。</li>
-        <li><strong>语音/音频</strong>：当您使用发音评测或口语跟读时，我们会访问麦克风并采集您的语音。<strong>我们绝不会后台录音；麦克风权限只会在您主动点击口语功能、取得您明示同意之后才会启用。</strong>语音属于敏感个人信息；语音仅用于本地处理或者上传进行发音打分，不会用于广告、用户画像或其他无关用途。</li>
-      </ul>
-
-      <h2>4 我们如何使用您的信息</h2>
-      <p>我们出于以下目的使用信息：（a）提供、维护并保障核心服务的安全；（b）管理账号与会员；（c）个性化学习推荐与进度同步；（d）分析并改进产品、排查故障；（e）履行法律义务并保障服务安全。</p>
-
-      <h2>5 处理的法律基础（适用于 EEA/英国）</h2>
-      <p>在适用 GDPR 的情况下，我们依据以下法律基础处理：</p>
-      <ul>
-        <li><strong>履行合同</strong>：提供您所请求的服务（如账号、课程、会员）；</li>
-        <li><strong>同意</strong>：用于可选处理，如麦克风/语音采集与非必要分析；</li>
-        <li><strong>合法权益</strong>：用于安全、防欺诈与产品改进，并权衡您的权利；</li>
-        <li><strong>法律义务</strong>：在须依法留存或披露数据时。</li>
-      </ul>
-
-      <h2>6 信息共享与披露</h2>
-      <p>我们不会出售您的个人信息。仅在必要时共享：</p>
-      <ul>
-        <li>经您单独同意；</li>
-        <li>支付服务商 <strong>Google Play Billing</strong>：完成应用内购买交易；</li>
-        <li>统计和崩溃上报服务商 <strong>Firebase（Google）</strong>：崩溃诊断、使用统计、云同步；尽可能使用去标识化、设备维度数据；</li>
-        <li>法律法规、监管要求或司法程序要求提供；</li>
-        <li>为保护我们或用户的合法权益（如防止欺诈）在必要范围内提供。</li>
-      </ul>
-      <p>若发生合并、收购或资产转让，我们将要求接收方继续受本政策约束，或重新取得您的同意。</p>
-
-      <h2>7 跨境数据传输</h2>
-      <p>因本应用通过 Google Play 等渠道国际分发并服务全球用户，您的个人信息将存储于您所在国家/地区之外的服务器，包括欧洲经济区之外及中国大陆之外（具体托管地区与云服务商以实际部署为准）。</p>
-      <p>作为个人开发者，我们对跨境传输采取合理安全防护手段：HTTPS传输加密、访问权限控制、数据最小化、定期安全审计。对于中国大陆用户，跨境传输需要获得您单独明示同意，并落实上述保护措施。如您不同意上述跨境存储与传输，请勿使用本服务，或按第 9 条撤回同意。</p>
 
       <h2>8 信息存储期限</h2>
-      <p>我们仅在实现目的所必需的最短时间内保存您的个人信息。在您注销账号或提出删除请求后，我们将在 <strong>30 个工作日</strong> 内删除或匿名化处理您的个人信息，法律法规另有规定的除外。客服沟通及相关日志仅保留有限期限（通常在处理完毕后不超过 30 个工作日），随后删除。</p>
-
-      <h2>9 您的权利</h2>
-      <p>在适用法律下，您享有以下权利：访问并获取副本、更正不准确的信息、删除（"被遗忘权"）、限制或拒绝特定处理、数据可携，以及随时撤回同意（不影响撤回前已进行的处理）。行使上述权利请通过 <strong>chao86825@gmail.com</strong> 联系我们，我们将在适用法律要求的期限内（GDPR 下一般为一个月内）响应。</p>
-      <p>若您位于 EEA 或英国，您亦有权向当地监管机构投诉。若您位于中国大陆，可向网信部门（Cyberspace Administration of China）反映。</p>
-
-      <h2>10 账号删除</h2>
-      <p>您有两种独立途径提交账号注销申请：</p>
-      <ol>
-        <li><strong>应用内注销</strong>：在应用内（设置 → 账号 → 注销账号）执行账号删除，该入口满足Google Play的应用内账号删除要求。</li>
-        <li><strong>邮件外部申请注销</strong>：发送邮件至 <strong>chao86825@gmail.com</strong>，邮件标题填写“注销账号”；您需要提供注册账号信息用于身份核验。</li>
-      </ol>
-      <p>两种方式都会按照第8条规则永久删除账号和关联个人信息。<strong>账号临时冻结、禁用不等于完整账号删除。</strong>如法律强制要求保留部分记录，我们会在回复邮件中明确告知您。</p>
-
-      <h2>11 未成年人保护</h2>
-      <p>本应用面向一般公众，不针对儿童。我们不会在未经可验证父母同意的情况下，明知而收集 16 岁以下（美国 COPPA 等法域为 13 岁以下）儿童的个人信息。若您未满 16 岁，请在父母同意下方可使用本应用。如我们发现未经可验证父母同意收集了儿童个人信息，将尽快删除。</p>
-
-      <h2>12 安全措施</h2>
-      <p>我们采用传输加密（HTTPS）、访问权限控制、数据最小化与定期安全审计保护您的信息。但任何传输或存储方式均非绝对安全，我们无法保证绝对安全。</p>
-
-      <h2>13 地区条款</h2>
       <ul>
-        <li><strong>EEA/英国（GDPR/UK GDPR）</strong>：第 5、9、7 条说明了您的权利及传输保障措施。本政策不限制您在 GDPR/UK GDPR 下的强制性权利。</li>
-        <li><strong>加利福尼亚（CCPA/CPRA）</strong>：我们不会按加州法律定义"出售"或"共享"个人信息。加州居民可行使第 9 条所述权利。</li>
-        <li><strong>中国大陆（PIPL）</strong>：在 PIPL 适用时，我们依其要求处理您的个人信息，包括跨境传输的单独同意；您可通过联系我们行使 PIPL 权利。</li>
+        <li>账号信息（邮箱、昵称、积分、打卡记录）：账号存续期间保存；注销后 <strong>30 日内</strong>删除或匿名化。</li>
+        <li>验证码：5 分钟内有效，使用后立即失效。</li>
+        <li>服务端访问日志：不超过 30 天。</li>
+        <li>会员订单记录：依《电子商务法》《税收征收管理法》等要求保存不超过 <strong>3 年</strong>，期满后删除或匿名化。</li>
+        <li>意见反馈：处理完毕后 30 日内删除，除非您要求保留。</li>
+        <li>录音与学习进度：始终不离开您的设备，我们不存在留存的可能。</li>
       </ul>
 
-      <h2>14 政策变更</h2>
-      <p>我们可能不时更新本政策。发生重大变更（如新目的、新数据类别或新接收方）时，我们将通过应用内通知或公告告知，并在必要时重新取得您的同意。</p>
+      <h2>9 共享、转让与公开披露</h2>
+      <p>我们不出售您的个人信息，也不会提供给第三方用于其自身营销。仅在以下情形共享：</p>
+      <ul>
+        <li>为完成您的交易，向第 5 条列明的支付服务商提供必要信息；</li>
+        <li>经您单独同意；</li>
+        <li>依法律法规、司法或行政机关的强制性要求，或为维护用户及公众的合法权益、财产安全所必需；</li>
+        <li>涉及合并、收购或资产转让时，我们将要求承接方继续受本政策约束并另行告知您。</li>
+      </ul>
+      <p>我们不会公开披露您的个人信息。</p>
 
-      <h2>15 联系我们</h2>
-      <p>关于本政策的疑问或行使权利的请求，请发送至 <strong>chao86825@gmail.com</strong>。</p>
-      
+      <h2>10 您的权利</h2>
+      <p>在适用法律范围内，您有权查阅、复制、更正、删除您的个人信息，撤回同意，限制或拒绝特定处理，请求转移个人信息，以及注销账号。请发送邮件至 <strong>chao86825@gmail.com</strong>，我们将在核验身份后 <strong>15 个工作日</strong>内答复。</p>
+      <p>您可随时在系统设置中关闭麦克风权限（设置 → 应用 → 轻英语 → 权限），或通过注销账号并卸载应用停止一切信息收集。</p>
+
+      <h2>11 账号注销</h2>
+      <ol>
+        <li><strong>应用内注销（推荐）</strong>：设置 → 账号 → 注销账号。</li>
+        <li><strong>邮件申请注销</strong>：发送邮件至 <strong>chao86825@gmail.com</strong>，标题填写"注销账号"，并提供注册邮箱以便核验。</li>
+      </ol>
+      <p>我们将在 15 个工作日内核验受理，并在 30 日内删除或匿名化账号及关联信息，法律法规要求必须留存的除外（见第 8 条）。<strong>账号冻结、暂停使用不构成注销。</strong>注销账号不会自动取消您在 Google Play 或应用商店中已订阅的会员，请先在商店的订阅管理中取消，以免继续扣费。</p>
+
+      <h2>12 未成年人保护</h2>
+      <p>本应用面向一般公众，不专门面向儿童。我们不会在明知的情况下收集未满 16 周岁未成年人（COPPA 适用情形下为 13 周岁以下；<strong>中国大陆为不满 14 周岁</strong>，须取得监护人单独同意）的个人信息。本应用不含社交、聊天或用户生成内容功能。如您是监护人，认为我们收集了儿童的个人信息，请联系我们，我们将尽快删除。</p>
+
+      <h2>13 安全措施</h2>
+      <p>我们采用传输加密（HTTPS）、服务器访问权限控制、数据最小化、生产与测试环境隔离等措施。但任何传输或存储方式均非绝对安全。如发生个人信息安全事件，我们将依法律要求及时告知受影响用户并向主管部门报告。</p>
+
+      <h2>14 政策变更</h2>
+      <p>我们可能更新本政策。发生重大变更（新增处理目的、信息类型、接收方或跨境传输）时，我们将在应用内以显著方式告知，并在法律要求的情况下于变更生效前重新取得您的同意。本页顶部的版本号与生效日期始终与当前政策一致。</p>
+
+      <h2>15 地区条款</h2>
+      <ul>
+        <li><strong>EEA／英国（GDPR／UK GDPR）</strong>：处理基础为履行合同（登录、课程、会员）、同意（麦克风）、合法权益（安全、防滥用、故障排查）与法律义务。您有权向当地监管机构投诉。</li>
+        <li><strong>加利福尼亚（CCPA／CPRA）</strong>：我们不会按加州法律定义"出售"或"共享"个人信息。加州居民可行使第 10 条所述权利。</li>
+        <li><strong>中国大陆（PIPL）</strong>：我们基于您的同意及履行合同所必需，遵循合法、正当、必要与诚信原则处理个人信息。您有权知情、决定、查阅、复制、更正、删除、撤回同意，并要求我们解释处理规则；也可向网信部门投诉举报。</li>
+      </ul>
+
+      <h2>16 联系我们与投诉</h2>
+      <p>如对本政策或您的个人信息有任何疑问、请求或投诉，请联系 <strong>chao86825@gmail.com</strong>。如对我们的答复不满意，还可向所在辖区监管机构投诉（中国大陆：网信部门 12377、12321 举报中心）。</p>
     </main>
   </div>
+
+  <!-- ==================== 繁體中文 ==================== -->
+  <div class="lang-block" data-lang="zh-TW">
+    <header class="hero">
+      <h1>隱私權政策</h1>
+      <p>適用產品：<strong>輕英語（Light English）</strong></p>
+      <p>開發者：<strong>zhangchaochao（個人開發者）</strong></p>
+      <p>聯絡信箱：<strong>chao86825@gmail.com</strong></p>
+      <p>版本 v1.2　|　生效日期：<strong>2026-11-17</strong></p>
+      <p><a href="terms.html">查看使用者協議</a></p>
+    </header>
+    <main class="doc">
+      <h2>1 前言與適用範圍</h2>
+      <p>本隱私權政策說明 zhangchaochao（「我們」）作為輕英語行動應用程式（以下稱「本應用程式」）的個人開發者，在您使用本應用程式時如何蒐集、使用、儲存、分享與保護您的個人資料。</p>
+      <p>輕英語是一款外語學習與口說練習工具，功能包括：情境對話學習、單字記憶、口說跟讀與發音練習、語音朗讀（TTS）、每日簽到與積分、儲存在裝置本機的學習進度、意見回饋、可選的會員訂閱以及帳號管理。</p>
+      <p>本政策適用於全球。若您位於歐洲經濟區、英國、加州或中國大陸，另適用第 15 條的補充條款。請同時閱讀我們的<a href="terms.html">使用者協議</a>；涉及個人資料處理的內容以本政策為準。</p>
+
+      <h2>2 我們是誰（個人資料處理者）</h2>
+      <p>個人資料處理者為 <strong>zhangchaochao</strong>，本應用程式的個人開發者。聯絡方式：<strong>chao86825@gmail.com</strong>。此信箱是我們處理隱私問題、個人資料權利請求、申訴與帳號刪除的聯絡管道，我們將於 <strong>15 個工作日</strong>內回覆。</p>
+
+      <h2>3 我們實際處理的個人資料</h2>
+      <p>下表為本應用程式目前版本處理的全部個人資料。未列於下表的功能，不會蒐集您的個人資料。</p>
+      <table>
+        <thead><tr><th>使用情境</th><th>涉及的資料（是否必要）</th><th>使用目的</th><th>儲存位置</th></tr></thead>
+        <tbody>
+          <tr><td>電子郵件驗證碼登入</td><td>電子郵件地址、驗證碼、登入時間、登入權杖（必要）</td><td>建立帳號、驗證身分、維持登入、防止驗證碼濫用</td><td>我們的伺服器</td></tr>
+          <tr><td>暱稱設定</td><td>您填寫的暱稱（非必要，未填則使用預設暱稱）</td><td>於應用程式內顯示、區分帳號</td><td>我們的伺服器</td></tr>
+          <tr><td>會員購買</td><td>訂單編號、會員類型、金額、幣別、付款管道、訂單狀態與時間（僅購買時必要；我們<strong>不會取得</strong>信用卡號或付款密碼）</td><td>完成交易、開通與核對會員權益、退款與對帳</td><td>我們的伺服器</td></tr>
+          <tr><td>意見回饋</td><td>回饋內容、聯絡方式（選填）、應用程式版本、系統版本、裝置型號、裝置識別碼（雜湊，送出時必要）</td><td>重現並修正問題、回覆您的回饋</td><td>我們的伺服器</td></tr>
+          <tr><td>每日簽到與積分</td><td>簽到日期、積分餘額與異動紀錄（使用該功能時必要）</td><td>提供簽到積分功能、防止積分刷取</td><td>我們的伺服器</td></tr>
+          <tr><td>口說跟讀與發音練習</td><td>麥克風擷取的語音（使用該功能時必要）</td><td><strong>完全在裝置本機處理</strong>，評分後立即刪除暫存錄音檔，<strong>不上傳、不保存</strong></td><td>僅裝置本機（評分後刪除）</td></tr>
+          <tr><td>學習進度</td><td>已完成項目、進度計數（使用該功能時必要）</td><td>顯示學習進度、繼續學習</td><td>僅裝置本機（本機資料庫）</td></tr>
+          <tr><td>系統語音辨識（裝置支援時）</td><td>語音，由裝置系統語音服務處理（選用）</td><td>提升評分準確度；我們不會接收錄音</td><td>由系統服務商處理</td></tr>
+          <tr><td>語音朗讀（TTS）</td><td>待朗讀的文字（使用該功能時必要）</td><td>朗讀單字與句子</td><td>裝置本機／系統語音引擎</td></tr>
+          <tr><td>伺服器存取紀錄</td><td>IP 位址、請求時間、介面、錯誤資訊（安全所必要）</td><td>維持服務安全穩定、排查故障</td><td>我們的伺服器，不超過 30 天</td></tr>
+        </tbody>
+      </table>
+
+      <h3>3.1 我們不會蒐集的資料</h3>
+      <p>我們<strong>不蒐集、不申請</strong>：手機號碼（目前版本已關閉手機號碼登入，應用程式也不再讀取手機號碼或電話狀態）、通訊錄、簡訊、通話紀錄、位置資訊、相簿與相機、剪貼簿內容、IMEI／MAC 位址／硬體序號、廣告識別碼（GAID／OAID）、已安裝應用程式清單、生物辨識資料。<strong>我們不會在任何情況下於背景錄音。</strong></p>
+      <p>本應用程式<strong>未導入</strong>任何廣告、統計分析、訊息推播、第三方社群登入或第三方當機回報 SDK；<strong>不建立使用者輪廓、不投放定向廣告、不出售個人資料</strong>。</p>
+
+      <h2>4 系統權限說明</h2>
+      <table>
+        <thead><tr><th>權限</th><th>申請時機</th><th>使用目的</th><th>拒絕的後果</th></tr></thead>
+        <tbody>
+          <tr><td><code>INTERNET</code>（網路存取）</td><td>安裝時由系統授予（一般權限，無彈窗）</td><td>取得課程內容、同步帳號資料</td><td>應用程式無法使用</td></tr>
+          <tr><td><code>ACCESS_NETWORK_STATE</code>（網路狀態）</td><td>安裝時由系統授予（一般權限，無彈窗）</td><td>請求內容前判斷網路是否可用</td><td>應用程式無法穩定使用</td></tr>
+          <tr><td><code>RECORD_AUDIO</code>（麥克風）</td><td>僅首次點選「跟讀／錄音」時由系統彈窗徵求同意</td><td>錄製您的發音用於口說練習，本機處理</td><td>僅口說跟讀功能不可用，其他功能不受影響</td></tr>
+        </tbody>
+      </table>
+      <p>除上表外，本應用程式<strong>不申請</strong>任何其他敏感權限：不申請位置、相機、儲存空間、通訊錄、簡訊、電話狀態、行事曆、身體感測器權限；不會自動啟動，也不會連帶啟動其他應用程式。</p>
+
+      <h2>5 第三方 SDK 與服務</h2>
+      <p>您所安裝版本包含的 SDK 取決於散布管道。</p>
+      <table>
+        <thead><tr><th>SDK／服務</th><th>提供者</th><th>包含於</th><th>使用目的／涉及的資料</th></tr></thead>
+        <tbody>
+          <tr><td>Google Play Billing Library</td><td>Google LLC</td><td>僅 Google Play 版本</td><td>應用程式內購買；購買權杖、商品 ID、訂單狀態；我們不會取得信用卡資訊</td></tr>
+          <tr><td>微信 OpenSDK</td><td>騰訊</td><td>僅中國大陸版本</td><td>微信支付；啟動付款所需的訂單與裝置資訊，適用騰訊隱私政策</td></tr>
+          <tr><td>支付寶 SDK</td><td>支付寶（中國）網路技術有限公司</td><td>僅中國大陸版本</td><td>支付寶付款；啟動付款所需的訂單與裝置資訊，適用支付寶隱私政策</td></tr>
+          <tr><td>系統語音辨識與系統 TTS</td><td>您的裝置廠商或其系統語音服務商</td><td>所有版本（系統能力，非內建 SDK）</td><td>輔助發音評分、朗讀文字；由該系統服務依其政策處理，我們不會接收錄音</td></tr>
+          <tr><td>AndroidX／Material／OkHttp／Retrofit／Gson</td><td>開源元件</td><td>所有版本</td><td>介面與網路請求；不蒐集個人資料</td></tr>
+        </tbody>
+      </table>
+      <p class="note">我們<strong>未導入</strong> Firebase、Crashlytics、Google Analytics、AdMob。若未來版本新增，我們會在發布前更新本政策與各應用程式商店的「資料安全」聲明。</p>
+
+      <h2>6 我們如何使用資料</h2>
+      <p>我們僅將第 3 條所列資料用於：（a）提供並維護您所請求的功能；（b）維護帳號安全、防止濫用，包括限制驗證碼發送頻率；（c）回覆您的回饋；（d）排查故障；（e）履行法律義務。我們不會將其用於廣告、使用者輪廓，或對您產生法律影響的自動化決策。</p>
+
+      <h2>7 資料儲存地點</h2>
+      <ul>
+        <li><strong>中國大陸版本</strong>：儲存於中華人民共和國境內的伺服器。</li>
+        <li><strong>於中國大陸以外散布的版本（如 Google Play）</strong>：儲存於您所在國家／地區以外的伺服器，採用 HTTPS 傳輸加密、存取權限控制與資料最小化措施。</li>
+        <li><strong>我們不會將中國大陸使用者的個人資料傳輸至境外。</strong>如未來確有跨境傳輸需求，我們將告知境外接收方、目的、資料類型與保存期限，依《個人信息保護法》第 38、39 條取得您的單獨同意，並先行完成必要的安全評估或備案。</li>
+      </ul>
+
+      <h2>8 資料保存期限</h2>
+      <ul>
+        <li>帳號資料（電子郵件、暱稱、積分、簽到紀錄）：帳號存續期間保存；刪除後 <strong>30 日內</strong>刪除或匿名化。</li>
+        <li>驗證碼：5 分鐘內有效，使用後立即失效。</li>
+        <li>伺服器存取紀錄：不超過 30 天。</li>
+        <li>會員訂單紀錄：依相關電子商務與稅務法規保存不超過 <strong>3 年</strong>，期滿後刪除或匿名化。</li>
+        <li>意見回饋：處理完畢後 30 日內刪除，除非您要求保留。</li>
+        <li>錄音與學習進度：始終不離開您的裝置，我們無從保存。</li>
+      </ul>
+
+      <h2>9 分享、轉讓與公開揭露</h2>
+      <p>我們不出售您的個人資料，也不會提供給第三方作為其自身行銷之用。僅於以下情形分享：</p>
+      <ul>
+        <li>為完成您的交易，向第 5 條所列付款服務商提供必要資料；</li>
+        <li>經您單獨同意；</li>
+        <li>依法規、司法或行政機關之強制要求，或為維護使用者及公眾合法權益、財產安全所必要；</li>
+        <li>涉及合併、收購或資產轉讓時，我們將要求承接方繼續受本政策拘束並另行告知您。</li>
+      </ul>
+      <p>我們不會公開揭露您的個人資料。</p>
+
+      <h2>10 您的權利</h2>
+      <p>在適用法律範圍內，您有權查詢、閱覽、製給複製本、補充或更正、請求停止蒐集處理利用與刪除您的個人資料，撤回同意，請求資料可攜，以及刪除帳號。請寄送電子郵件至 <strong>chao86825@gmail.com</strong>，我們將於驗證身分後 <strong>15 個工作日</strong>內回覆。</p>
+      <p>您可隨時於系統設定關閉麥克風權限（設定 → 應用程式 → 輕英語 → 權限），或透過刪除帳號並解除安裝應用程式停止一切資料蒐集。</p>
+
+      <h2>11 帳號刪除</h2>
+      <ol>
+        <li><strong>應用程式內刪除（建議）</strong>：設定 → 帳號 → 刪除帳號。</li>
+        <li><strong>電子郵件申請</strong>：寄送至 <strong>chao86825@gmail.com</strong>，主旨填寫「刪除帳號」，並提供註冊信箱以供核驗。</li>
+      </ol>
+      <p>我們將於 15 個工作日內核驗受理，並於 30 日內刪除或匿名化帳號及關聯資料，法律要求必須保存者除外（見第 8 條）。<strong>帳號凍結、暫停使用不構成刪除。</strong>刪除帳號不會自動取消您在 Google Play 或應用程式商店已訂閱的會員，請先於商店的訂閱管理中取消，以免持續扣款。</p>
+
+      <h2>12 未成年人保護</h2>
+      <p>本應用程式面向一般大眾，並非專為兒童設計。我們不會在明知的情況下蒐集未滿 16 歲（COPPA 適用情形為 13 歲以下；<strong>中國大陸為未滿 14 歲</strong>，須取得監護人單獨同意）之個人資料。本應用程式不含社群、聊天或使用者生成內容功能。如您為監護人，認為我們蒐集了兒童的個人資料，請與我們聯絡，我們將儘速刪除。</p>
+
+      <h2>13 安全措施</h2>
+      <p>我們採用傳輸加密（HTTPS）、伺服器存取權限控制、資料最小化、生產與測試環境隔離等措施。但任何傳輸或儲存方式均非絕對安全。如發生個人資料安全事件，我們將依法即時通知受影響使用者並向主管機關報告。</p>
+
+      <h2>14 政策變更</h2>
+      <p>我們可能更新本政策。發生重大變更（新增處理目的、資料類型、接收方或跨境傳輸）時，我們將於應用程式內以顯著方式告知，並於法律要求時在變更生效前重新取得您的同意。本頁頂端的版本號與生效日期始終與現行政策一致。</p>
+
+      <h2>15 地區條款</h2>
+      <ul>
+        <li><strong>EEA／英國（GDPR／UK GDPR）</strong>：處理依據為履行契約（登入、課程、會員）、同意（麥克風）、正當利益（安全、防濫用、故障排查）與法律義務。您有權向當地監管機關申訴。</li>
+        <li><strong>加州（CCPA／CPRA）</strong>：我們不會依加州法律定義「出售」或「分享」個人資料。加州居民可行使第 10 條所述權利。</li>
+        <li><strong>中國大陸（PIPL）</strong>：我們基於您的同意及履行契約所必需，遵循合法、正當、必要與誠信原則處理個人資料。您有權知情、決定、查閱、複製、更正、刪除、撤回同意，並要求我們解釋處理規則；亦可向網信部門申訴檢舉。</li>
+      </ul>
+
+      <h2>16 聯絡我們與申訴</h2>
+      <p>如對本政策或您的個人資料有任何疑問、請求或申訴，請聯絡 <strong>chao86825@gmail.com</strong>。如對我們的回覆不滿意，還可向所在轄區監管機關申訴（中國大陸：網信部門 12377、12321 檢舉中心）。</p>
+    </main>
+  </div>
+
+  <!-- ==================== 日本語 ==================== -->
+  <div class="lang-block" data-lang="ja">
+    <header class="hero">
+      <h1>プライバシーポリシー</h1>
+      <p>対象製品：<strong>軽英語（Light English）</strong></p>
+      <p>開発者：<strong>zhangchaochao（個人開発者）</strong></p>
+      <p>お問い合わせ：<strong>chao86825@gmail.com</strong></p>
+      <p>バージョン v1.2　|　施行日：<strong>2026-11-17</strong></p>
+      <p><a href="terms.html">利用規約を見る</a></p>
+    </header>
+    <main class="doc">
+      <h2>1 はじめに・適用範囲</h2>
+      <p>本プライバシーポリシーは、軽英語モバイルアプリ（以下「本アプリ」）の個人開発者である zhangchaochao（以下「当方」）が、本アプリのご利用にあたり、お客様の個人情報をどのように取得・利用・保存・共有し、保護するかを説明するものです。</p>
+      <p>軽英語は語学学習およびスピーキング練習ツールです。主な機能は、シーン別会話レッスン、単語暗記、音読・発音練習、音声読み上げ（TTS）、毎日のチェックインとポイント、端末内に保存される学習進捗、ご意見の送信、任意の会員サブスクリプション、アカウント管理です。</p>
+      <p>本ポリシーは全世界に適用されます。欧州経済領域（EEA）、英国、カリフォルニア州、中国大陸にお住まいの場合は第 15 条の地域規定が適用されます。あわせて<a href="terms.html">利用規約</a>もご確認ください。個人情報の取扱いについては本ポリシーが優先します。</p>
+
+      <h2>2 運営者（個人情報取扱者）</h2>
+      <p>個人情報取扱者は、本アプリを運営する個人開発者 <strong>zhangchaochao</strong> です。連絡先：<strong>chao86825@gmail.com</strong>。このメールアドレスは、プライバシーに関するお問い合わせ、開示等の請求、苦情、アカウント削除の窓口であり、<strong>15 営業日</strong>以内に回答します。</p>
+
+      <h2>3 当方が実際に取得する情報</h2>
+      <p>下表は、現行バージョンが取得する情報のすべてです。ここに記載のない機能は、お客様の個人情報を取得しません。</p>
+      <table>
+        <thead><tr><th>機能</th><th>取得する情報（必須か）</th><th>利用目的</th><th>保存場所</th></tr></thead>
+        <tbody>
+          <tr><td>メール認証コードによるログイン</td><td>メールアドレス、認証コード、ログイン日時、セッショントークン（必須）</td><td>アカウント作成、本人確認、ログイン状態の維持、コードの不正利用防止</td><td>当方のサーバー</td></tr>
+          <tr><td>ニックネーム設定</td><td>入力されたニックネーム（任意。未入力の場合は既定値）</td><td>アプリ内での表示、アカウントの識別</td><td>当方のサーバー</td></tr>
+          <tr><td>会員の購入</td><td>注文番号、会員種別、金額、通貨、決済手段、注文状況と日時（購入時のみ必須。カード番号や決済パスワードは<strong>取得しません</strong>）</td><td>取引の完了、会員特典の付与と確認、返金・照合</td><td>当方のサーバー</td></tr>
+          <tr><td>ご意見・お問い合わせ</td><td>本文、連絡先（任意）、アプリのバージョン、OS バージョン、端末モデル、端末識別子（ハッシュ値。送信時に必須）</td><td>不具合の再現と修正、回答</td><td>当方のサーバー</td></tr>
+          <tr><td>毎日のチェックインとポイント</td><td>チェックイン日、ポイント残高と増減履歴（利用時に必須）</td><td>チェックイン機能の提供、ポイントの不正取得防止</td><td>当方のサーバー</td></tr>
+          <tr><td>音読・発音練習</td><td>マイクで取得した音声（利用時に必須）</td><td><strong>すべて端末内で処理します。</strong>採点後、一時音声ファイルは直ちに削除され、<strong>アップロードも保存も行いません</strong>。</td><td>端末内のみ（採点後に削除）</td></tr>
+          <tr><td>学習進捗</td><td>完了項目、進捗カウント（利用時に必須）</td><td>学習進捗の表示、学習の継続</td><td>端末内のみ（ローカル DB）</td></tr>
+          <tr><td>端末の音声認識（対応端末のみ）</td><td>音声（端末のシステム音声サービスが処理、任意）</td><td>採点精度の向上。当方は音声を受信しません</td><td>システム提供者が処理</td></tr>
+          <tr><td>音声読み上げ（TTS）</td><td>読み上げ対象のテキスト（利用時に必須）</td><td>単語・例文の読み上げ</td><td>端末内／システム TTS</td></tr>
+          <tr><td>サーバーアクセスログ</td><td>IP アドレス、リクエスト日時、エンドポイント、エラー情報（安全管理上必要）</td><td>サービスの安全性・安定性の確保、障害調査</td><td>当方のサーバー、30 日以内</td></tr>
+        </tbody>
+      </table>
+
+      <h3>3.1 取得しない情報</h3>
+      <p>当方は次を<strong>取得せず、権限も要求しません</strong>：電話番号（現行版では電話番号ログインを停止しており、端末の電話番号や通話状態も読み取りません）、連絡先、SMS、通話履歴、位置情報、写真・カメラ、クリップボード、IMEI／MAC アドレス／シリアル番号、広告識別子（GAID／OAID）、インストール済みアプリの一覧、生体認証情報。<strong>バックグラウンドで録音することは一切ありません。</strong></p>
+      <p>本アプリは広告・アクセス解析・プッシュ通知・ソーシャルログイン・第三者のクラッシュレポート SDK を<strong>一切組み込んでいません</strong>。ユーザープロファイリング、ターゲティング広告、個人情報の販売も行いません。</p>
+
+      <h2>4 端末の権限</h2>
+      <table>
+        <thead><tr><th>権限</th><th>要求のタイミング</th><th>目的</th><th>拒否した場合</th></tr></thead>
+        <tbody>
+          <tr><td><code>INTERNET</code>（ネットワーク）</td><td>インストール時に自動付与（確認なし）</td><td>レッスンの取得、アカウント同期</td><td>本アプリを利用できません</td></tr>
+          <tr><td><code>ACCESS_NETWORK_STATE</code>（ネットワーク状態）</td><td>インストール時に自動付与（確認なし）</td><td>通信前にネットワークの有無を判定</td><td>安定して利用できません</td></tr>
+          <tr><td><code>RECORD_AUDIO</code>（マイク）</td><td>初めて「録音」をタップした時のみ、システムのダイアログで同意を求めます</td><td>発音練習のための録音（端末内で処理）</td><td>発音練習のみ利用できません</td></tr>
+        </tbody>
+      </table>
+      <p>上表以外の機微な権限は<strong>要求しません</strong>：位置情報、カメラ、ストレージ、連絡先、SMS、電話状態、カレンダー、身体センサーは要求せず、自動起動や他アプリの連携起動も行いません。</p>
+
+      <h2>5 第三者 SDK・サービス</h2>
+      <p>同梱される SDK は、お客様がインストールしたビルドの配布チャネルによって異なります。</p>
+      <table>
+        <thead><tr><th>SDK／サービス</th><th>提供者</th><th>対象ビルド</th><th>目的／関わる情報</th></tr></thead>
+        <tbody>
+          <tr><td>Google Play Billing Library</td><td>Google LLC</td><td>Google Play 版のみ</td><td>アプリ内課金。購入トークン、商品 ID、注文状況。カード情報は取得しません</td></tr>
+          <tr><td>WeChat OpenSDK</td><td>Tencent</td><td>中国大陸版のみ</td><td>WeChat Pay。決済起動に必要な注文・端末情報。Tencent のプライバシーポリシーが適用されます</td></tr>
+          <tr><td>Alipay SDK</td><td>Alipay (China) Network Technology Co., Ltd.</td><td>中国大陸版のみ</td><td>Alipay 決済。決済起動に必要な注文・端末情報。Alipay のプライバシーポリシーが適用されます</td></tr>
+          <tr><td>システム音声認識・システム TTS</td><td>端末メーカーまたはその音声サービス提供者</td><td>すべてのビルド（システム機能。SDK の同梱なし）</td><td>発音評価の補助、テキスト読み上げ。当方は音声を受信しません</td></tr>
+          <tr><td>AndroidX／Material／OkHttp／Retrofit／Gson</td><td>オープンソース</td><td>すべてのビルド</td><td>UI と通信。個人情報の取得なし</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Firebase、Crashlytics、Google Analytics、AdMob は<strong>組み込んでいません</strong>。将来追加する場合は、リリース前に本ポリシーと各ストアのデータセーフティ申告を更新します。</p>
+
+      <h2>6 情報の利用目的</h2>
+      <p>第 3 条の情報は、(a) ご要望の機能の提供と維持、(b) アカウントの保護と不正利用防止（認証コードの送信回数制限を含む）、(c) お問い合わせへの回答、(d) 障害調査、(e) 法令上の義務の履行、にのみ利用します。広告、プロファイリング、法的効果を伴う自動意思決定には利用しません。</p>
+
+      <h2>7 情報の保存場所</h2>
+      <ul>
+        <li><strong>中国大陸版</strong>：中華人民共和国境内のサーバーに保存します。</li>
+        <li><strong>中国大陸以外で配布する版（Google Play など）</strong>：お住まいの国・地域以外のサーバーに保存します。通信は HTTPS で暗号化し、アクセス制御とデータ最小化を行います。</li>
+        <li><strong>中国大陸の利用者の個人情報を境外へ移転することはありません。</strong>将来必要となる場合は、移転先、目的、情報の種類、保存期間を告知し、PIPL 第 38・39 条に基づく別途の同意を取得し、必要な評価・届出を先に完了します。</li>
+      </ul>
+
+      <h2>8 保存期間</h2>
+      <ul>
+        <li>アカウント情報（メール、ニックネーム、ポイント、チェックイン履歴）：アカウント存続中。削除後 <strong>30 日以内</strong>に削除または匿名化。</li>
+        <li>認証コード：5 分間有効。使用後は直ちに無効化。</li>
+        <li>サーバーアクセスログ：30 日以内。</li>
+        <li>会員の注文記録：会計・税務・電子商取引に関する法令に基づき最長 <strong>3 年</strong>保存し、その後削除または匿名化。</li>
+        <li>お問い合わせ：解決後 30 日以内に削除（保存のご希望がある場合を除く）。</li>
+        <li>音声と学習進捗：端末外に出ないため、当方が保存することはありません。</li>
+      </ul>
+
+      <h2>9 第三者提供・移転・公開</h2>
+      <p>当方は個人情報を販売せず、第三者のマーケティング目的で提供することもありません。次の場合に限り提供します。</p>
+      <ul>
+        <li>取引の完了のため、第 5 条の決済事業者に必要な情報を提供する場合；</li>
+        <li>お客様の別途の同意がある場合；</li>
+        <li>法令、規制、司法・行政機関の命令に基づく場合、または利用者・公衆の権利と安全を守るために必要な場合；</li>
+        <li>合併・買収・資産譲渡に伴う場合（承継者に本ポリシーの遵守を求め、別途通知します）。</li>
+      </ul>
+      <p>個人情報を公表することはありません。</p>
+
+      <h2>10 お客様の権利</h2>
+      <p>適用法令の範囲内で、開示・複製の取得、訂正、削除、同意の撤回、処理の制限・拒否、データポータビリティ、アカウント削除を請求できます。<strong>chao86825@gmail.com</strong> までご連絡ください。本人確認のうえ <strong>15 営業日</strong>以内に回答します。</p>
+      <p>端末の設定（設定 → アプリ → 軽英語 → 権限）でマイク権限をいつでも無効にでき、アカウント削除とアプリのアンインストールによりすべての取得を停止できます。</p>
+
+      <h2>11 アカウント削除</h2>
+      <ol>
+        <li><strong>アプリ内（推奨）</strong>：設定 → アカウント → アカウント削除。</li>
+        <li><strong>メール</strong>：件名を「アカウント削除」として <strong>chao86825@gmail.com</strong> に送信し、登録メールアドレスをご記載ください。</li>
+      </ol>
+      <p>15 営業日以内に本人確認のうえ受付し、30 日以内にアカウントと関連情報を削除または匿名化します（第 8 条により保存が必要な記録を除く）。<strong>アカウントの凍結・一時停止は削除ではありません。</strong>アカウントを削除しても、Google Play で購入したサブスクリプションは自動解約されません。ストアのサブスクリプション設定で解約してください。</p>
+
+      <h2>12 未成年者のプライバシー</h2>
+      <p>本アプリは一般向けであり、児童を対象としていません。16 歳未満（COPPA 適用時は 13 歳未満、<strong>中国大陸では 14 歳未満</strong>で保護者の別途同意が必要）の個人情報を、明知のうえで取得することはありません。本アプリには SNS・チャット・UGC 機能はありません。保護者の方で、お子様の情報が取得されていると思われる場合はご連絡ください。速やかに削除します。</p>
+
+      <h2>13 安全管理措置</h2>
+      <p>通信の暗号化（HTTPS）、サーバーへのアクセス制御、データ最小化、本番環境とテスト環境の分離を実施しています。ただし、通信・保存のいかなる方法も完全に安全とは限りません。個人情報の漏えい等が発生した場合は、法令に従い影響を受ける利用者への通知および所管当局への報告を行います。</p>
+
+      <h2>14 本ポリシーの変更</h2>
+      <p>本ポリシーは変更されることがあります。重要な変更（利用目的、情報の種類、提供先、越境移転の追加）を行う場合はアプリ内で分かりやすく通知し、法令上必要な場合は効力発生前に改めて同意を取得します。ページ上部のバージョンと施行日は常に最新の内容を示します。</p>
+
+      <h2>15 地域別の規定</h2>
+      <ul>
+        <li><strong>EEA／英国（GDPR／UK GDPR）</strong>：処理の根拠は、契約の履行（ログイン、レッスン、会員）、同意（マイク）、正当な利益（安全確保、不正防止、障害調査）、法的義務です。所轄の監督機関に苦情を申し立てることができます。</li>
+        <li><strong>カリフォルニア州（CCPA／CPRA）</strong>：加州法が定義する個人情報の「販売」「共有」は行いません。加州の居住者は第 10 条の権利を行使できます。</li>
+        <li><strong>中国大陸（PIPL）</strong>：お客様の同意および契約履行に必要な範囲で、適法・正当・必要・誠実の原則に従って処理します。知る権利、決定権、閲覧・複製・訂正・削除、同意の撤回、処理規則の説明を求める権利を有し、サイバースペース管理局に苦情を申し立てることもできます。</li>
+      </ul>
+
+      <h2>16 お問い合わせ</h2>
+      <p>本ポリシーまたは個人情報に関するご質問・ご請求・苦情は <strong>chao86825@gmail.com</strong> までお送りください。回答にご満足いただけない場合は、お住まいの地域の所管当局にも苦情を申し立てることができます（中国大陸：サイバースペース管理局 12377、12321 通報センター）。</p>
+    </main>
+  </div>
+
+  <!-- ==================== 한국어 ==================== -->
+  <div class="lang-block" data-lang="ko">
+    <header class="hero">
+      <h1>개인정보 처리방침</h1>
+      <p>대상 제품: <strong>라이트 잉글리시(Light English, 轻英语)</strong></p>
+      <p>개발자: <strong>zhangchaochao (개인 개발자)</strong></p>
+      <p>문의: <strong>chao86825@gmail.com</strong></p>
+      <p>버전 v1.2 &nbsp;|&nbsp; 시행일: <strong>2026-11-17</strong></p>
+      <p><a href="terms.html">이용약관 보기</a></p>
+    </header>
+    <main class="doc">
+      <h2>1 들어가며 · 적용 범위</h2>
+      <p>본 개인정보 처리방침은 라이트 잉글리시 모바일 앱(이하 "본 앱")의 개인 개발자인 zhangchaochao(이하 "개발자")가 본 앱을 제공하면서 이용자의 개인정보를 어떻게 수집·이용·보관·공유하고 보호하는지 설명합니다.</p>
+      <p>라이트 잉글리시는 외국어 학습 및 말하기 연습 도구입니다. 주요 기능은 상황별 대화 학습, 단어 암기, 따라 말하기와 발음 연습, 음성 낭독(TTS), 매일 출석 체크와 포인트, 기기 내에 저장되는 학습 진도, 의견 보내기, 선택형 멤버십 구독, 계정 관리입니다.</p>
+      <p>본 방침은 전 세계에 적용됩니다. 유럽경제지역(EEA), 영국, 캘리포니아주, 중국 본토에 계신 경우 제15조의 지역 조항이 함께 적용됩니다. <a href="terms.html">이용약관</a>도 함께 확인해 주세요. 개인정보 처리에 관해서는 본 방침이 우선합니다.</p>
+
+      <h2>2 개발자 정보(개인정보 처리자)</h2>
+      <p>개인정보 처리자는 본 앱을 운영하는 개인 개발자 <strong>zhangchaochao</strong>입니다. 연락처: <strong>chao86825@gmail.com</strong>. 이 이메일은 개인정보 관련 문의, 정보주체 권리 요청, 불만 접수, 계정 삭제의 창구이며 <strong>영업일 기준 15일</strong> 이내에 답변합니다.</p>
+
+      <h2>3 실제로 처리하는 개인정보</h2>
+      <p>아래 표는 현재 버전이 처리하는 정보의 전부입니다. 표에 없는 기능은 개인정보를 수집하지 않습니다.</p>
+      <table>
+        <thead><tr><th>기능</th><th>처리하는 정보(필수 여부)</th><th>이용 목적</th><th>보관 위치</th></tr></thead>
+        <tbody>
+          <tr><td>이메일 인증번호 로그인</td><td>이메일 주소, 인증번호, 로그인 시각, 세션 토큰(필수)</td><td>계정 생성, 본인 확인, 로그인 유지, 인증번호 남용 방지</td><td>개발자 서버</td></tr>
+          <tr><td>닉네임 설정</td><td>입력한 닉네임(선택, 미입력 시 기본값)</td><td>앱 내 표시, 계정 구분</td><td>개발자 서버</td></tr>
+          <tr><td>멤버십 구매</td><td>주문번호, 이용권 종류, 금액, 통화, 결제 수단, 주문 상태와 시각(구매 시에만 필수. 카드번호와 결제 비밀번호는 <strong>받지 않습니다</strong>)</td><td>거래 완료, 멤버십 개설과 확인, 환불과 정산</td><td>개발자 서버</td></tr>
+          <tr><td>의견 보내기</td><td>내용, 연락처(선택), 앱 버전, OS 버전, 기기 모델, 기기 식별자(해시값, 전송 시 필수)</td><td>문제 재현과 수정, 답변</td><td>개발자 서버</td></tr>
+          <tr><td>출석 체크와 포인트</td><td>출석 날짜, 포인트 잔액과 변동 기록(이용 시 필수)</td><td>출석 포인트 기능 제공, 부정 적립 방지</td><td>개발자 서버</td></tr>
+          <tr><td>따라 말하기·발음 연습</td><td>마이크로 수집한 음성(이용 시 필수)</td><td><strong>전부 기기 안에서 처리합니다.</strong> 채점 직후 임시 음성 파일을 삭제하며 <strong>업로드하거나 보관하지 않습니다.</strong></td><td>기기 내부에서만(채점 후 삭제)</td></tr>
+          <tr><td>학습 진도</td><td>완료 항목, 진도 카운트(이용 시 필수)</td><td>학습 진도 표시, 학습 이어가기</td><td>기기 내부에서만(로컬 DB)</td></tr>
+          <tr><td>기기 음성 인식(지원 기기)</td><td>음성, 기기의 시스템 음성 서비스가 처리(선택)</td><td>채점 정확도 향상. 개발자는 음성을 받지 않습니다</td><td>시스템 제공자가 처리</td></tr>
+          <tr><td>음성 낭독(TTS)</td><td>낭독할 텍스트(이용 시 필수)</td><td>단어와 문장 낭독</td><td>기기/시스템 TTS 엔진</td></tr>
+          <tr><td>서버 접속 로그</td><td>IP 주소, 요청 시각, 엔드포인트, 오류 정보(보안상 필요)</td><td>서비스 안정성과 보안 유지, 장애 대응</td><td>개발자 서버, 최대 30일</td></tr>
+        </tbody>
+      </table>
+
+      <h3>3.1 수집하지 않는 정보</h3>
+      <p>개발자는 다음 정보를 <strong>수집하지 않으며 권한도 요청하지 않습니다</strong>: 휴대전화번호(현재 버전은 휴대전화번호 로그인을 중단했고, 앱은 전화번호나 통화 상태를 읽지 않습니다), 연락처, 문자메시지, 통화 기록, 위치 정보, 사진과 카메라, 클립보드, IMEI/MAC 주소/시리얼 번호, 광고 식별자(GAID/OAID), 설치된 앱 목록, 생체 정보. <strong>어떤 경우에도 백그라운드에서 녹음하지 않습니다.</strong></p>
+      <p>본 앱에는 광고·통계·푸시·소셜 로그인·제3자 오류 수집 SDK가 <strong>전혀 포함되어 있지 않습니다</strong>. 이용자 프로파일링, 맞춤형 광고, 개인정보 판매를 하지 않습니다.</p>
+
+      <h2>4 기기 권한</h2>
+      <table>
+        <thead><tr><th>권한</th><th>요청 시점</th><th>목적</th><th>거부할 경우</th></tr></thead>
+        <tbody>
+          <tr><td><code>INTERNET</code>(네트워크)</td><td>설치 시 시스템이 자동 부여(일반 권한, 팝업 없음)</td><td>학습 콘텐츠 다운로드, 계정 동기화</td><td>앱을 사용할 수 없습니다</td></tr>
+          <tr><td><code>ACCESS_NETWORK_STATE</code>(네트워크 상태)</td><td>설치 시 시스템이 자동 부여(일반 권한, 팝업 없음)</td><td>콘텐츠 요청 전 네트워크 상태 확인</td><td>앱이 안정적으로 동작하지 않습니다</td></tr>
+          <tr><td><code>RECORD_AUDIO</code>(마이크)</td><td>처음 "녹음"을 누를 때만 시스템 팝업으로 동의를 받습니다</td><td>발음 연습을 위한 녹음(기기 내 처리)</td><td>발음 연습 기능만 사용할 수 없습니다</td></tr>
+        </tbody>
+      </table>
+      <p>위 표 외의 민감한 권한은 <strong>요청하지 않습니다</strong>. 위치, 카메라, 저장공간, 연락처, 문자, 통화 상태, 캘린더, 신체 센서 권한이 없으며 자동 실행이나 다른 앱의 연동 실행도 하지 않습니다.</p>
+
+      <h2>5 제3자 SDK 및 서비스</h2>
+      <p>포함되는 SDK는 설치한 빌드의 배포 채널에 따라 다릅니다.</p>
+      <table>
+        <thead><tr><th>SDK/서비스</th><th>제공자</th><th>포함 빌드</th><th>목적/관련 정보</th></tr></thead>
+        <tbody>
+          <tr><td>Google Play Billing Library</td><td>Google LLC</td><td>Google Play 빌드만</td><td>인앱 결제. 구매 토큰, 상품 ID, 주문 상태. 카드 정보는 받지 않습니다</td></tr>
+          <tr><td>WeChat OpenSDK</td><td>Tencent</td><td>중국 본토 빌드만</td><td>위챗페이. 결제 호출에 필요한 주문·기기 정보, Tencent 개인정보 정책 적용</td></tr>
+          <tr><td>Alipay SDK</td><td>Alipay (China) Network Technology Co., Ltd.</td><td>중국 본토 빌드만</td><td>알리페이 결제. 결제 호출에 필요한 주문·기기 정보, Alipay 개인정보 정책 적용</td></tr>
+          <tr><td>시스템 음성 인식·시스템 TTS</td><td>기기 제조사 또는 시스템 음성 서비스 제공자</td><td>모든 빌드(시스템 기능, SDK 미포함)</td><td>발음 평가 보조, 텍스트 낭독. 개발자는 음성을 받지 않습니다</td></tr>
+          <tr><td>AndroidX/Material/OkHttp/Retrofit/Gson</td><td>오픈소스</td><td>모든 빌드</td><td>UI와 네트워크 요청. 개인정보 수집 없음</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Firebase, Crashlytics, Google Analytics, AdMob은 <strong>포함되어 있지 않습니다</strong>. 향후 추가할 경우 출시 전에 본 방침과 각 스토어의 데이터 보안 신고를 함께 갱신합니다.</p>
+
+      <h2>6 정보 이용 목적</h2>
+      <p>제3조의 정보는 (a) 요청한 기능의 제공과 유지, (b) 계정 보호와 남용 방지(인증번호 발송 횟수 제한 포함), (c) 문의 답변, (d) 장애 대응, (e) 법적 의무 이행에만 이용합니다. 광고, 프로파일링, 법적 효력이 있는 자동화된 의사결정에는 이용하지 않습니다.</p>
+
+      <h2>7 정보 보관 위치</h2>
+      <ul>
+        <li><strong>중국 본토 빌드</strong>: 중화인민공화국 경내 서버에 보관합니다.</li>
+        <li><strong>중국 본토 외 지역 배포 빌드(Google Play 등)</strong>: 거주 국가/지역 외 서버에 보관하며, HTTPS 전송 암호화, 접근 통제, 최소 수집을 적용합니다.</li>
+        <li><strong>중국 본토 이용자의 개인정보를 국외로 이전하지 않습니다.</strong> 향후 국외 이전이 필요해지면 이전받는 자, 목적, 정보 항목, 보관 기간을 알리고 PIPL 제38조·제39조에 따른 별도 동의를 받으며, 필요한 평가나 신고를 먼저 완료합니다.</li>
+      </ul>
+
+      <h2>8 보관 기간</h2>
+      <ul>
+        <li>계정 정보(이메일, 닉네임, 포인트, 출석 기록): 계정 존속 기간. 삭제 후 <strong>30일 이내</strong> 삭제 또는 익명화.</li>
+        <li>인증번호: 5분간 유효, 사용 후 즉시 무효화.</li>
+        <li>서버 접속 로그: 최대 30일.</li>
+        <li>멤버십 주문 기록: 회계·세무·전자상거래 관련 법령에 따라 최대 <strong>3년</strong> 보관 후 삭제 또는 익명화.</li>
+        <li>의견 보내기: 처리 완료 후 30일 이내 삭제(보관을 요청한 경우 제외).</li>
+        <li>음성과 학습 진도: 기기 밖으로 나가지 않으므로 개발자가 보관하지 않습니다.</li>
+      </ul>
+
+      <h2>9 제3자 제공·이전·공개</h2>
+      <p>개인정보를 판매하지 않으며, 제3자의 마케팅 목적으로 제공하지 않습니다. 다음의 경우에만 제공합니다.</p>
+      <ul>
+        <li>거래 완료를 위해 제5조의 결제 사업자에게 필요한 정보를 제공하는 경우</li>
+        <li>이용자의 별도 동의가 있는 경우</li>
+        <li>법령, 규제, 사법·행정 기관의 명령에 따른 경우 또는 이용자와 공중의 권리·안전을 보호하기 위해 필요한 경우</li>
+        <li>합병·인수·자산 이전에 따르는 경우(승계자에게 본 방침 준수를 요구하고 별도로 고지합니다)</li>
+      </ul>
+      <p>개인정보를 공개하지 않습니다.</p>
+
+      <h2>10 이용자의 권리</h2>
+      <p>관련 법령이 정한 범위에서 열람·사본 제공, 정정, 삭제, 동의 철회, 처리 제한·거부, 데이터 이동, 계정 삭제를 요청할 수 있습니다. <strong>chao86825@gmail.com</strong>으로 연락해 주시면 본인 확인 후 <strong>영업일 기준 15일</strong> 이내에 답변합니다.</p>
+      <p>기기 설정(설정 → 앱 → 라이트 잉글리시 → 권한)에서 마이크 권한을 언제든 끌 수 있으며, 계정 삭제와 앱 삭제로 모든 수집을 중단할 수 있습니다.</p>
+
+      <h2>11 계정 삭제</h2>
+      <ol>
+        <li><strong>앱 내 삭제(권장)</strong>: 설정 → 계정 → 계정 삭제.</li>
+        <li><strong>이메일 요청</strong>: 제목에 "계정 삭제"를 적어 <strong>chao86825@gmail.com</strong>으로 보내고, 가입한 이메일 주소를 적어 주세요.</li>
+      </ol>
+      <p>영업일 기준 15일 이내에 확인 후 접수하고, 30일 이내에 계정과 관련 정보를 삭제하거나 익명화합니다(제8조에 따라 보관이 필요한 기록 제외). <strong>계정 동결이나 일시 정지는 삭제가 아닙니다.</strong> 계정을 삭제해도 Google Play에서 구매한 구독은 자동 해지되지 않으니, 스토어의 구독 관리에서 먼저 해지해 주세요.</p>
+
+      <h2>12 아동의 개인정보</h2>
+      <p>본 앱은 일반 이용자를 대상으로 하며 아동을 대상으로 하지 않습니다. 만 16세 미만(COPPA 적용 시 13세 미만, <strong>중국 본토는 만 14세 미만</strong>으로 보호자의 별도 동의 필요) 아동의 개인정보를 알면서 수집하지 않습니다. 본 앱에는 소셜·채팅·이용자 생성 콘텐츠 기능이 없습니다. 보호자로서 아동의 정보가 수집되었다고 판단되면 연락해 주시면 신속히 삭제합니다.</p>
+
+      <h2>13 안전성 확보 조치</h2>
+      <p>전송 구간 암호화(HTTPS), 서버 접근 통제, 최소 수집, 운영·테스트 환경 분리를 적용합니다. 다만 어떤 전송·보관 방식도 완전히 안전하지는 않습니다. 개인정보 침해 사고가 발생하면 법령에 따라 이용자에게 알리고 관계 기관에 신고합니다.</p>
+
+      <h2>14 방침의 변경</h2>
+      <p>본 방침은 변경될 수 있습니다. 중대한 변경(처리 목적, 정보 항목, 제공받는 자, 국외 이전의 추가)이 있는 경우 앱 내에서 알기 쉽게 고지하고, 법령상 필요한 경우 시행 전에 다시 동의를 받습니다. 페이지 상단의 버전과 시행일은 항상 최신 내용을 반영합니다.</p>
+
+      <h2>15 지역별 조항</h2>
+      <ul>
+        <li><strong>EEA/영국(GDPR/UK GDPR)</strong>: 처리 근거는 계약 이행(로그인, 학습, 멤버십), 동의(마이크), 정당한 이익(보안, 남용 방지, 장애 대응), 법적 의무입니다. 관할 감독 기관에 불만을 제기할 수 있습니다.</li>
+        <li><strong>캘리포니아(CCPA/CPRA)</strong>: 캘리포니아법이 정의하는 개인정보의 "판매"나 "공유"를 하지 않습니다. 캘리포니아 거주자는 제10조의 권리를 행사할 수 있습니다.</li>
+        <li><strong>중국 본토(PIPL)</strong>: 이용자의 동의와 계약 이행에 필요한 범위에서 적법·정당·필요·신의성실 원칙에 따라 처리합니다. 알 권리, 결정권, 열람·복사·정정·삭제, 동의 철회, 처리 규칙 설명 요구 권리가 있으며 사이버공간관리국에 신고할 수 있습니다.</li>
+      </ul>
+
+      <h2>16 문의</h2>
+      <p>본 방침이나 개인정보에 관한 문의·요청·불만은 <strong>chao86825@gmail.com</strong>으로 보내 주세요. 답변에 만족하지 못한 경우 거주 지역의 관할 기관에 불만을 제기할 수 있습니다(중국 본토: 사이버공간관리국 12377, 12321 신고 센터).</p>
+    </main>
+  </div>
+
+  <!-- ==================== Tiếng Việt ==================== -->
+  <div class="lang-block" data-lang="vi">
+    <header class="hero">
+      <h1>Chính sách quyền riêng tư</h1>
+      <p>Sản phẩm: <strong>Light English (轻英语)</strong></p>
+      <p>Nhà phát triển: <strong>zhangchaochao (nhà phát triển cá nhân)</strong></p>
+      <p>Liên hệ: <strong>chao86825@gmail.com</strong></p>
+      <p>Phiên bản v1.2 &nbsp;|&nbsp; Ngày hiệu lực: <strong>2026-11-17</strong></p>
+      <p><a href="terms.html">Xem Điều khoản dịch vụ</a></p>
+    </header>
+    <main class="doc">
+      <h2>1 Giới thiệu &amp; Phạm vi</h2>
+      <p>Chính sách này giải thích cách zhangchaochao ("chúng tôi"), nhà phát triển cá nhân của ứng dụng Light English (sau đây gọi là "Ứng dụng"), thu thập, sử dụng, lưu trữ, chia sẻ và bảo vệ thông tin cá nhân của bạn khi bạn sử dụng Ứng dụng.</p>
+      <p>Light English là công cụ học ngoại ngữ và luyện nói. Các tính năng gồm: bài hội thoại theo tình huống, ghi nhớ từ vựng, luyện phát âm và nói nhại, đọc bằng giọng nói (TTS), điểm danh và tích điểm hằng ngày, tiến độ học lưu trên thiết bị, gửi phản hồi, gói hội viên tùy chọn và quản lý tài khoản.</p>
+      <p>Chính sách áp dụng trên toàn cầu. Nếu bạn ở EEA, Vương quốc Anh, California hoặc Trung Quốc đại lục, các quy định khu vực tại Mục 15 cũng được áp dụng. Vui lòng đọc thêm <a href="terms.html">Điều khoản dịch vụ</a>.</p>
+
+      <h2>2 Chúng tôi là ai</h2>
+      <p>Bên kiểm soát thông tin cá nhân là <strong>zhangchaochao</strong>, nhà phát triển cá nhân của Ứng dụng. Liên hệ: <strong>chao86825@gmail.com</strong>. Đây là kênh tiếp nhận câu hỏi về quyền riêng tư, yêu cầu về dữ liệu, khiếu nại và xóa tài khoản; chúng tôi phản hồi trong <strong>15 ngày làm việc</strong>.</p>
+
+      <h2>3 Thông tin chúng tôi thực sự xử lý</h2>
+      <p>Bảng dưới đây là toàn bộ thông tin mà phiên bản hiện tại xử lý. Tính năng không có trong bảng thì không thu thập thông tin cá nhân của bạn.</p>
+      <table>
+        <thead><tr><th>Tính năng</th><th>Thông tin (bắt buộc?)</th><th>Mục đích</th><th>Lưu ở đâu</th></tr></thead>
+        <tbody>
+          <tr><td>Đăng nhập bằng mã qua email</td><td>Địa chỉ email, mã xác minh, thời điểm đăng nhập, token phiên (bắt buộc)</td><td>Tạo tài khoản, xác minh danh tính, duy trì đăng nhập, chống lạm dụng mã</td><td>Máy chủ của chúng tôi</td></tr>
+          <tr><td>Đặt biệt danh</td><td>Biệt danh bạn nhập (tùy chọn, nếu không nhập sẽ dùng giá trị mặc định)</td><td>Hiển thị trong ứng dụng, phân biệt tài khoản</td><td>Máy chủ của chúng tôi</td></tr>
+          <tr><td>Mua hội viên</td><td>Mã đơn, loại gói, số tiền, tiền tệ, kênh thanh toán, trạng thái và thời gian (chỉ bắt buộc khi mua; chúng tôi <strong>không nhận</strong> số thẻ hay mật khẩu thanh toán)</td><td>Hoàn tất giao dịch, kích hoạt và đối soát quyền lợi, hoàn tiền</td><td>Máy chủ của chúng tôi</td></tr>
+          <tr><td>Gửi phản hồi</td><td>Nội dung, thông tin liên hệ (tùy chọn), phiên bản ứng dụng, phiên bản hệ điều hành, kiểu máy, mã thiết bị đã băm (bắt buộc khi gửi)</td><td>Tái hiện và khắc phục sự cố, phản hồi bạn</td><td>Máy chủ của chúng tôi</td></tr>
+          <tr><td>Điểm danh &amp; tích điểm</td><td>Ngày điểm danh, số điểm và lịch sử thay đổi (bắt buộc khi dùng)</td><td>Cung cấp tính năng điểm danh, chống gian lận điểm</td><td>Máy chủ của chúng tôi</td></tr>
+          <tr><td>Luyện phát âm / nói nhại</td><td>Âm thanh thu qua micro (bắt buộc khi dùng)</td><td><strong>Xử lý hoàn toàn trên thiết bị.</strong> Tệp âm thanh tạm bị xóa ngay sau khi chấm điểm; <strong>không tải lên và không lưu giữ</strong>.</td><td>Chỉ trên thiết bị (xóa sau khi chấm)</td></tr>
+          <tr><td>Tiến độ học</td><td>Mục đã hoàn thành, số đếm tiến độ (bắt buộc khi dùng)</td><td>Hiển thị tiến độ và học tiếp</td><td>Chỉ trên thiết bị (cơ sở dữ liệu cục bộ)</td></tr>
+          <tr><td>Nhận dạng giọng nói của hệ thống (nếu hỗ trợ)</td><td>Giọng nói, do dịch vụ giọng nói của hệ thống xử lý (tùy chọn)</td><td>Tăng độ chính xác khi chấm điểm; chúng tôi không nhận âm thanh</td><td>Do nhà cung cấp hệ thống xử lý</td></tr>
+          <tr><td>Đọc bằng giọng nói (TTS)</td><td>Văn bản cần đọc (bắt buộc khi dùng)</td><td>Đọc to từ và câu</td><td>Thiết bị / công cụ TTS hệ thống</td></tr>
+          <tr><td>Nhật ký truy cập máy chủ</td><td>Địa chỉ IP, thời điểm yêu cầu, điểm cuối, thông tin lỗi (cần cho bảo mật)</td><td>Giữ dịch vụ an toàn, ổn định; khắc phục sự cố</td><td>Máy chủ của chúng tôi, không quá 30 ngày</td></tr>
+        </tbody>
+      </table>
+
+      <h3>3.1 Những gì chúng tôi KHÔNG thu thập</h3>
+      <p>Chúng tôi <strong>không</strong> thu thập hay yêu cầu: số điện thoại (phiên bản hiện tại đã tắt đăng nhập bằng số điện thoại và ứng dụng không còn đọc số điện thoại hay trạng thái điện thoại), danh bạ, tin nhắn SMS, lịch sử cuộc gọi, vị trí, ảnh và camera, clipboard, IMEI / địa chỉ MAC / số sê-ri, mã quảng cáo (GAID / OAID), danh sách ứng dụng đã cài, dữ liệu sinh trắc học. <strong>Chúng tôi không bao giờ ghi âm ở chế độ nền.</strong></p>
+      <p>Ứng dụng <strong>không</strong> tích hợp bất kỳ SDK quảng cáo, phân tích, thông báo đẩy, đăng nhập mạng xã hội hay báo cáo sự cố của bên thứ ba. Chúng tôi không lập hồ sơ người dùng, không chạy quảng cáo nhắm mục tiêu và không bán thông tin cá nhân.</p>
+
+      <h2>4 Quyền trên thiết bị</h2>
+      <table>
+        <thead><tr><th>Quyền</th><th>Khi nào yêu cầu</th><th>Mục đích</th><th>Nếu bạn từ chối</th></tr></thead>
+        <tbody>
+          <tr><td><code>INTERNET</code></td><td>Được cấp khi cài đặt (quyền thường, không có hộp thoại)</td><td>Tải bài học, đồng bộ tài khoản</td><td>Ứng dụng không dùng được</td></tr>
+          <tr><td><code>ACCESS_NETWORK_STATE</code></td><td>Được cấp khi cài đặt (quyền thường, không có hộp thoại)</td><td>Kiểm tra mạng trước khi yêu cầu nội dung</td><td>Ứng dụng không ổn định</td></tr>
+          <tr><td><code>RECORD_AUDIO</code> (micro)</td><td>Chỉ khi bạn nhấn nút ghi âm lần đầu; hộp thoại hệ thống sẽ hỏi ý kiến</td><td>Ghi giọng nói để luyện phát âm, xử lý cục bộ</td><td>Chỉ tính năng luyện phát âm không dùng được</td></tr>
+        </tbody>
+      </table>
+      <p>Ngoài bảng trên, ứng dụng <strong>không</strong> yêu cầu quyền nhạy cảm nào khác: không vị trí, camera, bộ nhớ, danh bạ, SMS, trạng thái điện thoại, lịch, cảm biến cơ thể; không tự khởi động và không mở ứng dụng khác.</p>
+
+      <h2>5 SDK và dịch vụ bên thứ ba</h2>
+      <p>SDK đi kèm phụ thuộc vào kênh phát hành của bản bạn đã cài.</p>
+      <table>
+        <thead><tr><th>SDK / dịch vụ</th><th>Nhà cung cấp</th><th>Có trong</th><th>Mục đích / thông tin liên quan</th></tr></thead>
+        <tbody>
+          <tr><td>Google Play Billing Library</td><td>Google LLC</td><td>Chỉ bản Google Play</td><td>Mua trong ứng dụng; token mua, mã sản phẩm, trạng thái đơn. Chúng tôi không nhận dữ liệu thẻ</td></tr>
+          <tr><td>WeChat OpenSDK</td><td>Tencent</td><td>Chỉ bản Trung Quốc đại lục</td><td>Thanh toán WeChat; thông tin đơn hàng và thiết bị cần để mở thanh toán, theo chính sách của Tencent</td></tr>
+          <tr><td>Alipay SDK</td><td>Alipay (China) Network Technology Co., Ltd.</td><td>Chỉ bản Trung Quốc đại lục</td><td>Thanh toán Alipay; thông tin đơn hàng và thiết bị cần để mở thanh toán, theo chính sách của Alipay</td></tr>
+          <tr><td>Nhận dạng giọng nói &amp; TTS hệ thống</td><td>Nhà sản xuất thiết bị hoặc nhà cung cấp dịch vụ giọng nói của hệ thống</td><td>Tất cả các bản (khả năng hệ thống, không phải SDK đi kèm)</td><td>Hỗ trợ chấm phát âm và đọc văn bản; chúng tôi không nhận âm thanh</td></tr>
+          <tr><td>AndroidX / Material / OkHttp / Retrofit / Gson</td><td>Mã nguồn mở</td><td>Tất cả các bản</td><td>Giao diện và gọi mạng; không thu thập thông tin cá nhân</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Chúng tôi <strong>không</strong> tích hợp Firebase, Crashlytics, Google Analytics hay AdMob. Nếu thay đổi trong tương lai, chúng tôi sẽ cập nhật chính sách này và phần khai báo an toàn dữ liệu trên cửa hàng trước khi phát hành.</p>
+
+      <h2>6 Cách chúng tôi sử dụng thông tin</h2>
+      <p>Chúng tôi chỉ dùng thông tin ở Mục 3 để: (a) cung cấp và duy trì các tính năng bạn yêu cầu; (b) bảo vệ tài khoản và chống lạm dụng, bao gồm giới hạn tần suất gửi mã; (c) phản hồi góp ý; (d) khắc phục sự cố; (e) tuân thủ nghĩa vụ pháp lý. Chúng tôi không dùng cho quảng cáo, lập hồ sơ hay quyết định tự động có ảnh hưởng pháp lý đến bạn.</p>
+
+      <h2>7 Nơi lưu trữ dữ liệu</h2>
+      <ul>
+        <li><strong>Bản Trung Quốc đại lục:</strong> lưu trên máy chủ đặt tại Trung Quốc đại lục.</li>
+        <li><strong>Bản phát hành ngoài Trung Quốc đại lục (ví dụ Google Play):</strong> lưu trên máy chủ ngoài quốc gia/vùng lãnh thổ của bạn, có mã hóa HTTPS khi truyền, kiểm soát truy cập và thu thập tối thiểu.</li>
+        <li><strong>Chúng tôi không chuyển thông tin cá nhân của người dùng Trung Quốc đại lục ra nước ngoài.</strong> Nếu sau này cần chuyển ra nước ngoài, chúng tôi sẽ thông báo bên nhận, mục đích, loại thông tin và thời hạn lưu, lấy sự đồng ý riêng theo Điều 38–39 PIPL và hoàn thành đánh giá hoặc khai báo cần thiết trước.</li>
+      </ul>
+
+      <h2>8 Thời hạn lưu trữ</h2>
+      <ul>
+        <li>Thông tin tài khoản (email, biệt danh, điểm, lịch sử điểm danh): trong thời gian tài khoản tồn tại; xóa hoặc ẩn danh trong <strong>30 ngày</strong> sau khi xóa tài khoản.</li>
+        <li>Mã xác minh: hiệu lực 5 phút, vô hiệu ngay sau khi dùng.</li>
+        <li>Nhật ký truy cập máy chủ: không quá 30 ngày.</li>
+        <li>Đơn hội viên: tối đa <strong>3 năm</strong> theo quy định kế toán, thuế, thương mại điện tử, sau đó xóa hoặc ẩn danh.</li>
+        <li>Phản hồi: xóa trong 30 ngày sau khi xử lý xong, trừ khi bạn yêu cầu giữ lại.</li>
+        <li>Âm thanh và tiến độ học: không rời khỏi thiết bị nên chúng tôi không lưu gì.</li>
+      </ul>
+
+      <h2>9 Chia sẻ, chuyển giao, công khai</h2>
+      <p>Chúng tôi không bán thông tin cá nhân và không cung cấp cho bên thứ ba cho mục đích tiếp thị của họ. Chúng tôi chỉ tiết lộ:</p>
+      <ul>
+        <li>cho các nhà cung cấp thanh toán ở Mục 5, chỉ để hoàn tất giao dịch của bạn;</li>
+        <li>khi có sự đồng ý riêng của bạn;</li>
+        <li>khi pháp luật, quy định, lệnh tư pháp hoặc hành chính yêu cầu, hoặc để bảo vệ quyền và an toàn của người dùng và công chúng;</li>
+        <li>khi sáp nhập, mua lại hoặc chuyển nhượng tài sản, khi đó chúng tôi yêu cầu bên kế thừa tiếp tục tuân thủ chính sách này và sẽ thông báo cho bạn.</li>
+      </ul>
+      <p>Chúng tôi không công khai thông tin cá nhân.</p>
+
+      <h2>10 Quyền của bạn</h2>
+      <p>Theo pháp luật áp dụng, bạn có quyền truy cập và nhận bản sao thông tin, chỉnh sửa, xóa, rút lại sự đồng ý, hạn chế hoặc phản đối một số xử lý, yêu cầu chuyển dữ liệu và xóa tài khoản. Gửi email đến <strong>chao86825@gmail.com</strong>; chúng tôi xác minh danh tính và phản hồi trong <strong>15 ngày làm việc</strong>.</p>
+      <p>Bạn có thể thu hồi quyền micro bất cứ lúc nào trong cài đặt hệ thống (Cài đặt → Ứng dụng → Light English → Quyền) và dừng mọi thu thập bằng cách xóa tài khoản và gỡ ứng dụng.</p>
+
+      <h2>11 Xóa tài khoản</h2>
+      <ol>
+        <li><strong>Trong ứng dụng (khuyến nghị):</strong> Cài đặt → Tài khoản → Xóa tài khoản.</li>
+        <li><strong>Qua email:</strong> gửi tới <strong>chao86825@gmail.com</strong> với tiêu đề "Xóa tài khoản" kèm email đã đăng ký để xác minh.</li>
+      </ol>
+      <p>Chúng tôi xử lý trong 15 ngày làm việc và xóa hoặc ẩn danh tài khoản cùng thông tin liên quan trong 30 ngày, trừ hồ sơ phải giữ theo luật (Mục 8). <strong>Tạm khóa hoặc đình chỉ tài khoản không phải là xóa.</strong> Xóa tài khoản không tự hủy gói đăng ký đã mua trên Google Play; hãy hủy trong phần quản lý đăng ký của cửa hàng để tránh bị tính phí tiếp.</p>
+
+      <h2>12 Quyền riêng tư của trẻ em</h2>
+      <p>Ứng dụng hướng tới công chúng nói chung và không dành cho trẻ em. Chúng tôi không cố ý thu thập thông tin cá nhân của trẻ dưới 16 tuổi (dưới 13 tuổi khi áp dụng COPPA; <strong>dưới 14 tuổi tại Trung Quốc đại lục</strong>, cần sự đồng ý riêng của người giám hộ). Ứng dụng không có tính năng mạng xã hội, trò chuyện hay nội dung do người dùng tạo. Nếu bạn là phụ huynh hoặc người giám hộ và cho rằng trẻ đã cung cấp thông tin cho chúng tôi, hãy liên hệ, chúng tôi sẽ xóa ngay.</p>
+
+      <h2>13 Bảo mật</h2>
+      <p>Chúng tôi dùng mã hóa khi truyền (HTTPS), kiểm soát truy cập máy chủ, thu thập tối thiểu và tách môi trường thử nghiệm với môi trường thật. Không phương thức truyền hoặc lưu trữ nào an toàn tuyệt đối. Nếu xảy ra sự cố an toàn thông tin cá nhân, chúng tôi sẽ thông báo cho người dùng bị ảnh hưởng và cơ quan có thẩm quyền theo luật.</p>
+
+      <h2>14 Thay đổi chính sách</h2>
+      <p>Chúng tôi có thể cập nhật chính sách này. Với thay đổi quan trọng (mục đích, loại thông tin, bên nhận mới hoặc chuyển dữ liệu xuyên biên giới), chúng tôi sẽ thông báo rõ trong ứng dụng và, khi pháp luật yêu cầu, lấy lại sự đồng ý trước khi có hiệu lực. Số phiên bản và ngày hiệu lực ở đầu trang luôn phản ánh chính sách hiện hành.</p>
+
+      <h2>15 Quy định theo khu vực</h2>
+      <ul>
+        <li><strong>EEA / Vương quốc Anh (GDPR):</strong> cơ sở xử lý là thực hiện hợp đồng (đăng nhập, bài học, hội viên), sự đồng ý (micro), lợi ích hợp pháp (bảo mật, chống lạm dụng, khắc phục sự cố) và nghĩa vụ pháp lý. Bạn có thể khiếu nại cơ quan giám sát địa phương.</li>
+        <li><strong>California (CCPA / CPRA):</strong> chúng tôi không "bán" hay "chia sẻ" thông tin cá nhân theo định nghĩa của luật California. Cư dân California có thể thực hiện các quyền tại Mục 10.</li>
+        <li><strong>Trung Quốc đại lục (PIPL):</strong> chúng tôi xử lý dựa trên sự đồng ý của bạn và sự cần thiết để thực hiện hợp đồng, theo nguyên tắc hợp pháp, chính đáng, cần thiết và thiện chí. Bạn có quyền biết, quyết định, truy cập, sao chép, chỉnh sửa, xóa, rút lại sự đồng ý và yêu cầu giải thích quy tắc xử lý; bạn cũng có thể khiếu nại cơ quan quản lý không gian mạng.</li>
+      </ul>
+
+      <h2>16 Liên hệ</h2>
+      <p>Mọi câu hỏi, yêu cầu hoặc khiếu nại về chính sách này hoặc thông tin cá nhân của bạn, vui lòng gửi tới <strong>chao86825@gmail.com</strong>. Nếu không hài lòng với phản hồi, bạn có thể khiếu nại cơ quan có thẩm quyền tại nơi bạn ở (Trung Quốc đại lục: cơ quan quản lý không gian mạng 12377, hoặc trung tâm báo cáo 12321).</p>
+    </main>
+  </div>
+
+  <!-- ==================== Português (Brasil) ==================== -->
+  <div class="lang-block" data-lang="pt-BR">
+    <header class="hero">
+      <h1>Política de Privacidade</h1>
+      <p>Produto: <strong>Light English (轻英语)</strong></p>
+      <p>Desenvolvedor: <strong>zhangchaochao (desenvolvedor individual)</strong></p>
+      <p>Contato: <strong>chao86825@gmail.com</strong></p>
+      <p>Versão v1.2 &nbsp;|&nbsp; Vigência: <strong>2026-11-17</strong></p>
+      <p><a href="terms.html">Ver Termos de Serviço</a></p>
+    </header>
+    <main class="doc">
+      <h2>1 Introdução e escopo</h2>
+      <p>Esta Política explica como zhangchaochao ("nós"), desenvolvedor individual do aplicativo Light English (o "Aplicativo"), coleta, usa, armazena, compartilha e protege seus dados pessoais quando você usa o Aplicativo.</p>
+      <p>O Light English é uma ferramenta de aprendizado de idiomas e prática de fala. Os recursos incluem diálogos por cenário, memorização de vocabulário, prática de pronúncia com repetição, leitura por voz (TTS), check-in diário e pontos, progresso de estudo armazenado no aparelho, envio de comentários, assinatura de membro opcional e gerenciamento de conta.</p>
+      <p>Esta Política se aplica mundialmente. Se você estiver no EEE, no Reino Unido, na Califórnia ou na China continental, aplicam-se também as disposições regionais da Seção 15. Leia também os <a href="terms.html">Termos de Serviço</a>.</p>
+
+      <h2>2 Quem somos</h2>
+      <p>O controlador dos dados pessoais é <strong>zhangchaochao</strong>, desenvolvedor individual do Aplicativo. Contato: <strong>chao86825@gmail.com</strong>. Este e-mail é o canal para dúvidas de privacidade, solicitações sobre dados, reclamações e exclusão de conta; respondemos em <strong>15 dias úteis</strong>.</p>
+
+      <h2>3 Dados que realmente tratamos</h2>
+      <p>A tabela abaixo é a lista completa do que a versão atual trata. Recursos não listados aqui não coletam seus dados pessoais.</p>
+      <table>
+        <thead><tr><th>Recurso</th><th>Dados (obrigatórios?)</th><th>Finalidade</th><th>Onde ficam</th></tr></thead>
+        <tbody>
+          <tr><td>Login por código no e-mail</td><td>Endereço de e-mail, código de verificação, data/hora do login, token de sessão (obrigatórios)</td><td>Criar e proteger a conta, verificar identidade, manter o login, evitar abuso de códigos</td><td>Nosso servidor</td></tr>
+          <tr><td>Apelido</td><td>Apelido informado (opcional; se vazio, usamos um padrão)</td><td>Exibir no Aplicativo, distinguir a conta</td><td>Nosso servidor</td></tr>
+          <tr><td>Compra de assinatura</td><td>Número do pedido, plano, valor, moeda, meio de pagamento, status e data (obrigatórios apenas na compra; <strong>não recebemos</strong> número de cartão nem senha de pagamento)</td><td>Concluir a transação, ativar e conferir benefícios, reembolso e conciliação</td><td>Nosso servidor</td></tr>
+          <tr><td>Comentários e suporte</td><td>Mensagem, contato (opcional), versão do app, versão do sistema, modelo do aparelho, identificador do aparelho com hash (obrigatórios ao enviar)</td><td>Reproduzir e corrigir o problema, responder você</td><td>Nosso servidor</td></tr>
+          <tr><td>Check-in e pontos</td><td>Datas de check-in, saldo e histórico de pontos (obrigatórios para usar)</td><td>Oferecer o recurso de pontos, evitar acúmulo indevido</td><td>Nosso servidor</td></tr>
+          <tr><td>Pronúncia / repetição</td><td>Áudio captado pelo microfone (obrigatório para usar)</td><td><strong>Processado inteiramente no seu aparelho.</strong> O arquivo temporário é apagado logo após a avaliação; <strong>nunca é enviado nem retido</strong>.</td><td>Apenas no aparelho</td></tr>
+          <tr><td>Progresso de estudo</td><td>Itens concluídos e contadores (obrigatórios para usar)</td><td>Mostrar o progresso e permitir continuar</td><td>Apenas no aparelho (banco local)</td></tr>
+          <tr><td>Reconhecimento de fala do sistema (se houver)</td><td>Voz, tratada pelo serviço de fala do sistema (opcional)</td><td>Melhorar a precisão da avaliação; não recebemos o áudio</td><td>Processado pelo provedor do sistema</td></tr>
+          <tr><td>Leitura por voz (TTS)</td><td>Texto a ser lido (obrigatório para usar)</td><td>Ler palavras e frases em voz alta</td><td>Aparelho / mecanismo TTS do sistema</td></tr>
+          <tr><td>Registros de acesso ao servidor</td><td>Endereço IP, data/hora da requisição, endpoint, informação de erro (necessários para segurança)</td><td>Manter o serviço seguro e estável, diagnosticar falhas</td><td>Nosso servidor, por até 30 dias</td></tr>
+        </tbody>
+      </table>
+
+      <h3>3.1 O que NÃO coletamos</h3>
+      <p><strong>Não</strong> coletamos nem solicitamos: número de telefone (o login por telefone está desativado e o app não lê mais o número nem o estado do telefone), contatos, SMS, registro de chamadas, localização, fotos e câmera, área de transferência, IMEI / endereço MAC / número de série, identificadores de publicidade (GAID / OAID), lista de apps instalados ou dados biométricos. <strong>Nunca gravamos áudio em segundo plano.</strong></p>
+      <p>O Aplicativo <strong>não</strong> inclui SDK de publicidade, análise, notificações push, login social ou relatório de falhas de terceiros. Não criamos perfis de usuário, não veiculamos anúncios segmentados e não vendemos dados pessoais.</p>
+
+      <h2>4 Permissões do aparelho</h2>
+      <table>
+        <thead><tr><th>Permissão</th><th>Quando é pedida</th><th>Finalidade</th><th>Se você recusar</th></tr></thead>
+        <tbody>
+          <tr><td><code>INTERNET</code></td><td>Concedida na instalação (permissão normal, sem aviso)</td><td>Baixar lições e sincronizar a conta</td><td>O app não funciona</td></tr>
+          <tr><td><code>ACCESS_NETWORK_STATE</code></td><td>Concedida na instalação (permissão normal, sem aviso)</td><td>Verificar a rede antes de pedir conteúdo</td><td>O app fica instável</td></tr>
+          <tr><td><code>RECORD_AUDIO</code> (microfone)</td><td>Somente ao tocar em "gravar" pela primeira vez; o sistema mostra o aviso de consentimento</td><td>Gravar sua voz para prática de pronúncia, processada localmente</td><td>Apenas a prática de pronúncia fica indisponível</td></tr>
+        </tbody>
+      </table>
+      <p>O Aplicativo <strong>não</strong> pede outras permissões sensíveis: sem localização, câmera, armazenamento, contatos, SMS, estado do telefone, calendário ou sensores corporais; não inicia automaticamente nem abre outros apps.</p>
+
+      <h2>5 SDKs e serviços de terceiros</h2>
+      <p>Os SDKs incluídos dependem do canal de distribuição da versão instalada.</p>
+      <table>
+        <thead><tr><th>SDK / serviço</th><th>Fornecedor</th><th>Incluído em</th><th>Finalidade / dados envolvidos</th></tr></thead>
+        <tbody>
+          <tr><td>Google Play Billing Library</td><td>Google LLC</td><td>Somente versão Google Play</td><td>Compras no app; token de compra, ID do produto, status do pedido. Não recebemos dados do cartão</td></tr>
+          <tr><td>WeChat OpenSDK</td><td>Tencent</td><td>Somente versão da China continental</td><td>Pagamento WeChat; dados do pedido e do aparelho necessários para abrir o pagamento, conforme a política da Tencent</td></tr>
+          <tr><td>Alipay SDK</td><td>Alipay (China) Network Technology Co., Ltd.</td><td>Somente versão da China continental</td><td>Pagamento Alipay; dados do pedido e do aparelho necessários para abrir o pagamento, conforme a política do Alipay</td></tr>
+          <tr><td>Reconhecimento de fala e TTS do sistema</td><td>Fabricante do aparelho ou provedor de fala do sistema</td><td>Todas as versões (recurso do sistema, não SDK embutido)</td><td>Apoio à avaliação de pronúncia e leitura em voz alta; não recebemos o áudio</td></tr>
+          <tr><td>AndroidX / Material / OkHttp / Retrofit / Gson</td><td>Componentes de código aberto</td><td>Todas as versões</td><td>Interface e requisições de rede; não coletam dados pessoais</td></tr>
+        </tbody>
+      </table>
+      <p class="note"><strong>Não</strong> integramos Firebase, Crashlytics, Google Analytics ou AdMob. Se isso mudar, atualizaremos esta Política e as declarações de segurança de dados da loja antes do lançamento.</p>
+
+      <h2>6 Como usamos os dados</h2>
+      <p>Usamos os dados da Seção 3 apenas para: (a) fornecer e manter os recursos solicitados; (b) proteger contas e evitar abusos, incluindo limitar o envio de códigos; (c) responder seus comentários; (d) diagnosticar falhas; (e) cumprir obrigações legais. Não usamos para publicidade, criação de perfis ou decisões automatizadas com efeitos legais sobre você.</p>
+
+      <h2>7 Onde os dados ficam armazenados</h2>
+      <ul>
+        <li><strong>Versão da China continental:</strong> em servidores localizados na China continental.</li>
+        <li><strong>Versões distribuídas fora da China continental (ex.: Google Play):</strong> em servidores fora do seu país de residência, com HTTPS em trânsito, controle de acesso e minimização de dados.</li>
+        <li><strong>Não transferimos dados de usuários da China continental para fora do país.</strong> Se isso for necessário no futuro, informaremos o destinatário, a finalidade, as categorias e o prazo de retenção, obteremos consentimento separado nos termos dos artigos 38 e 39 da PIPL e concluiremos avaliações ou registros exigidos antes.</li>
+      </ul>
+
+      <h2>8 Prazo de retenção</h2>
+      <ul>
+        <li>Dados da conta (e-mail, apelido, pontos, check-ins): enquanto a conta existir; excluídos ou anonimizados em até <strong>30 dias</strong> após a exclusão.</li>
+        <li>Códigos de verificação: válidos por 5 minutos, invalidados após o uso.</li>
+        <li>Registros de acesso: até 30 dias.</li>
+        <li>Pedidos de assinatura: até <strong>3 anos</strong> quando exigido por leis contábeis, fiscais ou de comércio eletrônico, depois excluídos ou anonimizados.</li>
+        <li>Comentários: excluídos em até 30 dias após a resolução, salvo pedido de retenção.</li>
+        <li>Áudio e progresso de estudo: nunca saem do aparelho, portanto não retemos nada.</li>
+      </ul>
+
+      <h2>9 Compartilhamento, transferência e divulgação</h2>
+      <p>Não vendemos seus dados pessoais nem os compartilhamos para marketing de terceiros. Divulgamos apenas:</p>
+      <ul>
+        <li>aos provedores de pagamento da Seção 5, estritamente para concluir sua transação;</li>
+        <li>com seu consentimento separado;</li>
+        <li>quando exigido por lei, regulamento, ordem judicial ou administrativa, ou para proteger direitos e segurança de usuários e do público;</li>
+        <li>em fusão, aquisição ou transferência de ativos, caso em que exigimos que o sucessor siga esta Política e avisaremos você.</li>
+      </ul>
+      <p>Não divulgamos dados pessoais publicamente.</p>
+
+      <h2>10 Seus direitos</h2>
+      <p>Conforme a lei aplicável, você pode acessar e obter cópia dos dados, corrigi-los, excluí-los, revogar o consentimento, limitar ou se opor a certos tratamentos, solicitar portabilidade e excluir a conta. Escreva para <strong>chao86825@gmail.com</strong>; verificamos a identidade e respondemos em <strong>15 dias úteis</strong>.</p>
+      <p>Você pode revogar a permissão de microfone nas configurações do sistema (Configurações → Apps → Light English → Permissões) e interromper toda coleta excluindo a conta e desinstalando o app.</p>
+
+      <h2>11 Exclusão de conta</h2>
+      <ol>
+        <li><strong>No aplicativo (recomendado):</strong> Configurações → Conta → Excluir conta.</li>
+        <li><strong>Por e-mail:</strong> envie para <strong>chao86825@gmail.com</strong> com o assunto "Exclusão de conta" e o e-mail cadastrado para verificação.</li>
+      </ol>
+      <p>Processamos em 15 dias úteis e excluímos ou anonimizamos a conta e os dados associados em 30 dias, exceto registros que a lei exige manter (Seção 8). <strong>Suspender ou congelar a conta não é exclusão.</strong> Excluir a conta não cancela uma assinatura comprada no Google Play; cancele nas configurações de assinaturas da loja para evitar novas cobranças.</p>
+
+      <h2>12 Privacidade de crianças</h2>
+      <p>O Aplicativo é destinado ao público geral e não é direcionado a crianças. Não coletamos intencionalmente dados de menores de 16 anos (menores de 13 anos quando se aplica a COPPA; <strong>menores de 14 anos na China continental</strong>, com consentimento separado do responsável). O Aplicativo não tem recursos sociais, chat ou conteúdo gerado por usuários. Se você é pai, mãe ou responsável e acredita que uma criança nos forneceu dados, escreva para nós e excluiremos.</p>
+
+      <h2>13 Segurança</h2>
+      <p>Usamos criptografia em trânsito (HTTPS), controles de acesso no servidor, minimização de dados e separação entre ambientes de produção e teste. Nenhum método de transmissão ou armazenamento é totalmente seguro. Em caso de incidente de segurança, notificaremos os usuários afetados e as autoridades conforme a lei.</p>
+
+      <h2>14 Alterações desta Política</h2>
+      <p>Podemos atualizar esta Política. Em mudanças relevantes (novas finalidades, categorias, destinatários ou transferência internacional), avisaremos no aplicativo e, quando exigido, obteremos novo consentimento antes da vigência. O número da versão e a data no topo refletem sempre a Política atual.</p>
+
+      <h2>15 Disposições regionais</h2>
+      <ul>
+        <li><strong>EEE / Reino Unido (GDPR):</strong> as bases legais são execução de contrato (login, lições, assinatura), consentimento (microfone), interesses legítimos (segurança, prevenção de abuso, diagnóstico) e obrigação legal. Você pode reclamar à autoridade supervisora local.</li>
+        <li><strong>Califórnia (CCPA / CPRA):</strong> não "vendemos" nem "compartilhamos" dados pessoais conforme definido pela lei da Califórnia. Residentes podem exercer os direitos da Seção 10.</li>
+        <li><strong>China continental (PIPL):</strong> tratamos dados com base no seu consentimento e na necessidade de executar nosso contrato, seguindo legalidade, legitimidade, necessidade e boa-fé. Você pode exercer os direitos de saber, decidir, acessar, copiar, corrigir, excluir e revogar o consentimento, e pedir explicação das regras; também pode reclamar à administração do ciberespaço.</li>
+      </ul>
+
+      <h2>16 Fale conosco</h2>
+      <p>Dúvidas, solicitações ou reclamações sobre esta Política ou seus dados pessoais: <strong>chao86825@gmail.com</strong>. Se não ficar satisfeito com a resposta, você pode reclamar à autoridade competente da sua jurisdição (na China continental: administração do ciberespaço 12377, ou o centro de denúncias 12321).</p>
+    </main>
+  </div>
+
+  <!-- ==================== ไทย ==================== -->
+  <div class="lang-block" data-lang="th">
+    <header class="hero">
+      <h1>นโยบายความเป็นส่วนตัว</h1>
+      <p>ผลิตภัณฑ์: <strong>Light English (轻英语)</strong></p>
+      <p>ผู้พัฒนา: <strong>zhangchaochao (นักพัฒนารายบุคคล)</strong></p>
+      <p>ติดต่อ: <strong>chao86825@gmail.com</strong></p>
+      <p>เวอร์ชัน v1.2 &nbsp;|&nbsp; มีผลวันที่: <strong>2026-11-17</strong></p>
+      <p><a href="terms.html">ดูข้อกำหนดการให้บริการ</a></p>
+    </header>
+    <main class="doc">
+      <h2>1 บทนำและขอบเขต</h2>
+      <p>นโยบายฉบับนี้อธิบายว่า zhangchaochao ("เรา") ผู้พัฒนาแอปพลิเคชัน Light English ("แอป") ในฐานะนักพัฒนารายบุคคล เก็บรวบรวม ใช้ จัดเก็บ แบ่งปัน และปกป้องข้อมูลส่วนบุคคลของท่านอย่างไรเมื่อท่านใช้งานแอป</p>
+      <p>Light English เป็นเครื่องมือเรียนภาษาและฝึกพูด ฟีเจอร์ประกอบด้วย บทสนทนาตามสถานการณ์ การท่องคำศัพท์ การฝึกออกเสียงและพูดตาม การอ่านออกเสียง (TTS) การเช็กอินและสะสมแต้มรายวัน ความคืบหน้าการเรียนที่เก็บในเครื่อง การส่งความคิดเห็น การสมัครสมาชิกแบบเลือกได้ และการจัดการบัญชี</p>
+      <p>นโยบายนี้ใช้ทั่วโลก หากท่านอยู่ใน EEA สหราชอาณาจักร แคลิฟอร์เนีย หรือจีนแผ่นดินใหญ่ จะใช้ข้อกำหนดเฉพาะภูมิภาคในข้อ 15 เพิ่มเติม โปรดอ่าน<a href="terms.html">ข้อกำหนดการให้บริการ</a>ด้วย</p>
+
+      <h2>2 เราคือใคร</h2>
+      <p>ผู้ควบคุมข้อมูลส่วนบุคคลคือ <strong>zhangchaochao</strong> นักพัฒนารายบุคคลของแอป ติดต่อ: <strong>chao86825@gmail.com</strong> อีเมลนี้เป็นช่องทางสำหรับคำถามด้านความเป็นส่วนตัว คำขอเกี่ยวกับข้อมูล การร้องเรียน และการลบบัญชี เราตอบกลับภายใน <strong>15 วันทำการ</strong></p>
+
+      <h2>3 ข้อมูลที่เราประมวลผลจริง</h2>
+      <p>ตารางด้านล่างคือรายการทั้งหมดที่เวอร์ชันปัจจุบันประมวลผล ฟีเจอร์ที่ไม่อยู่ในตารางนี้จะไม่เก็บข้อมูลส่วนบุคคลของท่าน</p>
+      <table>
+        <thead><tr><th>ฟีเจอร์</th><th>ข้อมูล (จำเป็นหรือไม่)</th><th>วัตถุประสงค์</th><th>จัดเก็บที่ใด</th></tr></thead>
+        <tbody>
+          <tr><td>เข้าสู่ระบบด้วยรหัสทางอีเมล</td><td>อีเมล รหัสยืนยัน เวลาเข้าสู่ระบบ โทเคนเซสชัน (จำเป็น)</td><td>สร้างและปกป้องบัญชี ยืนยันตัวตน คงสถานะเข้าสู่ระบบ ป้องกันการใช้รหัสในทางที่ผิด</td><td>เซิร์ฟเวอร์ของเรา</td></tr>
+          <tr><td>ตั้งชื่อเล่น</td><td>ชื่อเล่นที่ท่านกรอก (ไม่บังคับ หากไม่กรอกจะใช้ค่าเริ่มต้น)</td><td>แสดงในแอป แยกความแตกต่างของบัญชี</td><td>เซิร์ฟเวอร์ของเรา</td></tr>
+          <tr><td>ซื้อสมาชิก</td><td>เลขที่คำสั่งซื้อ ประเภทสมาชิก จำนวนเงิน สกุลเงิน ช่องทางชำระ สถานะและเวลา (จำเป็นเฉพาะเมื่อซื้อ เรา<strong>ไม่ได้รับ</strong>เลขบัตรหรือรหัสผ่านการชำระเงิน)</td><td>ทำธุรกรรมให้เสร็จ เปิดและตรวจสอบสิทธิ์สมาชิก คืนเงิน และกระทบยอด</td><td>เซิร์ฟเวอร์ของเรา</td></tr>
+          <tr><td>ส่งความคิดเห็น</td><td>เนื้อหา ข้อมูลติดต่อ (ไม่บังคับ) เวอร์ชันแอป เวอร์ชันระบบ รุ่นอุปกรณ์ รหัสอุปกรณ์ที่แฮชแล้ว (จำเป็นเมื่อส่ง)</td><td>จำลองและแก้ไขปัญหา ตอบกลับท่าน</td><td>เซิร์ฟเวอร์ของเรา</td></tr>
+          <tr><td>เช็กอินและสะสมแต้ม</td><td>วันที่เช็กอิน ยอดแต้มและประวัติการเปลี่ยนแปลง (จำเป็นเมื่อใช้งาน)</td><td>ให้บริการสะสมแต้ม ป้องกันการปั๊มแต้ม</td><td>เซิร์ฟเวอร์ของเรา</td></tr>
+          <tr><td>ฝึกออกเสียง / พูดตาม</td><td>เสียงที่บันทึกผ่านไมโครโฟน (จำเป็นเมื่อใช้งาน)</td><td><strong>ประมวลผลในอุปกรณ์ทั้งหมด</strong> ไฟล์เสียงชั่วคราวจะถูกลบทันทีหลังให้คะแนน <strong>ไม่มีการอัปโหลดและไม่มีการเก็บไว้</strong></td><td>ในอุปกรณ์เท่านั้น (ลบหลังให้คะแนน)</td></tr>
+          <tr><td>ความคืบหน้าการเรียน</td><td>รายการที่เรียนแล้ว ตัวนับความคืบหน้า (จำเป็นเมื่อใช้งาน)</td><td>แสดงความคืบหน้าและเรียนต่อ</td><td>ในอุปกรณ์เท่านั้น (ฐานข้อมูลท้องถิ่น)</td></tr>
+          <tr><td>การรู้จำเสียงของระบบ (หากรองรับ)</td><td>เสียง ซึ่งประมวลผลโดยบริการเสียงของระบบ (ไม่บังคับ)</td><td>เพิ่มความแม่นยำในการให้คะแนน เราไม่ได้รับเสียง</td><td>ผู้ให้บริการระบบเป็นผู้ประมวลผล</td></tr>
+          <tr><td>อ่านออกเสียง (TTS)</td><td>ข้อความที่จะอ่าน (จำเป็นเมื่อใช้งาน)</td><td>อ่านคำและประโยคออกเสียง</td><td>ในอุปกรณ์ / เอนจิน TTS ของระบบ</td></tr>
+          <tr><td>บันทึกการเข้าถึงเซิร์ฟเวอร์</td><td>ที่อยู่ IP เวลาที่ร้องขอ จุดเชื่อมต่อ ข้อมูลข้อผิดพลาด (จำเป็นด้านความปลอดภัย)</td><td>รักษาบริการให้ปลอดภัยและเสถียร วินิจฉัยข้อขัดข้อง</td><td>เซิร์ฟเวอร์ของเรา ไม่เกิน 30 วัน</td></tr>
+        </tbody>
+      </table>
+
+      <h3>3.1 ข้อมูลที่เราไม่เก็บ</h3>
+      <p>เรา<strong>ไม่เก็บและไม่ขอ</strong> เบอร์โทรศัพท์ (เวอร์ชันปัจจุบันปิดการเข้าสู่ระบบด้วยเบอร์แล้ว และแอปไม่อ่านเบอร์หรือสถานะโทรศัพท์) รายชื่อผู้ติดต่อ SMS ประวัติการโทร ตำแหน่งที่ตั้ง รูปภาพและกล้อง คลิปบอร์ด IMEI / ที่อยู่ MAC / หมายเลขเครื่อง รหัสโฆษณา (GAID / OAID) รายการแอปที่ติดตั้ง หรือข้อมูลไบโอเมตริก <strong>เราไม่บันทึกเสียงในเบื้องหลังไม่ว่าในกรณีใด</strong></p>
+      <p>แอป<strong>ไม่ได้</strong>เชื่อมต่อ SDK โฆษณา วิเคราะห์การใช้งาน แจ้งเตือนแบบพุช ล็อกอินโซเชียล หรือรายงานข้อขัดข้องของบุคคลที่สาม เราไม่จัดทำโปรไฟล์ผู้ใช้ ไม่โฆษณาแบบเจาะจง และไม่ขายข้อมูลส่วนบุคคล</p>
+
+      <h2>4 สิทธิ์การเข้าถึงของอุปกรณ์</h2>
+      <table>
+        <thead><tr><th>สิทธิ์</th><th>ขอเมื่อใด</th><th>วัตถุประสงค์</th><th>หากท่านปฏิเสธ</th></tr></thead>
+        <tbody>
+          <tr><td><code>INTERNET</code></td><td>ระบบให้ตอนติดตั้ง (สิทธิ์ปกติ ไม่มีหน้าต่างถาม)</td><td>ดาวน์โหลดบทเรียน ซิงก์บัญชี</td><td>ใช้งานแอปไม่ได้</td></tr>
+          <tr><td><code>ACCESS_NETWORK_STATE</code></td><td>ระบบให้ตอนติดตั้ง (สิทธิ์ปกติ ไม่มีหน้าต่างถาม)</td><td>ตรวจสอบเครือข่ายก่อนขอเนื้อหา</td><td>แอปทำงานไม่เสถียร</td></tr>
+          <tr><td><code>RECORD_AUDIO</code> (ไมโครโฟน)</td><td>เฉพาะเมื่อกดปุ่มอัดเสียงครั้งแรก ระบบจะถามความยินยอม</td><td>บันทึกเสียงเพื่อฝึกออกเสียง ประมวลผลในเครื่อง</td><td>ใช้ฟีเจอร์ฝึกออกเสียงไม่ได้เท่านั้น</td></tr>
+        </tbody>
+      </table>
+      <p>นอกเหนือจากตารางข้างต้น แอป<strong>ไม่ขอ</strong>สิทธิ์ที่ละเอียดอ่อนอื่นใด ทั้งตำแหน่ง กล้อง พื้นที่จัดเก็บ รายชื่อผู้ติดต่อ SMS สถานะโทรศัพท์ ปฏิทิน หรือเซนเซอร์ร่างกาย และไม่เริ่มทำงานอัตโนมัติหรือเปิดแอปอื่น</p>
+
+      <h2>5 SDK และบริการของบุคคลที่สาม</h2>
+      <p>SDK ที่มีขึ้นอยู่กับช่องทางแจกจ่ายของเวอร์ชันที่ท่านติดตั้ง</p>
+      <table>
+        <thead><tr><th>SDK / บริการ</th><th>ผู้ให้บริการ</th><th>อยู่ใน</th><th>วัตถุประสงค์ / ข้อมูลที่เกี่ยวข้อง</th></tr></thead>
+        <tbody>
+          <tr><td>Google Play Billing Library</td><td>Google LLC</td><td>เฉพาะเวอร์ชัน Google Play</td><td>ซื้อในแอป โทเคนการซื้อ รหัสสินค้า สถานะคำสั่งซื้อ เราไม่ได้รับข้อมูลบัตร</td></tr>
+          <tr><td>WeChat OpenSDK</td><td>Tencent</td><td>เฉพาะเวอร์ชันจีนแผ่นดินใหญ่</td><td>ชำระเงินผ่าน WeChat ข้อมูลคำสั่งซื้อและอุปกรณ์ที่ต้องใช้เปิดการชำระ ตามนโยบายของ Tencent</td></tr>
+          <tr><td>Alipay SDK</td><td>Alipay (China) Network Technology Co., Ltd.</td><td>เฉพาะเวอร์ชันจีนแผ่นดินใหญ่</td><td>ชำระเงินผ่าน Alipay ข้อมูลคำสั่งซื้อและอุปกรณ์ที่ต้องใช้เปิดการชำระ ตามนโยบายของ Alipay</td></tr>
+          <tr><td>การรู้จำเสียงและ TTS ของระบบ</td><td>ผู้ผลิตอุปกรณ์หรือผู้ให้บริการเสียงของระบบ</td><td>ทุกเวอร์ชัน (ความสามารถของระบบ ไม่ใช่ SDK ที่ฝังมา)</td><td>ช่วยประเมินการออกเสียงและอ่านข้อความ เราไม่ได้รับเสียง</td></tr>
+          <tr><td>AndroidX / Material / OkHttp / Retrofit / Gson</td><td>โอเพนซอร์ส</td><td>ทุกเวอร์ชัน</td><td>อินเทอร์เฟซและการเชื่อมต่อเครือข่าย ไม่เก็บข้อมูลส่วนบุคคล</td></tr>
+        </tbody>
+      </table>
+      <p class="note">เรา<strong>ไม่ได้</strong>เชื่อมต่อ Firebase, Crashlytics, Google Analytics หรือ AdMob หากมีการเปลี่ยนแปลงในอนาคต เราจะปรับนโยบายนี้และคำประกาศความปลอดภัยข้อมูลของสโตร์ก่อนเผยแพร่</p>
+
+      <h2>6 วิธีที่เราใช้ข้อมูล</h2>
+      <p>เราใช้ข้อมูลในข้อ 3 เพื่อ (ก) ให้บริการและดูแลฟีเจอร์ที่ท่านขอ (ข) ปกป้องบัญชีและป้องกันการใช้งานในทางที่ผิด รวมถึงจำกัดความถี่การส่งรหัส (ค) ตอบกลับความคิดเห็น (ง) วินิจฉัยข้อขัดข้อง (จ) ปฏิบัติตามหน้าที่ตามกฎหมาย เราไม่ใช้เพื่อโฆษณา จัดทำโปรไฟล์ หรือการตัดสินใจอัตโนมัติที่มีผลทางกฎหมายต่อท่าน</p>
+
+      <h2>7 สถานที่จัดเก็บข้อมูล</h2>
+      <ul>
+        <li><strong>เวอร์ชันจีนแผ่นดินใหญ่:</strong> จัดเก็บบนเซิร์ฟเวอร์ในประเทศจีนแผ่นดินใหญ่</li>
+        <li><strong>เวอร์ชันที่แจกจ่ายนอกจีนแผ่นดินใหญ่ (เช่น Google Play):</strong> จัดเก็บบนเซิร์ฟเวอร์นอกประเทศที่ท่านพำนัก โดยเข้ารหัสการรับส่งด้วย HTTPS ควบคุมการเข้าถึง และเก็บข้อมูลเท่าที่จำเป็น</li>
+        <li><strong>เราไม่โอนข้อมูลส่วนบุคคลของผู้ใช้ในจีนแผ่นดินใหญ่ออกนอกประเทศ</strong> หากจำเป็นในอนาคต เราจะแจ้งผู้รับ วัตถุประสงค์ ประเภทข้อมูล และระยะเวลาจัดเก็บ ขอความยินยอมแยกตามมาตรา 38–39 ของ PIPL และดำเนินการประเมินหรือยื่นเรื่องที่จำเป็นก่อน</li>
+      </ul>
+
+      <h2>8 ระยะเวลาจัดเก็บ</h2>
+      <ul>
+        <li>ข้อมูลบัญชี (อีเมล ชื่อเล่น แต้ม ประวัติเช็กอิน): ตลอดอายุบัญชี ลบหรือทำให้ไม่ระบุตัวตนภายใน <strong>30 วัน</strong>หลังลบบัญชี</li>
+        <li>รหัสยืนยัน: ใช้ได้ 5 นาที และถูกยกเลิกทันทีหลังใช้</li>
+        <li>บันทึกการเข้าถึงเซิร์ฟเวอร์: ไม่เกิน 30 วัน</li>
+        <li>คำสั่งซื้อสมาชิก: ไม่เกิน <strong>3 ปี</strong> ตามกฎหมายบัญชี ภาษี หรือพาณิชย์อิเล็กทรอนิกส์ แล้วลบหรือทำให้ไม่ระบุตัวตน</li>
+        <li>ความคิดเห็น: ลบภายใน 30 วันหลังแก้ไขเสร็จ เว้นแต่ท่านขอให้เก็บ</li>
+        <li>เสียงและความคืบหน้าการเรียน: ไม่ออกจากอุปกรณ์ เราจึงไม่มีข้อมูลให้เก็บ</li>
+      </ul>
+
+      <h2>9 การแบ่งปัน โอน และเปิดเผย</h2>
+      <p>เราไม่ขายข้อมูลส่วนบุคคลและไม่ให้บุคคลที่สามเพื่อการตลาดของตน เราเปิดเผยเฉพาะ:</p>
+      <ul>
+        <li>แก่ผู้ให้บริการชำระเงินในข้อ 5 เท่าที่จำเป็นเพื่อทำธุรกรรมของท่าน</li>
+        <li>เมื่อได้รับความยินยอมแยกจากท่าน</li>
+        <li>เมื่อกฎหมาย ระเบียบ คำสั่งศาลหรือคำสั่งทางปกครองกำหนด หรือเพื่อปกป้องสิทธิและความปลอดภัยของผู้ใช้และสาธารณะ</li>
+        <li>ในการควบรวม ซื้อกิจการ หรือโอนสินทรัพย์ ซึ่งเราจะกำหนดให้ผู้รับโอนผูกพันตามนโยบายนี้และแจ้งให้ท่านทราบ</li>
+      </ul>
+      <p>เราไม่เปิดเผยข้อมูลส่วนบุคคลต่อสาธารณะ</p>
+
+      <h2>10 สิทธิของท่าน</h2>
+      <p>ตามกฎหมายที่ใช้บังคับ ท่านมีสิทธิเข้าถึงและขอสำเนาข้อมูล แก้ไข ลบ ถอนความยินยอม จำกัดหรือคัดค้านการประมวลผลบางประเภท ขอโอนย้ายข้อมูล และลบบัญชี กรุณาอีเมล <strong>chao86825@gmail.com</strong> เราจะยืนยันตัวตนและตอบกลับภายใน <strong>15 วันทำการ</strong></p>
+      <p>ท่านเพิกถอนสิทธิ์ไมโครโฟนได้ทุกเมื่อในการตั้งค่าระบบ (ตั้งค่า → แอป → Light English → สิทธิ์) และหยุดการเก็บข้อมูลทั้งหมดได้ด้วยการลบบัญชีและถอนการติดตั้งแอป</p>
+
+      <h2>11 การลบบัญชี</h2>
+      <ol>
+        <li><strong>ในแอป (แนะนำ):</strong> ตั้งค่า → บัญชี → ลบบัญชี</li>
+        <li><strong>ทางอีเมล:</strong> ส่งถึง <strong>chao86825@gmail.com</strong> หัวข้อ "ลบบัญชี" พร้อมอีเมลที่ลงทะเบียนเพื่อยืนยัน</li>
+      </ol>
+      <p>เราดำเนินการภายใน 15 วันทำการ และลบหรือทำให้บัญชีและข้อมูลที่เกี่ยวข้องไม่ระบุตัวตนภายใน 30 วัน ยกเว้นบันทึกที่กฎหมายกำหนดให้เก็บ (ข้อ 8) <strong>การระงับหรืออายัดบัญชีไม่ใช่การลบ</strong> การลบบัญชีไม่ยกเลิกการสมัครสมาชิกที่ซื้อผ่าน Google Play โปรดยกเลิกในการจัดการการสมัครสมาชิกของสโตร์ก่อนเพื่อไม่ให้ถูกเรียกเก็บเงินต่อ</p>
+
+      <h2>12 ความเป็นส่วนตัวของเด็ก</h2>
+      <p>แอปนี้มีไว้สำหรับผู้ใช้ทั่วไป ไม่ได้มุ่งเป้าไปที่เด็ก เราไม่เก็บข้อมูลส่วนบุคคลของเด็กอายุต่ำกว่า 16 ปีโดยเจตนา (ต่ำกว่า 13 ปีเมื่อใช้ COPPA และ<strong>ต่ำกว่า 14 ปีในจีนแผ่นดินใหญ่</strong> ซึ่งต้องได้รับความยินยอมแยกจากผู้ปกครอง) แอปไม่มีฟีเจอร์โซเชียล แชต หรือเนื้อหาที่ผู้ใช้สร้าง หากท่านเป็นผู้ปกครองและเชื่อว่าเด็กได้ให้ข้อมูลแก่เรา กรุณาติดต่อเรา เราจะลบโดยเร็ว</p>
+
+      <h2>13 ความปลอดภัย</h2>
+      <p>เราใช้การเข้ารหัสระหว่างรับส่ง (HTTPS) การควบคุมการเข้าถึงเซิร์ฟเวอร์ การเก็บข้อมูลเท่าที่จำเป็น และการแยกสภาพแวดล้อมจริงออกจากสภาพแวดล้อมทดสอบ อย่างไรก็ตาม ไม่มีวิธีรับส่งหรือจัดเก็บใดปลอดภัยสมบูรณ์ หากเกิดเหตุการณ์ด้านความปลอดภัยของข้อมูลส่วนบุคคล เราจะแจ้งผู้ใช้ที่ได้รับผลกระทบและหน่วยงานที่เกี่ยวข้องตามกฎหมาย</p>
+
+      <h2>14 การเปลี่ยนแปลงนโยบาย</h2>
+      <p>เราอาจปรับปรุงนโยบายนี้ เมื่อมีการเปลี่ยนแปลงสำคัญ (วัตถุประสงค์ ประเภทข้อมูล ผู้รับใหม่ หรือการโอนข้ามประเทศ) เราจะแจ้งอย่างชัดเจนในแอป และเมื่อกฎหมายกำหนดจะขอความยินยอมใหม่ก่อนมีผล หมายเลขเวอร์ชันและวันที่มีผลด้านบนจะตรงกับนโยบายปัจจุบันเสมอ</p>
+
+      <h2>15 ข้อกำหนดตามภูมิภาค</h2>
+      <ul>
+        <li><strong>EEA / สหราชอาณาจักร (GDPR):</strong> ฐานทางกฎหมายคือการปฏิบัติตามสัญญา (เข้าสู่ระบบ บทเรียน สมาชิก) ความยินยอม (ไมโครโฟน) ประโยชน์โดยชอบด้วยกฎหมาย (ความปลอดภัย ป้องกันการใช้งานผิด วินิจฉัยข้อขัดข้อง) และหน้าที่ตามกฎหมาย ท่านร้องเรียนต่อหน่วยงานกำกับดูแลท้องถิ่นได้</li>
+        <li><strong>แคลิฟอร์เนีย (CCPA / CPRA):</strong> เราไม่ "ขาย" หรือ "แบ่งปัน" ข้อมูลส่วนบุคคลตามนิยามของกฎหมายแคลิฟอร์เนีย ผู้พำนักในแคลิฟอร์เนียใช้สิทธิในข้อ 10 ได้</li>
+        <li><strong>จีนแผ่นดินใหญ่ (PIPL):</strong> เราประมวลผลโดยอาศัยความยินยอมของท่านและความจำเป็นในการปฏิบัติตามสัญญา ตามหลักความชอบด้วยกฎหมาย ความชอบธรรม ความจำเป็น และสุจริต ท่านมีสิทธิรับรู้ ตัดสินใจ เข้าถึง คัดลอก แก้ไข ลบ ถอนความยินยอม และขอคำอธิบายกฎการประมวลผล รวมทั้งร้องเรียนต่อหน่วยงานบริหารไซเบอร์สเปซ</li>
+      </ul>
+
+      <h2>16 ติดต่อเรา</h2>
+      <p>คำถาม คำขอ หรือข้อร้องเรียนเกี่ยวกับนโยบายนี้หรือข้อมูลส่วนบุคคลของท่าน ส่งถึง <strong>chao86825@gmail.com</strong> หากไม่พอใจคำตอบ ท่านยังร้องเรียนต่อหน่วยงานที่มีอำนาจในเขตอำนาจของท่านได้ (จีนแผ่นดินใหญ่: หน่วยงานบริหารไซเบอร์สเปซ 12377 หรือศูนย์รับแจ้ง 12321)</p>
+    </main>
+  </div>
+
+  <!-- ==================== العربية ==================== -->
+  <div class="lang-block" data-lang="ar" dir="rtl">
+    <header class="hero">
+      <h1>سياسة الخصوصية</h1>
+      <p>المنتج: <strong>Light English (轻英语)</strong></p>
+      <p>المطوّر: <strong>zhangchaochao (مطوّر فردي)</strong></p>
+      <p>للتواصل: <strong>chao86825@gmail.com</strong></p>
+      <p>الإصدار v1.2 &nbsp;|&nbsp; تاريخ السريان: <strong>2026-11-17</strong></p>
+      <p><a href="terms.html">عرض شروط الخدمة</a></p>
+    </header>
+    <main class="doc">
+      <h2>1 مقدمة ونطاق التطبيق</h2>
+      <p>توضح سياسة الخصوصية هذه كيف يجمع zhangchaochao ("نحن")، وهو المطوّر الفردي لتطبيق Light English ("التطبيق")، معلوماتك الشخصية ويستخدمها ويخزّنها ويشاركها ويحميها عند استخدامك التطبيق.</p>
+      <p>تطبيق Light English أداة لتعلّم اللغات والتدرب على المحادثة، ويشمل: دروس الحوار حسب الموقف، وحفظ المفردات، والتدرب على النطق والترديد، والقراءة الصوتية (TTS)، وتسجيل الحضور اليومي ونظام النقاط، وتقدّم التعلّم المحفوظ على جهازك، وإرسال الملاحظات، وعضوية اختيارية، وإدارة الحساب.</p>
+      <p>تسري هذه السياسة عالميًا. وإذا كنت في المنطقة الاقتصادية الأوروبية أو المملكة المتحدة أو كاليفورنيا أو البر الرئيسي للصين، تسري أيضًا الأحكام الإقليمية في البند 15. يُرجى أيضًا الاطلاع على <a href="terms.html">شروط الخدمة</a>.</p>
+
+      <h2>2 من نحن</h2>
+      <p>المسؤول عن معالجة المعلومات الشخصية هو <strong>zhangchaochao</strong>، المطوّر الفردي للتطبيق. للتواصل: <strong>chao86825@gmail.com</strong>. هذا البريد هو قناة استقبال أسئلة الخصوصية وطلبات أصحاب البيانات والشكاوى وحذف الحساب، ونرد خلال <strong>15 يوم عمل</strong>.</p>
+
+      <h2>3 المعلومات التي نعالجها فعليًا</h2>
+      <p>الجدول التالي هو القائمة الكاملة لما تعالجه النسخة الحالية. أما الميزات غير المذكورة فيه فلا تجمع معلوماتك الشخصية.</p>
+      <table>
+        <thead><tr><th>الميزة</th><th>المعلومات (إلزامية؟)</th><th>الغرض</th><th>مكان التخزين</th></tr></thead>
+        <tbody>
+          <tr><td>تسجيل الدخول برمز عبر البريد</td><td>عنوان البريد، رمز التحقق، وقت الدخول، رمز الجلسة (إلزامية)</td><td>إنشاء الحساب وحمايته، التحقق من الهوية، إبقاء الجلسة، منع إساءة استخدام الرمز</td><td>خادمنا</td></tr>
+          <tr><td>تعيين الاسم المستعار</td><td>الاسم الذي تكتبه (اختياري، ويُستخدم اسم افتراضي إن تركته فارغًا)</td><td>العرض داخل التطبيق والتمييز بين الحسابات</td><td>خادمنا</td></tr>
+          <tr><td>شراء العضوية</td><td>رقم الطلب، نوع العضوية، المبلغ، العملة، وسيلة الدفع، حالة الطلب وتاريخه (إلزامية عند الشراء فقط؛ ولا نتلقى <strong>أبدًا</strong> رقم البطاقة أو كلمة مرور الدفع)</td><td>إتمام المعاملة، وتفعيل العضوية والتحقق منها، والاسترداد والمطابقة</td><td>خادمنا</td></tr>
+          <tr><td>الملاحظات والدعم</td><td>نص الملاحظة، بيانات التواصل (اختيارية)، إصدار التطبيق، إصدار النظام، طراز الجهاز، معرّف الجهاز المُجزَّأ (إلزامية عند الإرسال)</td><td>إعادة إنتاج المشكلة وإصلاحها والرد عليك</td><td>خادمنا</td></tr>
+          <tr><td>الحضور اليومي والنقاط</td><td>تواريخ الحضور، رصيد النقاط وسجل التغييرات (إلزامية عند الاستخدام)</td><td>توفير ميزة النقاط ومنع التلاعب بها</td><td>خادمنا</td></tr>
+          <tr><td>النطق والترديد</td><td>الصوت الملتقط عبر الميكروفون (إلزامي عند الاستخدام)</td><td><strong>تتم المعالجة على جهازك بالكامل.</strong> ويُحذف ملف الصوت المؤقت فور التقييم، <strong>ولا يُرفع ولا يُحفظ أبدًا</strong>.</td><td>على الجهاز فقط</td></tr>
+          <tr><td>تقدّم التعلّم</td><td>العناصر المكتملة وعدادات التقدم (إلزامية عند الاستخدام)</td><td>عرض تقدمك ومواصلة التعلّم</td><td>على الجهاز فقط (قاعدة بيانات محلية)</td></tr>
+          <tr><td>التعرف على الكلام من النظام (إن كان مدعومًا)</td><td>الصوت، وتعالجه خدمة الكلام في نظام جهازك (اختياري)</td><td>تحسين دقة التقييم؛ ونحن لا نتلقى الصوت</td><td>يعالجه مزوّد النظام</td></tr>
+          <tr><td>القراءة الصوتية (TTS)</td><td>النص المطلوب قراءته (إلزامي عند الاستخدام)</td><td>قراءة الكلمات والجمل بصوت عالٍ</td><td>الجهاز / محرك TTS في النظام</td></tr>
+          <tr><td>سجلات الوصول إلى الخادم</td><td>عنوان IP، وقت الطلب، نقطة النهاية، معلومات الخطأ (لازمة أمنيًا)</td><td>الحفاظ على أمن الخدمة واستقرارها وتشخيص الأعطال</td><td>خادمنا، لمدة لا تتجاوز 30 يومًا</td></tr>
+        </tbody>
+      </table>
+
+      <h3>3.1 ما لا نجمعه</h3>
+      <p><strong>لا نجمع ولا نطلب</strong>: رقم الهاتف (تسجيل الدخول بالهاتف معطّل في النسخة الحالية، ولا يقرأ التطبيق رقم هاتفك أو حالة الهاتف)، جهات الاتصال، الرسائل النصية، سجل المكالمات، الموقع الجغرافي، الصور والكاميرا، محتوى الحافظة، IMEI / عنوان MAC / الرقم التسلسلي، معرّفات الإعلانات (GAID / OAID)، قائمة التطبيقات المثبّتة، أو البيانات البيومترية. <strong>ولا نسجّل الصوت في الخلفية تحت أي ظرف.</strong></p>
+      <p>ولا يضم التطبيق أي SDK للإعلانات أو التحليلات أو الإشعارات الفورية أو تسجيل الدخول الاجتماعي أو تقارير الأعطال من أطراف ثالثة. ولا ننشئ ملفات تعريفية للمستخدمين، ولا نقدّم إعلانات موجهة، ولا نبيع المعلومات الشخصية.</p>
+
+      <h2>4 أذونات الجهاز</h2>
+      <table>
+        <thead><tr><th>الإذن</th><th>وقت الطلب</th><th>الغرض</th><th>إذا رفضت</th></tr></thead>
+        <tbody>
+          <tr><td><code>INTERNET</code></td><td>يُمنح عند التثبيت (إذن عادي دون نافذة)</td><td>تنزيل الدروس ومزامنة الحساب</td><td>لا يعمل التطبيق</td></tr>
+          <tr><td><code>ACCESS_NETWORK_STATE</code></td><td>يُمنح عند التثبيت (إذن عادي دون نافذة)</td><td>التحقق من الشبكة قبل طلب المحتوى</td><td>لا يعمل التطبيق بثبات</td></tr>
+          <tr><td><code>RECORD_AUDIO</code> (الميكروفون)</td><td>عند أول ضغط على زر التسجيل فقط، ويطلب النظام موافقتك</td><td>تسجيل صوتك لتدريب النطق، وتتم المعالجة محليًا</td><td>تتعطل ميزة تدريب النطق فقط</td></tr>
+        </tbody>
+      </table>
+      <p>وخارج الجدول أعلاه <strong>لا يطلب</strong> التطبيق أي إذن حساس آخر: لا الموقع ولا الكاميرا ولا التخزين ولا جهات الاتصال ولا الرسائل ولا حالة الهاتف ولا التقويم ولا مستشعرات الجسم، ولا يبدأ تلقائيًا ولا يشغّل تطبيقات أخرى.</p>
+
+      <h2>5 حِزم SDK والخدمات الخارجية</h2>
+      <p>تعتمد حِزم SDK المضمّنة على قناة توزيع النسخة التي ثبّتها.</p>
+      <table>
+        <thead><tr><th>SDK / الخدمة</th><th>المزوّد</th><th>موجود في</th><th>الغرض / المعلومات المعنية</th></tr></thead>
+        <tbody>
+          <tr><td>Google Play Billing Library</td><td>Google LLC</td><td>نسخة Google Play فقط</td><td>المشتريات داخل التطبيق؛ رمز الشراء ومعرّف المنتج وحالة الطلب. ولا نتلقى بيانات البطاقة</td></tr>
+          <tr><td>WeChat OpenSDK</td><td>Tencent</td><td>نسخة البر الرئيسي للصين فقط</td><td>الدفع عبر WeChat؛ بيانات الطلب والجهاز اللازمة لبدء الدفع، وفق سياسة Tencent</td></tr>
+          <tr><td>Alipay SDK</td><td>Alipay (China) Network Technology Co., Ltd.</td><td>نسخة البر الرئيسي للصين فقط</td><td>الدفع عبر Alipay؛ بيانات الطلب والجهاز اللازمة لبدء الدفع، وفق سياسة Alipay</td></tr>
+          <tr><td>التعرف على الكلام وTTS في النظام</td><td>مصنّع جهازك أو مزوّد خدمة الكلام في النظام</td><td>جميع النسخ (قدرة نظام وليست SDK مضمّنة)</td><td>دعم تقييم النطق والقراءة الصوتية؛ ولا نتلقى الصوت</td></tr>
+          <tr><td>AndroidX / Material / OkHttp / Retrofit / Gson</td><td>مكوّنات مفتوحة المصدر</td><td>جميع النسخ</td><td>الواجهة وطلبات الشبكة؛ ولا تجمع معلومات شخصية</td></tr>
+        </tbody>
+      </table>
+      <p class="note"><strong>لا نضمّن</strong> Firebase أو Crashlytics أو Google Analytics أو AdMob. وإذا تغيّر ذلك مستقبلًا فسنحدّث هذه السياسة وإفصاحات أمان البيانات في المتجر قبل الإصدار.</p>
+
+      <h2>6 كيف نستخدم المعلومات</h2>
+      <p>نستخدم المعلومات الواردة في البند 3 فقط من أجل: (أ) توفير الميزات التي تطلبها وصيانتها؛ (ب) حماية الحساب ومنع إساءة الاستخدام، بما في ذلك تحديد معدل إرسال رموز التحقق؛ (ج) الرد على ملاحظاتك؛ (د) تشخيص الأعطال؛ (هـ) الوفاء بالالتزامات القانونية. ولا نستخدمها للإعلانات أو التنميط أو القرارات الآلية ذات الأثر القانوني عليك.</p>
+
+      <h2>7 أين تُخزَّن البيانات</h2>
+      <ul>
+        <li><strong>نسخة البر الرئيسي للصين:</strong> تُخزَّن على خوادم داخل البر الرئيسي للصين.</li>
+        <li><strong>النسخ الموزّعة خارج البر الرئيسي للصين (مثل Google Play):</strong> تُخزَّن على خوادم خارج بلد إقامتك، مع تشفير HTTPS أثناء النقل وضبط الوصول وتقليل البيانات.</li>
+        <li><strong>لا ننقل معلومات مستخدمي البر الرئيسي للصين إلى خارج البلاد.</strong> وإذا أصبح النقل عبر الحدود ضروريًا مستقبلًا، فسنُعلمك بالجهة المتلقية والغرض وفئات المعلومات ومدة الحفظ، ونحصل على موافقتك المنفصلة وفق المادتين 38 و39 من قانون PIPL، ونستكمل أي تقييم أو تسجيل مطلوب أولًا.</li>
+      </ul>
+
+      <h2>8 مدة الحفظ</h2>
+      <ul>
+        <li>بيانات الحساب (البريد، الاسم المستعار، النقاط، سجلات الحضور): طوال وجود الحساب، وتُحذف أو تُجهَّل خلال <strong>30 يومًا</strong> من حذف الحساب.</li>
+        <li>رموز التحقق: صالحة 5 دقائق وتُبطَل بعد الاستخدام.</li>
+        <li>سجلات الوصول إلى الخادم: لا تتجاوز 30 يومًا.</li>
+        <li>طلبات العضوية: حتى <strong>3 سنوات</strong> حين تُلزمنا قوانين المحاسبة أو الضرائب أو التجارة الإلكترونية، ثم تُحذف أو تُجهَّل.</li>
+        <li>الملاحظات: تُحذف خلال 30 يومًا من المعالجة ما لم تطلب الإبقاء عليها.</li>
+        <li>الصوت وتقدّم التعلّم: لا يغادران جهازك، فلا يوجد لدينا ما نحفظه.</li>
+      </ul>
+
+      <h2>9 المشاركة والنقل والإفصاح العلني</h2>
+      <p>لا نبيع معلوماتك الشخصية ولا نشاركها لأغراض تسويق خاصة بأطراف ثالثة. ولا نفصح عنها إلا:</p>
+      <ul>
+        <li>لمزوّدي الدفع المذكورين في البند 5، وبالقدر اللازم لإتمام معاملتك؛</li>
+        <li>بموافقتك المنفصلة؛</li>
+        <li>عندما يقتضي القانون أو اللوائح أو أمر قضائي أو إداري ذلك، أو لحماية حقوق المستخدمين والجمهور وسلامتهم؛</li>
+        <li>في حال الاندماج أو الاستحواذ أو نقل الأصول، وسنلزم الجهة الخلفة بالتقيد بهذه السياسة ونُعلمك بذلك.</li>
+      </ul>
+      <p>ولا نفصح عن معلوماتك الشخصية علنًا.</p>
+
+      <h2>10 حقوقك</h2>
+      <p>وفق القانون المعمول به، يحق لك الاطلاع على معلوماتك والحصول على نسخة منها، وتصحيحها، وحذفها، وسحب موافقتك، وتقييد معالجة معينة أو الاعتراض عليها، وطلب نقل البيانات، وحذف الحساب. راسلنا على <strong>chao86825@gmail.com</strong>، وسنتحقق من هويتك ونرد خلال <strong>15 يوم عمل</strong>.</p>
+      <p>ويمكنك سحب إذن الميكروفون في أي وقت من إعدادات النظام (الإعدادات ← التطبيقات ← Light English ← الأذونات)، وإيقاف كل عمليات الجمع بحذف الحساب وإلغاء تثبيت التطبيق.</p>
+
+      <h2>11 حذف الحساب</h2>
+      <ol>
+        <li><strong>داخل التطبيق (موصى به):</strong> الإعدادات ← الحساب ← حذف الحساب.</li>
+        <li><strong>عبر البريد:</strong> أرسل رسالة إلى <strong>chao86825@gmail.com</strong> بعنوان "حذف الحساب" مع ذكر البريد المسجّل للتحقق من الملكية.</li>
+      </ol>
+      <p>نعالج الطلب خلال 15 يوم عمل، ونحذف الحساب والمعلومات المرتبطة به أو نجعلها مجهولة خلال 30 يومًا، باستثناء السجلات التي يلزمنا القانون بالاحتفاظ بها (البند 8). <strong>تجميد الحساب أو تعليقه ليس حذفًا.</strong> وحذف الحساب لا يلغي اشتراكًا تم شراؤه عبر Google Play؛ يُرجى إلغاؤه من إدارة الاشتراكات في المتجر لتجنّب مزيد من الخصم.</p>
+
+      <h2>12 خصوصية الأطفال</h2>
+      <p>التطبيق موجّه للجمهور العام وليس للأطفال. ولا نجمع عن علم معلومات شخصية لمن هم دون 16 سنة (دون 13 سنة عند تطبيق COPPA، و<strong>دون 14 سنة في البر الرئيسي للصين</strong> حيث يلزم إذن منفصل من ولي الأمر). ولا توجد في التطبيق ميزات اجتماعية أو محادثات أو محتوى من إنشاء المستخدمين. وإذا كنت وليًّا للأمر وتعتقد أن طفلًا زوّدنا بمعلومات، فراسلنا وسنحذفها فورًا.</p>
+
+      <h2>13 الأمان</h2>
+      <p>نستخدم التشفير أثناء النقل (HTTPS)، وضبط الوصول إلى الخادم، وتقليل البيانات، والفصل بين بيئتي الإنتاج والاختبار. ولا توجد وسيلة نقل أو تخزين آمنة تمامًا. وإذا وقع حادث أمني يخص المعلومات الشخصية، فسنُبلغ المستخدمين المتأثرين والجهات المختصة وفق القانون.</p>
+
+      <h2>14 التغييرات على هذه السياسة</h2>
+      <p>قد نحدّث هذه السياسة. وعند إجراء تغييرات جوهرية (أغراض جديدة أو فئات معلومات جديدة أو جهات مستلمة جديدة أو نقل عبر الحدود)، سنُعلمك داخل التطبيق، ونحصل على موافقة جديدة قبل السريان حيث يقتضي القانون. ويعكس رقم الإصدار وتاريخ السريان أعلى الصفحة دائمًا السياسة النافذة.</p>
+
+      <h2>15 أحكام إقليمية</h2>
+      <ul>
+        <li><strong>المنطقة الاقتصادية الأوروبية / المملكة المتحدة (GDPR):</strong> أسس المعالجة هي تنفيذ العقد (الدخول، الدروس، العضوية)، والموافقة (الميكروفون)، والمصالح المشروعة (الأمان، منع إساءة الاستخدام، تشخيص الأعطال)، والالتزام القانوني. ويحق لك تقديم شكوى إلى هيئة الرقابة المحلية.</li>
+        <li><strong>كاليفورنيا (CCPA / CPRA):</strong> لا "نبيع" المعلومات الشخصية ولا "نشاركها" بالمعنى المحدد في قانون كاليفورنيا. ويمكن لمقيمي كاليفورنيا ممارسة الحقوق الواردة في البند 10.</li>
+        <li><strong>البر الرئيسي للصين (PIPL):</strong> نعالج المعلومات بناءً على موافقتك وضرورة تنفيذ عقدنا معك، وفق مبادئ المشروعية والشرعية والضرورة وحسن النية. ويحق لك العلم والقرار والاطلاع والنسخ والتصحيح والحذف وسحب الموافقة وطلب تفسير قواعد المعالجة، كما يمكنك الشكوى إلى إدارة الفضاء الإلكتروني.</li>
+      </ul>
+
+      <h2>16 تواصل معنا</h2>
+      <p>لأي سؤال أو طلب أو شكوى بشأن هذه السياسة أو معلوماتك الشخصية، راسلنا على <strong>chao86825@gmail.com</strong>. وإذا لم تكن راضيًا عن ردّنا، يمكنك الشكوى إلى الجهة المختصة في نطاق ولايتك (في البر الرئيسي للصين: إدارة الفضاء الإلكتروني 12377، أو مركز البلاغات 12321).</p>
+    </main>
+  </div>
+
+
 </div>
 <script>
 (function(){
+  var SUPPORTED = ['en','zh','zh-TW','ja','ko','vi','pt-BR','th','ar'];
+  var TITLES = {
+    'en':'Privacy Policy — Light English','zh':'隐私政策 — 轻英语','zh-TW':'隱私權政策 — 輕英語',
+    'ja':'プライバシーポリシー — 軽英語','ko':'개인정보 처리방침 — 라이트 잉글리시',
+    'vi':'Chính sách quyền riêng tư — Light English','pt-BR':'Política de Privacidade — Light English',
+    'th':'นโยบายความเป็นส่วนตัว — Light English','ar':'سياسة الخصوصية — Light English'
+  };
+  var HTML_LANG = {'en':'en','zh':'zh-CN','zh-TW':'zh-TW','ja':'ja','ko':'ko','vi':'vi','pt-BR':'pt-BR','th':'th','ar':'ar'};
+
+  // 把各种可能的写法归一到上面 9 种之一
+  function normalize(raw){
+    if(!raw) return '';
+    var s = String(raw).toLowerCase().replace(/_/g,'-');
+    if (s.indexOf('zh') === 0) {
+      return (s.indexOf('tw') > -1 || s.indexOf('hk') > -1 || s.indexOf('mo') > -1 ||
+              s.indexOf('hant') > -1 || s.indexOf('繁') > -1) ? 'zh-TW' : 'zh';
+    }
+    if (s.indexOf('pt') === 0) return 'pt-BR';
+    if (s.indexOf('ja') === 0) return 'ja';
+    if (s.indexOf('ko') === 0) return 'ko';
+    if (s.indexOf('vi') === 0) return 'vi';
+    if (s.indexOf('th') === 0) return 'th';
+    if (s.indexOf('ar') === 0) return 'ar';
+    if (s.indexOf('en') === 0) return 'en';
+    return '';
+  }
+
   function getParam(){
-    try { return (new URLSearchParams(location.search).get('lang') || '').toLowerCase(); }
+    try { return new URLSearchParams(location.search).get('lang') || ''; }
     catch(e){ return ''; }
   }
+
   function applyLang(lang){
+    if (SUPPORTED.indexOf(lang) < 0) lang = 'en';
     var blocks = document.querySelectorAll('.lang-block');
-    blocks.forEach(function(b){
-      b.classList.toggle('active', b.getAttribute('data-lang') === lang);
-    });
-    document.documentElement.lang = (lang === 'zh') ? 'zh‑CN' : 'en';
-    document.title = (lang === 'zh')
-      ? '隐私政策 — 轻英语'
-      : 'Privacy Policy — Light English';
-    document.querySelectorAll('.lang‑btn').forEach(function(btn){
-      btn.classList.toggle('active', btn.getAttribute('data‑lang') === lang);
-    });
+    for (var i = 0; i < blocks.length; i++) {
+      blocks[i].classList.toggle('active', blocks[i].getAttribute('data-lang') === lang);
+    }
+    var btns = document.querySelectorAll('.lang-btn');
+    for (var j = 0; j < btns.length; j++) {
+      btns[j].classList.toggle('active', btns[j].getAttribute('data-lang') === lang);
+    }
+    document.documentElement.lang = HTML_LANG[lang] || 'en';
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    document.title = TITLES[lang] || TITLES.en;
     try {
       var url = new URL(location.href);
       url.searchParams.set('lang', lang);
       history.replaceState(null, '', url);
     } catch(e){}
   }
+
   window.switchLang = function(lang){
     applyLang(lang);
     window.scrollTo(0, 0);
   };
-  var param = getParam();
-  var lang;
-  if (param === 'zh') { lang = 'zh'; }
-  else if (param === 'en') { lang = 'en'; }
-  else {
-    var nav = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
-    lang = (nav.indexOf('zh') === 0) ? 'zh' : 'en';
-  }
+
+  var lang = normalize(getParam());
+  if (!lang) lang = normalize(navigator.language || navigator.userLanguage || 'en');
+  if (!lang) lang = 'en';
   applyLang(lang);
 })();
 </script>
