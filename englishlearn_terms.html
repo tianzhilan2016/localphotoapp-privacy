@@ -13,21 +13,23 @@
   html{scroll-behavior:smooth}
   body{
     margin:0; background:var(--bg); color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,"Noto Sans Thai","Noto Naskh Arabic",sans-serif;
     line-height:1.85; font-size:15px;
   }
   .wrap{max-width:1080px; margin:0 auto; padding:0 20px 80px;}
-  /* language switch bar */
+  /* language switch bar：9 种语言，小屏横向滚动 */
   .langbar{
-    position:sticky; top:0; z-index:20; background:rgba(247,248,250,.92);
+    position:sticky; top:0; z-index:20; background:rgba(247,248,250,.94);
     backdrop-filter:blur(6px); border-bottom:1px solid var(--line);
-    display:flex; align-items:center; justify-content:flex-end; gap:8px;
+    display:flex; align-items:center; justify-content:flex-start; gap:8px;
     padding:10px 20px; margin:0 -20px 22px;
+    overflow-x:auto; -webkit-overflow-scrolling:touch; white-space:nowrap;
   }
+  .langbar::-webkit-scrollbar{height:0}
   .lang-btn{
-    border:1px solid var(--line); background:var(--card); color:var(--ink-2);
+    flex:0 0 auto; border:1px solid var(--line); background:var(--card); color:var(--ink-2);
     padding:6px 14px; border-radius:999px; font-size:13px; cursor:pointer;
-    transition:all .15s ease;
+    transition:all .15s ease; font-family:inherit;
   }
   .lang-btn:hover{border-color:var(--brand); color:var(--brand)}
   .lang-btn.active{background:var(--brand); border-color:var(--brand); color:#fff; font-weight:600}
@@ -37,6 +39,7 @@
   }
   header.hero h1{margin:0 0 8px; font-size:24px; letter-spacing:.5px}
   header.hero p{margin:4px 0; opacity:.92; font-size:14px}
+  header.hero a{color:#dbeafe}
   .doc{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:28px 30px; min-width:0}
   .doc h2{font-size:20px; border-left:5px solid var(--brand); padding-left:12px; margin:30px 0 14px}
   .doc h2:first-child{margin-top:4px}
@@ -48,11 +51,11 @@
   .doc th,.doc td{border:1px solid var(--line); padding:9px 11px; text-align:left; vertical-align:top}
   .doc th{background:var(--brand-soft); color:#1e3a8a; font-weight:600}
   .doc code{background:#f1f5f9; padding:1px 6px; border-radius:5px; font-size:13px}
-  .divider{height:1px; background:var(--line); margin:36px 0; border:0}
-  .section-title{display:flex; align-items:center; gap:10px; margin-top:8px}
-  .section-title .num{background:var(--brand); color:#fff; min-width:28px; height:28px; border-radius:8px;
-    display:inline-flex; align-items:center; justify-content:center; font-size:14px; font-weight:700}
-  /* language blocks */
+  /* 阿拉伯语：整块 RTL */
+  .lang-block[dir="rtl"]{direction:rtl; text-align:right}
+  .lang-block[dir="rtl"] .doc h2{border-left:0; border-right:5px solid var(--brand); padding-left:0; padding-right:12px}
+  .lang-block[dir="rtl"] .doc th,.lang-block[dir="rtl"] .doc td{text-align:right}
+  .lang-block[dir="rtl"] .doc ul,.lang-block[dir="rtl"] .doc ol{padding-left:0; padding-right:22px}
   .lang-block{display:none}
   .lang-block.active{display:block}
   a{color:#2563eb}
@@ -67,18 +70,26 @@
 <body>
 <div class="langbar">
   <button class="lang-btn" data-lang="en" onclick="switchLang('en')">English</button>
-  <button class="lang-btn" data-lang="zh" onclick="switchLang('zh')">中文</button>
+  <button class="lang-btn" data-lang="zh" onclick="switchLang('zh')">简体中文</button>
+  <button class="lang-btn" data-lang="zh-TW" onclick="switchLang('zh-TW')">繁體中文</button>
+  <button class="lang-btn" data-lang="ja" onclick="switchLang('ja')">日本語</button>
+  <button class="lang-btn" data-lang="ko" onclick="switchLang('ko')">한국어</button>
+  <button class="lang-btn" data-lang="vi" onclick="switchLang('vi')">Tiếng Việt</button>
+  <button class="lang-btn" data-lang="pt-BR" onclick="switchLang('pt-BR')">Português</button>
+  <button class="lang-btn" data-lang="th" onclick="switchLang('th')">ไทย</button>
+  <button class="lang-btn" data-lang="ar" onclick="switchLang('ar')">العربية</button>
 </div>
 <div class="wrap">
-  <!-- ENGLISH -->
+
+  <!-- ==================== ENGLISH ==================== -->
   <div class="lang-block" data-lang="en">
     <header class="hero">
       <h1>Terms of Service</h1>
       <p>Product: <strong>Light English (轻英语)</strong></p>
       <p>Operator: <strong>zhangchaochao (individual developer)</strong></p>
       <p>Contact: <strong>chao86825@gmail.com</strong></p>
-      <p>Version v1.1 &nbsp;|&nbsp; Effective: <strong>2026-10-17</strong></p>
-      <p><a href="privacy.html">View Privacy Policy</a></p>
+      <p>Version v1.2 &nbsp;|&nbsp; Effective: <strong>2026-11-17</strong></p>
+      <p><a href="englishlearn_privacy_policy.html">View Privacy Policy</a></p>
     </header>
     <main class="doc">
       <h2>1 Acceptance</h2>
@@ -92,33 +103,33 @@
 
       <h2>4 Subscriptions &amp; Payments</h2>
       <p><strong>4.1 Free Service</strong>: the App provides certain free content and features; the exact free scope is as shown in the App.</p>
-      <p><strong>4.2 Memberships / Paid features</strong>: some advanced content or features require a membership or one‑time purchase.</p>
-      <p><strong>4.3 Auto‑renewal</strong>: if you choose a recurring plan, it renews automatically at the end of each period until you cancel. You may cancel anytime in Settings → Membership or via the app store (e.g., Google Play); cancellation takes effect at the end of the current paid period, and you retain access until then.</p>
-      <p><strong>4.4 Refunds</strong>: subscriptions purchased via Google Play follow Google Play's refund policy. Other channels follow the applicable channel policy and consumer‑protection law. No refund is given for account bans caused by your breach (e.g., cheating, account resale).</p>
+      <p><strong>4.2 Memberships / Paid features</strong>: some advanced content or features require a membership or one-time purchase.</p>
+      <p><strong>4.3 Auto-renewal</strong>: if you choose a recurring plan, it renews automatically at the end of each period until you cancel. You may cancel anytime in Settings → Membership or via the app store (e.g., Google Play); cancellation takes effect at the end of the current paid period, and you retain access until then.</p>
+      <p><strong>4.4 Refunds</strong>: subscriptions purchased via Google Play follow Google Play's refund policy. Other channels follow the applicable channel policy and consumer-protection law. No refund is given for account bans caused by your breach (e.g., cheating, account resale).</p>
 
       <h2>5 Intellectual Property</h2>
       <p>The App and its text, audio, courses, design, and code are owned by us or our licensors. You may use them only for personal learning and may not copy, redistribute, adapt, commercially exploit, <strong>or use them to train AI models</strong> without authorization.</p>
 
       <h2>6 Disclaimers</h2>
-      <p>The learning content is provided for reference and is not guaranteed to be error‑free; learning outcomes vary by individual, and we do not promise specific results. To the maximum extent permitted by law, we are not liable for indirect, incidental, or consequential damages, or for failures caused by network issues, server maintenance, force majeure, your device / network, third‑party service outages, or your breach of these Terms.</p>
+      <p>The learning content is provided for reference and is not guaranteed to be error-free; learning outcomes vary by individual, and we do not promise specific results. To the maximum extent permitted by law, we are not liable for indirect, incidental, or consequential damages, or for failures caused by network issues, server maintenance, force majeure, your device / network, third-party service outages, or your breach of these Terms.</p>
 
       <h2>7 Termination</h2>
-      <p>We may warn, limit functionality, ban, or terminate accounts for violations. You may stop using the Service and delete your account at any time; upon termination, account‑related data is handled per the <a href="privacy.html">Privacy Policy</a>.</p>
+      <p>We may warn, limit functionality, ban, or terminate accounts for violations. You may stop using the Service and delete your account at any time; upon termination, account-related data is handled per the <a href="englishlearn_privacy_policy.html">Privacy Policy</a>.</p>
 
       <h2>8 Governing Law &amp; Disputes</h2>
-      <p>These Terms are governed by the laws of the jurisdiction in which the operator is established (the People's Republic of China). Any dispute shall be resolved through friendly negotiation; if negotiation fails, it shall be submitted to the courts located at the operator's place of business. Nothing in this section limits the mandatory consumer or data‑protection rights you have under the laws of your country of residence.</p>
+      <p>These Terms are governed by the laws of the jurisdiction in which the operator is established (the People's Republic of China). Any dispute shall be resolved through friendly negotiation; if negotiation fails, it shall be submitted to the courts located at the operator's place of business. Nothing in this section limits the mandatory consumer or data-protection rights you have under the laws of your country of residence.</p>
     </main>
   </div>
 
-  <!-- 中文 -->
+  <!-- ==================== 简体中文 ==================== -->
   <div class="lang-block" data-lang="zh">
     <header class="hero">
       <h1>用户协议</h1>
       <p>适用产品：<strong>轻英语（Light English）</strong></p>
       <p>运营者：<strong>zhangchaochao（个人开发者）</strong></p>
       <p>联系邮箱：<strong>chao86825@gmail.com</strong></p>
-      <p>版本 v1.1　|　生效日期：<strong>2026-10-17</strong></p>
-      <p><a href="privacy.html">查看隐私政策</a></p>
+      <p>版本 v1.2　|　生效日期：<strong>2026-11-17</strong></p>
+      <p><a href="englishlearn_privacy_policy.html">查看隐私政策</a></p>
     </header>
     <main class="doc">
       <h2>1 总则与接受</h2>
@@ -137,55 +148,369 @@
       <p><strong>4.4 退款</strong>：通过 Google Play 购买的订阅遵循 Google Play 退款政策；其他渠道遵循对应渠道政策与消费者权益保护相关法律。因您违约（如作弊、转卖账号）导致的封号不予退款。</p>
 
       <h2>5 知识产权</h2>
-      <p>本应用及其文字、音频、课程、设计与代码归我们或权利人所有。您仅可在个人学习范围内使用，未经授权不得复制、传播、改编、商业性使用，<strong>也不得将其用于AI模型训练</strong>。</p>
+      <p>本应用及其文字、音频、课程、设计与代码归我们或权利人所有。您仅可在个人学习范围内使用，未经授权不得复制、传播、改编、商业性使用，<strong>也不得将其用于 AI 模型训练</strong>。</p>
 
       <h2>6 免责声明</h2>
       <p>学习内容仅供参考，不保证绝对准确；学习效果因人而异，我们不承诺特定成果。在法律允许的最大范围内，对于间接、偶然或后果性损失，以及因网络故障、服务器维护、不可抗力、您的设备或网络、第三方服务中断或您违反本协议导致的损失，我们不承担责任。</p>
 
       <h2>7 违约与终止</h2>
-      <p>对于违规行为，我们可采取警告、限制功能、封禁或终止服务等措施。您可随时停止使用并注销账号；终止后，与账号相关的数据按<a href="privacy.html">隐私政策</a>处理。</p>
+      <p>对于违规行为，我们可采取警告、限制功能、封禁或终止服务等措施。您可随时停止使用并注销账号；终止后，与账号相关的数据按<a href="englishlearn_privacy_policy.html">隐私政策</a>处理。</p>
 
       <h2>8 争议解决与法律适用</h2>
       <p>本协议适用运营者所在地法律（中华人民共和国法律）。因本协议产生的争议，双方应友好协商；协商不成的，提交运营者所在地有管辖权的人民法院解决。本条款不限制您根据所在国法律享有的强制性消费者或数据保护权利。</p>
     </main>
   </div>
+
+  <!-- ==================== 繁體中文 ==================== -->
+  <div class="lang-block" data-lang="zh-TW">
+    <header class="hero">
+      <h1>使用者協議</h1>
+      <p>適用產品：<strong>輕英語（Light English）</strong></p>
+      <p>營運者：<strong>zhangchaochao（個人開發者）</strong></p>
+      <p>聯絡信箱：<strong>chao86825@gmail.com</strong></p>
+      <p>版本 v1.2　|　生效日期：<strong>2026-11-17</strong></p>
+      <p><a href="englishlearn_privacy_policy.html">檢視隱私權政策</a></p>
+    </header>
+    <main class="doc">
+      <h2>1 總則與接受</h2>
+      <p>本使用者協議（「本協議」）由您與 zhangchaochao（「營運者」）就使用輕英語（Light English）所訂立。建立帳號或使用本服務即表示您同意本協議。若您為未成年人，請在父母或監護人同意並陪同下使用。</p>
+
+      <h2>2 帳號</h2>
+      <p>您承諾提供真實資訊，並對帳號下的一切活動負責。您的帳號僅供個人使用，不得出借、轉讓或售予他人。對於違規、遭盜用或長期未活躍的帳號，我們可採取限制、凍結或註銷等措施。</p>
+
+      <h2>3 使用者行為規範</h2>
+      <p>您同意不實施以下行為：發布違法或有害內容；騷擾、誹謗或侵害他人權利；作弊、刷分或破解會員；上傳病毒或惡意程式；未經授權抓取、複製或轉售本應用內容。</p>
+
+      <h2>4 訂閱與付款</h2>
+      <p><strong>4.1 免費服務</strong>：本應用提供部分免費內容與功能，具體免費範圍以應用內為準。</p>
+      <p><strong>4.2 會員／付費功能</strong>：部分進階內容或功能需開通會員或單次購買。</p>
+      <p><strong>4.3 自動續訂</strong>：若您選擇連續包月／包年等自動續訂方案，將在每個週期到期前自動續訂，直至您主動取消。您可隨時在「設定—會員管理」或對應應用商店（如 Google Play）取消；取消在目前付費週期結束時生效，取消前您仍可正常使用。</p>
+      <p><strong>4.4 退款</strong>：透過 Google Play 購買的訂閱遵循 Google Play 退款政策；其他管道遵循對應管道政策與消費者保護相關法律。因您違約（如作弊、轉售帳號）導致的封號不予退款。</p>
+
+      <h2>5 智慧財產權</h2>
+      <p>本應用及其文字、音訊、課程、設計與程式碼歸我們或權利人所有。您僅可在個人學習範圍內使用，未經授權不得複製、散布、改作、商業性使用，<strong>亦不得將其用於 AI 模型訓練</strong>。</p>
+
+      <h2>6 免責聲明</h2>
+      <p>學習內容僅供參考，不保證絕對準確；學習效果因人而異，我們不承諾特定成果。在法律允許的最大範圍內，對於間接、偶然或後果性損失，以及因網路故障、伺服器維護、不可抗力、您的裝置或網路、第三方服務中斷或您違反本協議所導致的損失，我們不承擔責任。</p>
+
+      <h2>7 違約與終止</h2>
+      <p>對於違規行為，我們可採取警告、限制功能、封禁或終止服務等措施。您可隨時停止使用並註銷帳號；終止後，與帳號相關的資料依<a href="englishlearn_privacy_policy.html">隱私權政策</a>處理。</p>
+
+      <h2>8 爭議解決與法律適用</h2>
+      <p>本協議適用營運者所在地法律（中華人民共和國法律）。因本協議產生的爭議，雙方應友好協商；協商不成的，提交營運者所在地有管轄權的人民法院解決。本條款不限制您依所在國法律所享有的強制性消費者或資料保護權利。</p>
+    </main>
+  </div>
+
+  <!-- ==================== 日本語 ==================== -->
+  <div class="lang-block" data-lang="ja">
+    <header class="hero">
+      <h1>利用規約</h1>
+      <p>対象製品：<strong>軽英語（Light English）</strong></p>
+      <p>運営者：<strong>zhangchaochao（個人開発者）</strong></p>
+      <p>連絡先：<strong>chao86825@gmail.com</strong></p>
+      <p>バージョン v1.2　|　発効日：<strong>2026-11-17</strong></p>
+      <p><a href="englishlearn_privacy_policy.html">プライバシーポリシーを見る</a></p>
+    </header>
+    <main class="doc">
+      <h2>1 総則と同意</h2>
+      <p>本利用規約（「本規約」）は、お客様と zhangchaochao（「運営者」）との間で、軽英語（Light English）の利用に関して締結されるものです。アカウントを作成するか本サービスを利用した時点で、お客様は本規約に同意したものとみなされます。未成年の方は、保護者の同意と監督のもとでご利用ください。</p>
+
+      <h2>2 アカウント</h2>
+      <p>お客様は正確な情報を提供することに同意し、アカウントにおけるすべての行為について責任を負います。アカウントは個人的な使用に限られ、他人への貸与・譲渡・販売はできません。規約違反、不正利用、長期間の未使用などのアカウントについては、利用制限・凍結・削除を行うことがあります。</p>
+
+      <h2>3 利用者の行為規範</h2>
+      <p>お客様は、次の行為を行わないことに同意します。違法または有害なコンテンツの投稿、他者への嫌がらせ・名誉毀損・権利侵害、チート・スコアの不正操作・会員機能の解析、ウイルスや悪意あるコードのアップロード、無断での本アプリのコンテンツの取得・複製・転売。</p>
+
+      <h2>4 サブスクリプションと支払い</h2>
+      <p><strong>4.1 無料サービス</strong>：本アプリは一部のコンテンツと機能を無料で提供します。無料の範囲はアプリ内の表示に従います。</p>
+      <p><strong>4.2 会員／有料機能</strong>：一部の高度なコンテンツや機能は、会員登録または都度購入が必要です。</p>
+      <p><strong>4.3 自動更新</strong>：定期課金プランを選択した場合、各期間の終了時に自動更新され、お客様が解約するまで継続します。「設定 → 会員管理」または各アプリストア（Google Play など）からいつでも解約できます。解約は現在の支払い期間の終了時に有効となり、それまでは引き続きご利用いただけます。</p>
+      <p><strong>4.4 返金</strong>：Google Play で購入したサブスクリプションは Google Play の返金ポリシーに従います。その他の経路については、当該経路のポリシーおよび消費者保護に関する法律に従います。お客様の規約違反（チート、アカウント転売など）によるアカウント停止については返金しません。</p>
+
+      <h2>5 知的財産権</h2>
+      <p>本アプリおよびその文章・音声・講座・デザイン・コードは、当社または権利者に帰属します。お客様は個人学習の範囲でのみ利用でき、無断で複製・配布・改変・商業利用することはできません。また AI モデルの学習に利用することもできません。</p>
+
+      <h2>6 免責事項</h2>
+      <p>学習コンテンツは参考情報であり、完全な正確性を保証するものではありません。学習効果には個人差があり、特定の成果を約束するものではありません。法律で認められる最大限の範囲で、間接的・偶発的・結果的損害、ならびにネットワーク障害、サーバー保守、不可抗力、お客様の端末やネットワーク、第三者サービスの停止、本規約違反に起因する損害について、当社は責任を負いません。</p>
+
+      <h2>7 違反と終了</h2>
+      <p>違反行為に対しては、警告、機能制限、アカウント停止、サービス終了などの措置を取ることがあります。お客様はいつでも利用を中止し、アカウントを削除できます。終了後、アカウント関連データは<a href="englishlearn_privacy_policy.html">プライバシーポリシー</a>に従って処理されます。</p>
+
+      <h2>8 準拠法と紛争解決</h2>
+      <p>本規約は運営者の所在する法域（中華人民共和国）の法律に準拠します。本規約に関して生じた紛争は、まず友好的な協議により解決を図ります。協議が成立しない場合は、運営者の所在地を管轄する裁判所に提起するものとします。本条は、お客様の居住国の法律により認められた強行的な消費者保護またはデータ保護の権利を制限するものではありません。</p>
+    </main>
+  </div>
+
+  <!-- ==================== 한국어 ==================== -->
+  <div class="lang-block" data-lang="ko">
+    <header class="hero">
+      <h1>이용약관</h1>
+      <p>적용 제품: <strong>라이트 잉글리시(Light English)</strong></p>
+      <p>운영자: <strong>zhangchaochao(개인 개발자)</strong></p>
+      <p>연락처: <strong>chao86825@gmail.com</strong></p>
+      <p>버전 v1.2　|　시행일: <strong>2026-11-17</strong></p>
+      <p><a href="englishlearn_privacy_policy.html">개인정보 처리방침 보기</a></p>
+    </header>
+    <main class="doc">
+      <h2>1 총칙 및 동의</h2>
+      <p>본 이용약관("본 약관")은 귀하와 zhangchaochao("운영자") 간에 라이트 잉글리시(Light English) 이용과 관련하여 체결됩니다. 계정을 생성하거나 본 서비스를 이용하는 경우 본 약관에 동의한 것으로 간주됩니다. 미성년자인 경우 부모 또는 보호자의 동의와 감독 하에 이용해 주십시오.</p>
+
+      <h2>2 계정</h2>
+      <p>귀하는 정확한 정보를 제공하고 계정에서 발생하는 모든 활동에 대해 책임집니다. 계정은 개인 용도로만 사용할 수 있으며, 타인에게 대여·양도·판매할 수 없습니다. 약관 위반, 도용, 장기 미사용 계정에 대해서는 이용 제한·동결·삭제 등의 조치를 취할 수 있습니다.</p>
+
+      <h2>3 이용자 행위 규범</h2>
+      <p>귀하는 다음 행위를 하지 않는 데 동의합니다. 위법하거나 유해한 콘텐츠 게시, 타인에 대한 괴롭힘·비방·권리 침해, 부정행위·점수 조작·멤버십 크래킹, 바이러스나 악성 코드 업로드, 무단으로 본 앱 콘텐츠를 수집·복제·재판매하는 행위.</p>
+
+      <h2>4 구독 및 결제</h2>
+      <p><strong>4.1 무료 서비스</strong>: 본 앱은 일부 콘텐츠와 기능을 무료로 제공하며, 구체적인 무료 범위는 앱 내 안내를 따릅니다.</p>
+      <p><strong>4.2 멤버십/유료 기능</strong>: 일부 고급 콘텐츠나 기능은 멤버십 가입 또는 단건 구매가 필요합니다.</p>
+      <p><strong>4.3 자동 갱신</strong>: 정기 결제 상품을 선택한 경우 각 기간 종료 시 자동 갱신되며, 귀하가 해지할 때까지 계속됩니다. "설정 → 멤버십 관리" 또는 해당 앱 스토어(예: Google Play)에서 언제든지 해지할 수 있습니다. 해지는 현재 결제 기간이 끝날 때 적용되며, 그때까지는 계속 이용할 수 있습니다.</p>
+      <p><strong>4.4 환불</strong>: Google Play에서 구매한 구독은 Google Play 환불 정책을 따릅니다. 기타 경로는 해당 경로의 정책과 소비자 보호 관련 법률을 따릅니다. 귀하의 약관 위반(부정행위, 계정 재판매 등)으로 인한 계정 정지는 환불되지 않습니다.</p>
+
+      <h2>5 지식재산권</h2>
+      <p>본 앱과 그 텍스트·오디오·강좌·디자인·코드는 당사 또는 권리자에게 귀속됩니다. 귀하는 개인 학습 범위 내에서만 이용할 수 있으며, 무단으로 복제·배포·변형·상업적 이용을 할 수 없고, AI 모델 학습에 이용할 수도 없습니다.</p>
+
+      <h2>6 면책</h2>
+      <p>학습 콘텐츠는 참고용이며 완전한 정확성을 보장하지 않습니다. 학습 효과는 개인차가 있으며, 특정한 성과를 약속하지 않습니다. 법이 허용하는 최대 범위 내에서 간접적·우발적·결과적 손해, 그리고 네트워크 장애, 서버 점검, 불가항력, 귀하의 기기나 네트워크, 제3자 서비스 중단, 본 약관 위반으로 인한 손해에 대해 당사는 책임을 지지 않습니다.</p>
+
+      <h2>7 위반과 종료</h2>
+      <p>위반 행위에 대해서는 경고, 기능 제한, 계정 정지, 서비스 종료 등의 조치를 취할 수 있습니다. 귀하는 언제든지 이용을 중단하고 계정을 삭제할 수 있습니다. 종료 후 계정 관련 데이터는 <a href="englishlearn_privacy_policy.html">개인정보 처리방침</a>에 따라 처리됩니다.</p>
+
+      <h2>8 준거법 및 분쟁 해결</h2>
+      <p>본 약관은 운영자의 소재지 법률(중화인민공화국 법률)에 따릅니다. 본 약관과 관련된 분쟁은 우선 우호적 협의로 해결하며, 협의가 이루어지지 않으면 운영자 소재지의 관할 법원에 제기합니다. 본 조항은 귀하의 거주국 법률상 강행적인 소비자 보호 또는 데이터 보호 권리를 제한하지 않습니다.</p>
+    </main>
+  </div>
+
+  <!-- ==================== Tiếng Việt ==================== -->
+  <div class="lang-block" data-lang="vi">
+    <header class="hero">
+      <h1>Điều khoản Dịch vụ</h1>
+      <p>Sản phẩm: <strong>Light English (轻英语)</strong></p>
+      <p>Nhà vận hành: <strong>zhangchaochao (nhà phát triển cá nhân)</strong></p>
+      <p>Liên hệ: <strong>chao86825@gmail.com</strong></p>
+      <p>Phiên bản v1.2　|　Ngày hiệu lực: <strong>2026-11-17</strong></p>
+      <p><a href="englishlearn_privacy_policy.html">Xem Chính sách quyền riêng tư</a></p>
+    </header>
+    <main class="doc">
+      <h2>1 Nguyên tắc chung và chấp nhận</h2>
+      <p>Điều khoản Dịch vụ này ("Điều khoản") được lập giữa bạn và zhangchaochao ("nhà vận hành") liên quan đến việc bạn sử dụng Light English (轻英语). Khi tạo tài khoản hoặc sử dụng Dịch vụ, bạn đồng ý với Điều khoản này. Nếu bạn là người chưa thành niên, vui lòng sử dụng Dịch vụ với sự đồng ý và giám sát của cha mẹ hoặc người giám hộ.</p>
+
+      <h2>2 Tài khoản</h2>
+      <p>Bạn cam kết cung cấp thông tin chính xác và chịu trách nhiệm cho mọi hoạt động dưới tài khoản của mình. Tài khoản chỉ dùng cho mục đích cá nhân, không được cho mượn, chuyển nhượng hoặc bán cho người khác. Chúng tôi có thể hạn chế, đóng băng hoặc xóa tài khoản vi phạm, bị chiếm đoạt hoặc không hoạt động trong thời gian dài.</p>
+
+      <h2>3 Quy tắc ứng xử của người dùng</h2>
+      <p>Bạn đồng ý không: đăng nội dung vi phạm pháp luật hoặc có hại; quấy rối, phỉ báng hoặc xâm phạm quyền của người khác; gian lận, thao túng điểm số hoặc bẻ khóa tư cách hội viên; tải lên vi-rút hoặc mã độc; thu thập, sao chép hoặc bán lại nội dung của ứng dụng mà không được phép.</p>
+
+      <h2>4 Đăng ký và thanh toán</h2>
+      <p><strong>4.1 Dịch vụ miễn phí</strong>: Ứng dụng cung cấp một số nội dung và tính năng miễn phí; phạm vi miễn phí cụ thể theo hiển thị trong ứng dụng.</p>
+      <p><strong>4.2 Hội viên/Tính năng trả phí</strong>: Một số nội dung hoặc tính năng nâng cao cần đăng ký hội viên hoặc mua lẻ.</p>
+      <p><strong>4.3 Tự động gia hạn</strong>: Nếu bạn chọn gói thanh toán định kỳ, gói sẽ tự động gia hạn khi hết mỗi kỳ cho đến khi bạn hủy. Bạn có thể hủy bất cứ lúc nào tại "Cài đặt → Quản lý hội viên" hoặc qua cửa hàng ứng dụng tương ứng (ví dụ Google Play); việc hủy có hiệu lực khi kết thúc kỳ đã thanh toán hiện tại, trước đó bạn vẫn sử dụng bình thường.</p>
+      <p><strong>4.4 Hoàn tiền</strong>: Đăng ký mua qua Google Play tuân theo chính sách hoàn tiền của Google Play; các kênh khác tuân theo chính sách của kênh đó và pháp luật về bảo vệ người tiêu dùng. Không hoàn tiền đối với việc khóa tài khoản do bạn vi phạm (như gian lận, bán lại tài khoản).</p>
+
+      <h2>5 Quyền sở hữu trí tuệ</h2>
+      <p>Ứng dụng cùng văn bản, âm thanh, khóa học, thiết kế và mã nguồn thuộc về chúng tôi hoặc chủ sở hữu quyền. Bạn chỉ được sử dụng trong phạm vi học tập cá nhân, không được sao chép, phân phối, chỉnh sửa, sử dụng cho mục đích thương mại, <strong>cũng không được dùng để huấn luyện mô hình AI</strong> khi chưa được phép.</p>
+
+      <h2>6 Tuyên bố miễn trừ trách nhiệm</h2>
+      <p>Nội dung học tập chỉ mang tính tham khảo, không bảo đảm hoàn toàn chính xác; hiệu quả học tập tùy từng người, chúng tôi không cam kết kết quả cụ thể. Trong phạm vi pháp luật cho phép tối đa, chúng tôi không chịu trách nhiệm cho các tổn thất gián tiếp, ngẫu nhiên hoặc do hậu quả, cũng như tổn thất do lỗi mạng, bảo trì máy chủ, bất khả kháng, thiết bị hoặc mạng của bạn, dịch vụ bên thứ ba gián đoạn hoặc do bạn vi phạm Điều khoản này.</p>
+
+      <h2>7 Vi phạm và chấm dứt</h2>
+      <p>Đối với hành vi vi phạm, chúng tôi có thể cảnh cáo, hạn chế tính năng, khóa hoặc chấm dứt tài khoản. Bạn có thể ngừng sử dụng và xóa tài khoản bất cứ lúc nào; sau khi chấm dứt, dữ liệu liên quan đến tài khoản được xử lý theo <a href="englishlearn_privacy_policy.html">Chính sách quyền riêng tư</a>.</p>
+
+      <h2>8 Luật áp dụng và giải quyết tranh chấp</h2>
+      <p>Điều khoản này được điều chỉnh bởi pháp luật nơi nhà vận hành đặt trụ sở (Cộng hòa Nhân dân Trung Hoa). Tranh chấp phát sinh từ Điều khoản này sẽ được giải quyết thông qua thương lượng thiện chí; nếu không thành, sẽ được đệ trình lên tòa án có thẩm quyền tại nơi nhà vận hành đặt trụ sở. Điều khoản này không giới hạn các quyền bắt buộc về bảo vệ người tiêu dùng hoặc bảo vệ dữ liệu mà bạn có theo pháp luật nước bạn cư trú.</p>
+    </main>
+  </div>
+
+  <!-- ==================== Português (BR) ==================== -->
+  <div class="lang-block" data-lang="pt-BR">
+    <header class="hero">
+      <h1>Termos de Serviço</h1>
+      <p>Produto: <strong>Light English (轻英语)</strong></p>
+      <p>Operador: <strong>zhangchaochao (desenvolvedor individual)</strong></p>
+      <p>Contato: <strong>chao86825@gmail.com</strong></p>
+      <p>Versão v1.2　|　Vigência: <strong>2026-11-17</strong></p>
+      <p><a href="englishlearn_privacy_policy.html">Ver Política de Privacidade</a></p>
+    </header>
+    <main class="doc">
+      <h2>1 Disposições gerais e aceitação</h2>
+      <p>Estes Termos de Serviço ("Termos") são celebrados entre você e zhangchaochao ("operador") em relação ao uso do Light English (轻英语). Ao criar uma conta ou usar o Serviço, você concorda com estes Termos. Se você for menor de idade, use o Serviço somente com o consentimento e a supervisão dos pais ou responsável.</p>
+
+      <h2>2 Conta</h2>
+      <p>Você se compromete a fornecer informações verdadeiras e é responsável por todas as atividades realizadas em sua conta. A conta é de uso pessoal e não pode ser emprestada, transferida ou vendida a terceiros. Podemos restringir, congelar ou excluir contas que violem estes Termos, sejam comprometidas ou permaneçam inativas por longos períodos.</p>
+
+      <h2>3 Conduta do usuário</h2>
+      <p>Você concorda em não: publicar conteúdo ilegal ou nocivo; assediar, difamar ou violar direitos de terceiros; fraudar, manipular pontuações ou burlar assinaturas; enviar vírus ou código malicioso; ou coletar, copiar ou revender o conteúdo do Aplicativo sem autorização.</p>
+
+      <h2>4 Assinaturas e pagamentos</h2>
+      <p><strong>4.1 Serviço gratuito</strong>: o Aplicativo oferece parte do conteúdo e dos recursos gratuitamente; o escopo gratuito exato é o exibido no Aplicativo.</p>
+      <p><strong>4.2 Assinaturas/recursos pagos</strong>: parte do conteúdo ou dos recursos avançados exige assinatura ou compra avulsa.</p>
+      <p><strong>4.3 Renovação automática</strong>: se você escolher um plano recorrente, ele será renovado automaticamente ao final de cada período até que você cancele. Você pode cancelar a qualquer momento em "Configurações → Gerenciar assinatura" ou na loja de aplicativos correspondente (por exemplo, Google Play); o cancelamento passa a valer no fim do período já pago, e você mantém o acesso até lá.</p>
+      <p><strong>4.4 Reembolsos</strong>: assinaturas compradas pelo Google Play seguem a política de reembolso do Google Play. Outros canais seguem a política do respectivo canal e a legislação de defesa do consumidor. Não há reembolso em caso de bloqueio de conta por violação destes Termos (por exemplo, fraude ou revenda de conta).</p>
+
+      <h2>5 Propriedade intelectual</h2>
+      <p>O Aplicativo e seus textos, áudios, cursos, design e código pertencem a nós ou aos nossos licenciantes. Você pode usá-los apenas para aprendizado pessoal, não podendo copiar, redistribuir, adaptar, explorar comercialmente <strong>nem utilizá-los para treinar modelos de IA</strong> sem autorização.</p>
+
+      <h2>6 Isenção de responsabilidade</h2>
+      <p>O conteúdo de aprendizado é fornecido apenas como referência e não garantimos que esteja livre de erros; os resultados variam de pessoa para pessoa e não prometemos resultados específicos. Na máxima extensão permitida por lei, não somos responsáveis por danos indiretos, incidentais ou consequentes, nem por falhas decorrentes de problemas de rede, manutenção do servidor, força maior, seu dispositivo ou rede, indisponibilidade de serviços de terceiros ou violação destes Termos por sua parte.</p>
+
+      <h2>7 Violação e encerramento</h2>
+      <p>Podemos advertir, limitar funcionalidades, bloquear ou encerrar contas em caso de violação. Você pode deixar de usar o Serviço e excluir sua conta a qualquer momento; após o encerramento, os dados relacionados à conta são tratados conforme a <a href="englishlearn_privacy_policy.html">Política de Privacidade</a>.</p>
+
+      <h2>8 Lei aplicável e solução de controvérsias</h2>
+      <p>Estes Termos são regidos pelas leis da jurisdição em que o operador está estabelecido (República Popular da China). Qualquer controvérsia será resolvida por negociação amigável; não havendo acordo, será submetida aos tribunais competentes do local de atividade do operador. Nada nesta cláusula limita os direitos obrigatórios de consumidor ou de proteção de dados que você tenha segundo as leis do seu país de residência.</p>
+    </main>
+  </div>
+
+  <!-- ==================== ไทย ==================== -->
+  <div class="lang-block" data-lang="th">
+    <header class="hero">
+      <h1>ข้อกำหนดการให้บริการ</h1>
+      <p>ผลิตภัณฑ์: <strong>Light English (轻英语)</strong></p>
+      <p>ผู้ให้บริการ: <strong>zhangchaochao (นักพัฒนารายบุคคล)</strong></p>
+      <p>ติดต่อ: <strong>chao86825@gmail.com</strong></p>
+      <p>เวอร์ชัน v1.2　|　วันที่มีผล: <strong>2026-11-17</strong></p>
+      <p><a href="englishlearn_privacy_policy.html">ดูนโยบายความเป็นส่วนตัว</a></p>
+    </header>
+    <main class="doc">
+      <h2>1 ข้อกำหนดทั่วไปและการยอมรับ</h2>
+      <p>ข้อกำหนดการให้บริการนี้ ("ข้อกำหนด") จัดทำขึ้นระหว่างคุณกับ zhangchaochao ("ผู้ให้บริการ") เกี่ยวกับการใช้ Light English (轻英语) การสร้างบัญชีหรือการใช้บริการถือว่าคุณยอมรับข้อกำหนดนี้ หากคุณเป็นผู้เยาว์ โปรดใช้บริการภายใต้ความยินยอมและการดูแลของบิดามารดาหรือผู้ปกครอง</p>
+
+      <h2>2 บัญชีผู้ใช้</h2>
+      <p>คุณตกลงที่จะให้ข้อมูลที่เป็นความจริงและรับผิดชอบต่อกิจกรรมทั้งหมดภายใต้บัญชีของคุณ บัญชีนี้ใช้เพื่อวัตถุประสงค์ส่วนบุคคลเท่านั้น ห้ามให้ยืม โอน หรือขายให้ผู้อื่น เราอาจจำกัด ระงับ หรือลบบัญชีที่ละเมิดข้อกำหนด ถูกบุกรุก หรือไม่ได้ใช้งานเป็นเวลานาน</p>
+
+      <h2>3 แนวปฏิบัติของผู้ใช้</h2>
+      <p>คุณตกลงที่จะไม่: เผยแพร่เนื้อหาที่ผิดกฎหมายหรือเป็นอันตราย; คุกคาม หมิ่นประมาท หรือละเมิดสิทธิของผู้อื่น; โกง จัดการคะแนน หรือเจาะระบบสมาชิก; อัปโหลดไวรัสหรือโค้ดที่เป็นอันตราย; หรือดึงข้อมูล คัดลอก หรือขายต่อเนื้อหาของแอปโดยไม่ได้รับอนุญาต</p>
+
+      <h2>4 การสมัครสมาชิกและการชำระเงิน</h2>
+      <p><strong>4.1 บริการฟรี</strong>: แอปมีเนื้อหาและฟังก์ชันบางส่วนให้ใช้ฟรี ขอบเขตฟรีเป็นไปตามที่แสดงในแอป</p>
+      <p><strong>4.2 สมาชิก/ฟีเจอร์แบบชำระเงิน</strong>: เนื้อหาหรือฟังก์ชันขั้นสูงบางส่วนต้องสมัครสมาชิกหรือซื้อแบบครั้งเดียว</p>
+      <p><strong>4.3 การต่ออายุอัตโนมัติ</strong>: หากคุณเลือกแพ็กเกจต่ออายุอัตโนมัติ ระบบจะต่ออายุเมื่อสิ้นสุดแต่ละรอบจนกว่าคุณจะยกเลิก คุณสามารถยกเลิกได้ทุกเมื่อที่ "การตั้งค่า → จัดการสมาชิก" หรือผ่านร้านค้าแอปที่เกี่ยวข้อง (เช่น Google Play) การยกเลิกจะมีผลเมื่อสิ้นสุดรอบที่ชำระแล้ว และคุณยังใช้งานได้จนถึงตอนนั้น</p>
+      <p><strong>4.4 การคืนเงิน</strong>: การสมัครสมาชิกที่ซื้อผ่าน Google Play เป็นไปตามนโยบายการคืนเงินของ Google Play ช่องทางอื่นเป็นไปตามนโยบายของช่องทางนั้นและกฎหมายคุ้มครองผู้บริโภค จะไม่มีการคืนเงินในกรณีที่บัญชีถูกระงับเนื่องจากการละเมิดข้อกำหนด (เช่น การโกง การขายบัญชีต่อ)</p>
+
+      <h2>5 ทรัพย์สินทางปัญญา</h2>
+      <p>แอปและข้อความ เสียง คอร์ส การออกแบบ และโค้ดเป็นของเราหรือผู้ให้สิทธิ์ คุณใช้ได้เฉพาะเพื่อการเรียนส่วนบุคคลเท่านั้น ห้ามคัดลอก เผยแพร่ ดัดแปลง ใช้ในเชิงพาณิชย์ <strong>และห้ามใช้เพื่อฝึกโมเดล AI</strong> โดยไม่ได้รับอนุญาต</p>
+
+      <h2>6 ข้อจำกัดความรับผิด</h2>
+      <p>เนื้อหาการเรียนมีไว้เพื่ออ้างอิงเท่านั้น ไม่รับประกันว่าถูกต้องสมบูรณ์ ผลการเรียนแตกต่างกันในแต่ละบุคคล เราไม่รับประกันผลลัพธ์ใด ๆ ภายในขอบเขตสูงสุดที่กฎหมายอนุญาต เราไม่รับผิดชอบต่อความเสียหายทางอ้อม ความเสียหายโดยบังเอิญ หรือความเสียหายที่เป็นผลสืบเนื่อง รวมถึงความเสียหายจากปัญหาเครือข่าย การบำรุงรักษาเซิร์ฟเวอร์ เหตุสุดวิสัย อุปกรณ์หรือเครือข่ายของคุณ บริการของบุคคลที่สามหยุดให้บริการ หรือการที่คุณละเมิดข้อกำหนดนี้</p>
+
+      <h2>7 การละเมิดและการยุติ</h2>
+      <p>สำหรับการละเมิด เราอาจดำเนินการตักเตือน จำกัดฟังก์ชัน ระงับ หรือยุติบัญชี คุณสามารถหยุดใช้บริการและลบบัญชีได้ทุกเมื่อ หลังจากยุติ ข้อมูลที่เกี่ยวข้องกับบัญชีจะถูกจัดการตาม<a href="englishlearn_privacy_policy.html">นโยบายความเป็นส่วนตัว</a></p>
+
+      <h2>8 กฎหมายที่ใช้บังคับและการระงับข้อพิพาท</h2>
+      <p>ข้อกำหนดนี้อยู่ภายใต้กฎหมายของเขตอำนาจที่ผู้ให้บริการตั้งอยู่ (สาธารณรัฐประชาชนจีน) ข้อพิพาทใด ๆ ให้แก้ไขด้วยการเจรจาโดยสุจริต หากไม่สำเร็จให้ยื่นต่อศาลที่มีเขตอำนาจ ณ ที่ตั้งธุรกิจของผู้ให้บริการ ข้อกำหนดนี้ไม่จำกัดสิทธิ์ของผู้บริโภคหรือสิทธิ์ในการคุ้มครองข้อมูลที่เป็นบทบังคับตามกฎหมายของประเทศที่คุณพำนัก</p>
+    </main>
+  </div>
+
+  <!-- ==================== العربية ==================== -->
+  <div class="lang-block" data-lang="ar" dir="rtl">
+    <header class="hero">
+      <h1>شروط الخدمة</h1>
+      <p>المنتج: <strong>Light English (轻英语)</strong></p>
+      <p>المشغّل: <strong>zhangchaochao (مطوّر فردي)</strong></p>
+      <p>للتواصل: <strong>chao86825@gmail.com</strong></p>
+      <p>الإصدار v1.2　|　تاريخ السريان: <strong>2026-11-17</strong></p>
+      <p><a href="englishlearn_privacy_policy.html">عرض سياسة الخصوصية</a></p>
+    </header>
+    <main class="doc">
+      <h2>1 أحكام عامة والقبول</h2>
+      <p>تُبرم شروط الخدمة هذه ("الشروط") بينك وبين zhangchaochao ("المشغّل") بشأن استخدامك لتطبيق Light English (轻英语). بإنشاء حساب أو باستخدامك للخدمة فإنك توافق على هذه الشروط. إذا كنت قاصرًا، فيرجى استخدام الخدمة بموافقة والديك أو وليّك وبإشرافهما.</p>
+
+      <h2>2 الحساب</h2>
+      <p>تلتزم بتقديم معلومات صحيحة، وتتحمل مسؤولية جميع الأنشطة التي تجري عبر حسابك. الحساب مخصّص للاستخدام الشخصي، ولا يجوز إعارته أو نقله أو بيعه للآخرين. يجوز لنا تقييد الحسابات المخالفة أو المخترقة أو غير النشطة لفترة طويلة، أو تجميدها أو حذفها.</p>
+
+      <h2>3 قواعد سلوك المستخدم</h2>
+      <p>توافق على عدم القيام بما يلي: نشر محتوى غير قانوني أو ضار؛ مضايقة الآخرين أو تشويه سمعتهم أو انتهاك حقوقهم؛ الغش أو التلاعب بالنقاط أو كسر العضويات؛ تحميل فيروسات أو تعليمات برمجية ضارة؛ أو استخراج محتوى التطبيق أو نسخه أو إعادة بيعه دون إذن.</p>
+
+      <h2>4 الاشتراكات والمدفوعات</h2>
+      <p><strong>4.1 الخدمة المجانية</strong>: يوفّر التطبيق بعض المحتوى والميزات مجانًا، ويُحدَّد النطاق المجاني وفقًا لما يظهر داخل التطبيق.</p>
+      <p><strong>4.2 العضوية/الميزات المدفوعة</strong>: تتطلّب بعض المحتويات أو الميزات المتقدمة عضوية أو شراءً لمرة واحدة.</p>
+      <p><strong>4.3 التجديد التلقائي</strong>: إذا اخترت خطة متكررة، فسيتم تجديدها تلقائيًا في نهاية كل دورة حتى تقوم بالإلغاء. يمكنك الإلغاء في أي وقت من "الإعدادات ← إدارة العضوية" أو عبر متجر التطبيقات المعني (مثل Google Play)؛ ويسري الإلغاء في نهاية الدورة المدفوعة الحالية، ويبقى بإمكانك الاستخدام حتى ذلك الحين.</p>
+      <p><strong>4.4 المبالغ المستردة</strong>: تخضع الاشتراكات المشتراة عبر Google Play لسياسة الاسترداد الخاصة بـ Google Play. وتخضع القنوات الأخرى لسياسة تلك القناة وقوانين حماية المستهلك. لا يتم رد المبالغ في حال تعليق الحساب بسبب مخالفتك (مثل الغش أو إعادة بيع الحساب).</p>
+
+      <h2>5 الملكية الفكرية</h2>
+      <p>يعود التطبيق ونصوصه وصوته ودوراته وتصميمه وشفرته إلينا أو إلى الجهات المرخِّصة لنا. لا يجوز لك استخدامها إلا لأغراض التعلّم الشخصي، ولا يجوز نسخها أو إعادة توزيعها أو تعديلها أو استغلالها تجاريًا، <strong>ولا استخدامها لتدريب نماذج الذكاء الاصطناعي</strong> دون إذن.</p>
+
+      <h2>6 إخلاء المسؤولية</h2>
+      <p>يُقدَّم المحتوى التعليمي للاسترشاد فقط، ولا نضمن خلوه التام من الأخطاء؛ وتتفاوت نتائج التعلّم من شخص لآخر، ولا نَعِد بنتائج محددة. وإلى أقصى حدّ يسمح به القانون، لا نتحمل المسؤولية عن أي أضرار غير مباشرة أو عرضية أو تبعية، ولا عن الأعطال الناتجة عن مشاكل الشبكة أو صيانة الخوادم أو القوة القاهرة أو جهازك أو شبكتك أو انقطاع خدمات الأطراف الثالثة أو مخالفتك لهذه الشروط.</p>
+
+      <h2>7 المخالفة والإنهاء</h2>
+      <p>في حال المخالفة، يجوز لنا التنبيه أو تقييد الميزات أو تعليق الحساب أو إنهاء الخدمة. يمكنك التوقف عن استخدام الخدمة وحذف حسابك في أي وقت؛ وبعد الإنهاء تُعالَج البيانات المرتبطة بالحساب وفقًا لـ<a href="englishlearn_privacy_policy.html">سياسة الخصوصية</a>.</p>
+
+      <h2>8 القانون الحاكم وتسوية النزاعات</h2>
+      <p>تخضع هذه الشروط لقوانين الولاية القضائية التي يقيم فيها المشغّل (جمهورية الصين الشعبية). تُحلّ أي نزاعات عبر التفاوض الودّي، وفي حال تعذّر ذلك تُحال إلى المحاكم المختصة في مكان عمل المشغّل. ولا يقيّد هذا البند أي حقوق إلزامية للمستهلك أو لحماية البيانات تتمتع بها بموجب قوانين بلد إقامتك.</p>
+    </main>
+  </div>
+
 </div>
 <script>
 (function(){
+  var SUPPORTED = ['en','zh','zh-TW','ja','ko','vi','pt-BR','th','ar'];
+  var TITLES = {
+    'en':'Terms of Service — Light English','zh':'用户协议 — 轻英语','zh-TW':'使用者協議 — 輕英語',
+    'ja':'利用規約 — 軽英語','ko':'이용약관 — 라이트 잉글리시',
+    'vi':'Điều khoản Dịch vụ — Light English','pt-BR':'Termos de Serviço — Light English',
+    'th':'ข้อกำหนดการให้บริการ — Light English','ar':'شروط الخدمة — Light English'
+  };
+  var HTML_LANG = {'en':'en','zh':'zh-CN','zh-TW':'zh-TW','ja':'ja','ko':'ko','vi':'vi','pt-BR':'pt-BR','th':'th','ar':'ar'};
+
+  // 把各种可能的写法归一到上面 9 种之一
+  function normalize(raw){
+    if(!raw) return '';
+    var s = String(raw).toLowerCase().replace(/_/g,'-');
+    if (s.indexOf('zh') === 0) {
+      return (s.indexOf('tw') > -1 || s.indexOf('hk') > -1 || s.indexOf('mo') > -1 ||
+              s.indexOf('hant') > -1) ? 'zh-TW' : 'zh';
+    }
+    if (s.indexOf('pt') === 0) return 'pt-BR';
+    if (s.indexOf('ja') === 0) return 'ja';
+    if (s.indexOf('ko') === 0) return 'ko';
+    if (s.indexOf('vi') === 0) return 'vi';
+    if (s.indexOf('th') === 0) return 'th';
+    if (s.indexOf('ar') === 0) return 'ar';
+    if (s.indexOf('en') === 0) return 'en';
+    return '';
+  }
+
   function getParam(){
-    try { return (new URLSearchParams(location.search).get('lang') || '').toLowerCase(); }
+    try { return new URLSearchParams(location.search).get('lang') || ''; }
     catch(e){ return ''; }
   }
+
   function applyLang(lang){
+    if (SUPPORTED.indexOf(lang) < 0) lang = 'en';
     var blocks = document.querySelectorAll('.lang-block');
-    blocks.forEach(function(b){
-      b.classList.toggle('active', b.getAttribute('data-lang') === lang);
-    });
-    document.documentElement.lang = (lang === 'zh') ? 'zh‑CN' : 'en';
-    document.title = (lang === 'zh')
-      ? '用户协议 — 轻英语'
-      : 'Terms of Service — Light English';
-    document.querySelectorAll('.lang‑btn').forEach(function(btn){
-      btn.classList.toggle('active', btn.getAttribute('data‑lang') === lang);
-    });
+    for (var i = 0; i < blocks.length; i++) {
+      blocks[i].classList.toggle('active', blocks[i].getAttribute('data-lang') === lang);
+    }
+    var btns = document.querySelectorAll('.lang-btn');
+    for (var j = 0; j < btns.length; j++) {
+      btns[j].classList.toggle('active', btns[j].getAttribute('data-lang') === lang);
+    }
+    document.documentElement.lang = HTML_LANG[lang] || 'en';
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    document.title = TITLES[lang] || TITLES.en;
+
+    // 页内跳转到隐私政策时，把当前语言一起带过去
+    var links = document.querySelectorAll('a[href^="englishlearn_privacy_policy.html"]');
+    for (var k = 0; k < links.length; k++) {
+      links[k].setAttribute('href', 'englishlearn_privacy_policy.html?lang=' + lang);
+    }
+
     try {
       var url = new URL(location.href);
       url.searchParams.set('lang', lang);
       history.replaceState(null, '', url);
     } catch(e){}
   }
+
   window.switchLang = function(lang){
     applyLang(lang);
     window.scrollTo(0, 0);
   };
-  var param = getParam();
-  var lang;
-  if (param === 'zh') { lang = 'zh'; }
-  else if (param === 'en') { lang = 'en'; }
-  else {
-    var nav = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
-    lang = (nav.indexOf('zh') === 0) ? 'zh' : 'en';
-  }
+
+  var lang = normalize(getParam());
+  if (!lang) lang = normalize(navigator.language || navigator.userLanguage || 'en');
+  if (!lang) lang = 'en';
   applyLang(lang);
 })();
 </script>
