@@ -3,42 +3,115 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<title>Terms of Service | LocalPhotoPro</title>
 <style>
-body {
-    font-family: Arial, "Microsoft Yahei", sans-serif;
-    max-width:820px;
-    margin:40px auto;
-    padding:0 20px;
-    line-height:1.8;
-    color:#333;
-    background:#fff;
-}
-h1 {
-    text-align:center;
-    font-size:28px;
-    margin-bottom:20px;
-}
-h2 {
-    font-size:20px;
-    margin-top:30px;
-    margin-bottom:12px;
-}
-p {margin:10px 0;font-size:16px;}
-ul {padding-left:22px;}
+  :root { --ink:#1f2430; --sub:#5b6472; --line:#e7e9ef; --accent:#4f46e5; --accent-soft:#eef0ff; --bg:#f6f7fb; --card:#fff; }
+  * { box-sizing:border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+         "Noto Sans", "Microsoft Yahei", sans-serif;
+         max-width:860px; margin:0 auto; padding:0 16px 64px; line-height:1.85; color:var(--ink); background:var(--bg); }
+  /* 顶部语言 tab 栏 */
+  .langbar { position:sticky; top:0; z-index:10; background:rgba(246,247,251,.94);
+             backdrop-filter:saturate(180%) blur(8px); margin:0 -16px 24px; padding:12px 16px 10px;
+             border-bottom:1px solid var(--line); }
+  .langbar-label { font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--sub); margin:0 0 8px 2px; font-weight:600; }
+  .tabs { display:flex; gap:8px; overflow-x:auto; padding:2px 2px 8px; scrollbar-width:thin; }
+  .tabs::-webkit-scrollbar { height:6px; }
+  .tabs::-webkit-scrollbar-thumb { background:#d5d8e3; border-radius:3px; }
+  .lang-tab { flex:0 0 auto; border:1px solid var(--line); background:var(--card); color:var(--ink);
+              font-size:13.5px; padding:8px 14px; border-radius:999px; cursor:pointer; white-space:nowrap;
+              font-family:inherit; transition:all .16s ease; line-height:1.4; }
+  .lang-tab:hover { border-color:#c3c7d6; background:#fafbff; }
+  .lang-tab.active { background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600;
+                     box-shadow:0 3px 10px rgba(79,70,229,.28); }
+  .lang-tab:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  /* 文档 */
+  .doc-shell { background:var(--card); border:1px solid var(--line); border-radius:18px;
+               padding:36px 34px; box-shadow:0 6px 24px rgba(30,40,80,.05); }
+  .lang-content { display:none; }
+  .lang-content.active { display:block; }
+  h1 { text-align:center; font-size:27px; margin:0 0 18px; letter-spacing:-.02em; }
+  h2 { font-size:19px; margin-top:32px; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--line); }
+  p { margin:10px 0; font-size:15.5px; }
+  ul { padding-left:22px; margin:10px 0; }
+  li { margin:6px 0; font-size:15.5px; }
+  strong { font-weight:700; }
+  a { color:var(--accent); word-break:break-all; }
+  html[dir="rtl"] .doc-shell { direction:rtl; text-align:right; }
+  html[dir="rtl"] ul { padding-left:0; padding-right:22px; }
+  html[dir="rtl"] .tabs { direction:ltr; }
+  @media (max-width:600px) {
+    .doc-shell { padding:24px 18px; border-radius:14px; }
+    h1 { font-size:23px; } h2 { font-size:17px; }
+    p, li { font-size:15px; }
+  }
 </style>
 </head>
 <body>
+  <!-- 语言切换 tab：与设置页一致，JS 显示「原生名（当前语言译名）」并自动选中 -->
+<div class="langbar" dir="ltr">
+    <p class="langbar-label">Language / 语言 / Langue</p>
+    <nav class="tabs" id="tabs" aria-label="Language">
+      <button type="button" class="lang-tab" data-lang="hi" aria-pressed="false">हिन्दी</button>
+      <button type="button" class="lang-tab active" data-lang="zh" aria-pressed="true">中文</button>
+      <button type="button" class="lang-tab" data-lang="en" aria-pressed="false">English</button>
+      <button type="button" class="lang-tab" data-lang="in" aria-pressed="false">Bahasa Indonesia</button>
+      <button type="button" class="lang-tab" data-lang="ur" aria-pressed="false">اردو</button>
+      <button type="button" class="lang-tab" data-lang="pt" aria-pressed="false">Português</button>
+      <button type="button" class="lang-tab" data-lang="bn" aria-pressed="false">বাংলা</button>
+      <button type="button" class="lang-tab" data-lang="ru" aria-pressed="false">Русский</button>
+      <button type="button" class="lang-tab" data-lang="am" aria-pressed="false">አማርኛ</button>
+      <button type="button" class="lang-tab" data-lang="es" aria-pressed="false">Español</button>
+      <button type="button" class="lang-tab" data-lang="ja" aria-pressed="false">日本語</button>
+      <button type="button" class="lang-tab" data-lang="ar" aria-pressed="false">العربية</button>
+      <button type="button" class="lang-tab" data-lang="vi" aria-pressed="false">Tiếng Việt</button>
+      <button type="button" class="lang-tab" data-lang="fr" aria-pressed="false">Français</button>
+      <button type="button" class="lang-tab" data-lang="fa" aria-pressed="false">فارسی</button>
+      <button type="button" class="lang-tab" data-lang="tr" aria-pressed="false">Türkçe</button>
+      <button type="button" class="lang-tab" data-lang="de" aria-pressed="false">Deutsch</button>
+      <button type="button" class="lang-tab" data-lang="th" aria-pressed="false">ไทย</button>
+    </nav>
+  </div>
+
+  <div class="doc-shell">
+    <!-- 无 JS 降级：默认展示中文；18 语言全文内联，利于 Google Play 抓取 -->
+  <article class="lang-content" data-lang="hi" lang="hi">
+<h1>सेवा की शर्तें</h1>
+<p><strong>अंतिम अपडेट: 2026-10-11</strong></p>
+<p>ये सेवा की शर्तें ("शर्तें") <strong>zhangchaochao</strong> द्वारा विकसित और संचालित मोबाइल ऐप <strong>Local Photo Album / LocalPhotoPro</strong> ("ऐप") तक आपकी पहुँच और उसके उपयोग को नियंत्रित करती हैं। ये शर्तें उन सभी उपयोगकर्ताओं पर लागू होती हैं जो Google Play से ऐप डाउनलोड करके Android डिवाइस पर उसका उपयोग करते हैं।</p>
+<h2>1. शर्तों की स्वीकृति</h2>
+<p>ऐप को डाउनलोड, इंस्टॉल, एक्सेस या उपयोग करके आप स्वीकार करते हैं कि आपने इन शर्तों के सभी प्रावधान पढ़, समझ और उनसे सहमति व्यक्त की है। यदि आप किसी प्रावधान से सहमत नहीं हैं, तो आप ऐप इंस्टॉल या उपयोग नहीं कर सकते और तुरंत उपयोग बंद कर दें।</p>
+<h2>2. उपयोग का लाइसेंस</h2>
+<p>डेवलपर आपको सीमित, गैर-अनन्य, अहस्तांतरणीय, निरसनीय लाइसेंस प्रदान करता है: केवल व्यक्तिगत, गैर-व्यावसायिक उद्देश्यों के लिए अपने Android डिवाइस पर ऐप इंस्टॉल और उपयोग कर सकते हैं। आप ऐप या इस लाइसेंस के अंतर्गत किसी भी अधिकार का उप-लाइसेंस, किराया, बिक्री, पुनर्वितरण या हस्तांतरण नहीं कर सकते।</p>
+<h2>3. निषिद्ध गतिविधियाँ</h2>
+<p>आप सहमत हैं कि आप निम्नलिखित कार्य नहीं करेंगे:</p>
+<ul>
+<li>ऐप का रिवर्स इंजीनियरिंग, डिकंपाइल, डिसअसेम्बल, संशोधन, छेड़छाड़ या व्युत्पन्न कार्य बनाना;</li>
+<li>ऐप के भीतर कॉपीराइट, ट्रेडमार्क या अन्य बौद्धिक संपदा सूचनाओं को हटाना, बदलना या छिपाना;</li>
+<li>ऐप का उपयोग किसी अवैध, हानिकारक, उल्लंघनकारी या अनधिकृत उद्देश्य के लिए करना;</li>
+<li>ऐप के सामान्य संचालन में हस्तक्षेप या बाधा पहुँचाने का प्रयास करना।</li>
+</ul>
+<h2>4. वारंटी का अस्वीकरण</h2>
+<p>ऐप "जैसा है" और "जैसा उपलब्ध है" के आधार पर, किसी भी व्यक्त या निहित वारंटी के बिना प्रदान किया जाता है। डेवलपर यह गारंटी नहीं देता कि ऐप बिना रुकावट, त्रुटि-मुक्त, सुरक्षित या आपकी आवश्यकताओं को पूरा करेगा। कानून द्वारा अनुमत अधिकतम सीमा तक, डेवलपर व्यापारिकता और किसी विशेष उद्देश्य के लिए उपयुक्तता सहित सभी निहित वारंटियों का खंडन करता है।</p>
+<h2>5. दायित्व की सीमा</h2>
+<p>कानून द्वारा अनुमत अधिकतम सीमा तक, डेवलपर ऐप के आपके उपयोग या उपयोग में असमर्थता से उत्पन्न किसी भी प्रत्यक्ष, अप्रत्यक्ष, आकस्मिक, परिणामी या विशेष क्षति के लिए उत्तरदायी नहीं होगा, भले ही डेवलपर को ऐसी क्षति की संभावना के बारे में पहले से सूचित कर दिया गया हो।</p>
+<h2>6. शर्तों में संशोधन</h2>
+<p>डेवलपर किसी भी समय इन शर्तों में संशोधन का अधिकार सुरक्षित रखता है। अद्यतन शर्तें संशोधित अपडेट तिथि के साथ इसी पृष्ठ पर प्रकाशित की जाएँगी। अद्यतन के बाद ऐप का उपयोग जारी रखना संशोधित शर्तों की स्वीकृति माना जाएगा।</p>
+<h2>7. समाप्ति</h2>
+<p>यदि आप इन शर्तों के किसी प्रावधान का उल्लंघन करते हैं, तो यह लाइसेंस स्वतः समाप्त हो जाएगा। समाप्ति के बाद, आपको ऐप का उपयोग बंद करना होगा और अपने डिवाइस से सभी प्रतियाँ हटानी या अनइंस्टॉल करनी होंगी। वारंटी अस्वीकरण और दायित्व सीमा जैसे प्रावधान जो स्वभावतः समाप्ति के बाद भी प्रभावी रहने चाहिए, लागू रहेंगे।</p>
+<h2>8. संपर्क</h2>
+<p>इन शर्तों के बारे में कोई प्रश्न होने पर, कृपया डेवलपर से संपर्क करें:</p>
+<p>संपर्क ईमेल: chao86825@gmail.com<br>डेवलपर: zhangchaochao</p>
+  </article>
+  <article class="lang-content active" data-lang="zh" lang="zh">
 <h1>用户服务协议</h1>
 <p><strong>最近更新日期：2026-10-11</strong></p>
-
-<p>本用户服务协议（下称“协议”）约束您访问和使用移动应用 <strong>【本地相册】</strong>（下称“本应用”），本应用由<strong>【zhangchaochao】</strong>开发运营。本协议适用于所有从Google Play下载并在安卓设备使用本应用的用户。</p>
-
+<p>本用户服务协议（下称"协议"）约束您访问和使用移动应用 <strong>Local Photo Album / LocalPhotoPro</strong>（下称"本应用"），本应用由<strong>zhangchaochao</strong>开发运营。本协议适用于所有从Google Play下载并在安卓设备使用本应用的用户。</p>
 <h2>1. 协议接受</h2>
 <p>下载、安装、访问或使用本应用，即代表您已阅读、理解并同意遵守本协议全部条款。如您不接受本协议任意条款，则无权安装和使用本应用，请立即停止使用。</p>
-
 <h2>2. 使用许可</h2>
-<p>开发者授予您有限、非独占、不可转让、可撤销的许可：仅可在您的安卓设备上安装、个人非商业用途使用本应用。您不得分许可、出租、出售、再分发或转让本应用以及本许可项下的任何权利。</p>
-
+<p>开发者授予您有限、非独占、不可转让、可撤销的许可：仅可在您的安卓设备上安装、以个人非商业用途使用本应用。您不得分许可、出租、出售、再分发或转让本应用以及本许可项下的任何权利。</p>
 <h2>3. 禁止行为</h2>
 <p>您承诺不会进行以下行为：</p>
 <ul>
@@ -47,23 +120,550 @@ ul {padding-left:22px;}
 <li>将本应用用于任何违法、有害、侵权或未经授权的用途；</li>
 <li>尝试干扰、破坏本应用正常运行。</li>
 </ul>
-
 <h2>4. 免责声明</h2>
-<p>本应用按“现状”和“可用状态”提供，不提供任何明示或暗示的保证。开发者不保证应用不会中断、无错误、安全或满足您的使用需求。在法律允许最大范围内，开发者拒绝所有默示担保，包括适销性和特定用途适用性担保。</p>
-
+<p>本应用按"现状"和"可用状态"提供，不提供任何明示或暗示的保证。开发者不保证应用不会中断、无错误、安全或满足您的使用需求。在法律允许的最大范围内，开发者拒绝所有默示担保，包括适销性和特定用途适用性担保。</p>
 <h2>5. 责任限制</h2>
-<p>在法律允许的最大范围内，开发者不对因您使用或无法使用本应用产生的任何直接、间接、附带、衍生或特殊损害承担赔偿责任，即便开发者已被告知存在该类损害可能性。</p>
-
+<p>在法律允许的最大范围内，开发者不对因您使用或无法使用本应用产生的任何直接、间接、附带、衍生或特殊损害承担赔偿责任，即便开发者已被告知存在该类损害的可能性。</p>
 <h2>6. 协议修改</h2>
 <p>开发者保留随时修订本协议的权利。更新后的协议将发布在本网页并标注更新日期。协议更新后，您继续使用本应用即视为接受修订后的协议。</p>
-
 <h2>7. 协议终止</h2>
-<p>如您违反本协议任何条款，本许可自动终止。协议终止后，您必须停止使用本应用，并从设备删除/卸载全部副本。免责、责任限制等依性质应当在终止后继续有效的条款持续有效。</p>
-
+<p>如您违反本协议任何条款，本许可自动终止。协议终止后，您必须停止使用本应用，并从设备删除或卸载全部副本。免责、责任限制等依性质应当在终止后继续有效的条款持续有效。</p>
 <h2>8. 联系方式</h2>
 <p>如您对本用户协议有任何疑问，请联系开发者：</p>
-<p>联系邮箱：【chao86825@gmail.com】<br>
-开发者：【zhangchaochao】</p>
+<p>联系邮箱：chao86825@gmail.com<br>开发者：zhangchaochao</p>
+  </article>
+  <article class="lang-content" data-lang="en" lang="en">
+<h1>Terms of Service</h1>
+<p><strong>Last updated: 2026-10-11</strong></p>
+<p>These Terms of Service (the "Terms") govern your access to and use of the mobile app <strong>Local Photo Album / LocalPhotoPro</strong> (the "App"), developed and operated by <strong>zhangchaochao</strong>. These Terms apply to all users who download the App from Google Play and use it on Android devices.</p>
+<h2>1. Acceptance of Terms</h2>
+<p>By downloading, installing, accessing or using the App, you acknowledge that you have read, understood and agreed to be bound by all provisions of these Terms. If you do not accept any provision, you may not install or use the App and must discontinue use immediately.</p>
+<h2>2. License Grant</h2>
+<p>The developer grants you a limited, non-exclusive, non-transferable, revocable license to install and use the App on your Android device solely for personal, non-commercial purposes. You may not sublicense, rent, sell, redistribute or transfer the App or any rights granted under this license.</p>
+<h2>3. Prohibited Conduct</h2>
+<p>You agree that you will not:</p>
+<ul>
+<li>Reverse engineer, decompile, disassemble, modify, tamper with or create derivative works of the App;</li>
+<li>Remove, alter or obscure any copyright, trademark or other intellectual property notices within the App;</li>
+<li>Use the App for any unlawful, harmful, infringing or unauthorized purpose;</li>
+<li>Attempt to interfere with or disrupt the normal operation of the App.</li>
+</ul>
+<h2>4. Disclaimer of Warranties</h2>
+<p>The App is provided "as is" and "as available" without warranties of any kind, express or implied. The developer does not warrant that the App will be uninterrupted, error-free, secure or meet your requirements. To the maximum extent permitted by law, the developer disclaims all implied warranties, including merchantability and fitness for a particular purpose.</p>
+<h2>5. Limitation of Liability</h2>
+<p>To the maximum extent permitted by law, the developer shall not be liable for any direct, indirect, incidental, consequential or special damages arising out of your use of or inability to use the App, even if the developer has been advised of the possibility of such damages.</p>
+<h2>6. Amendments to the Terms</h2>
+<p>The developer reserves the right to amend these Terms at any time. The updated Terms will be posted on this page with a revised update date. Your continued use of the App after any update constitutes acceptance of the revised Terms.</p>
+<h2>7. Termination</h2>
+<p>If you breach any provision of these Terms, this license terminates automatically. Upon termination, you must stop using the App and delete or uninstall all copies from your device. Provisions that by their nature should survive termination, such as disclaimers and limitations of liability, remain in effect.</p>
+<h2>8. Contact</h2>
+<p>If you have any questions about these Terms, please contact the developer:</p>
+<p>Email: chao86825@gmail.com<br>Developer: zhangchaochao</p>
+  </article>
+  <article class="lang-content" data-lang="in" lang="id">
+<h1>Syarat Layanan</h1>
+<p><strong>Terakhir diperbarui: 2026-10-11</strong></p>
+<p>Syarat Layanan ini ("Syarat") mengatur akses dan penggunaan Anda atas aplikasi seluler <strong>Local Photo Album / LocalPhotoPro</strong> ("Aplikasi") yang dikembangkan dan dioperasikan oleh <strong>zhangchaochao</strong>. Syarat ini berlaku bagi semua pengguna yang mengunduh Aplikasi dari Google Play dan menggunakannya di perangkat Android.</p>
+<h2>1. Penerimaan Syarat</h2>
+<p>Dengan mengunduh, memasang, mengakses, atau menggunakan Aplikasi, Anda menyatakan telah membaca, memahami, dan menyetujui seluruh ketentuan dalam Syarat ini. Jika Anda tidak menerima salah satu ketentuan, Anda tidak berhak memasang atau menggunakan Aplikasi dan harus segera berhenti menggunakannya.</p>
+<h2>2. Lisensi Penggunaan</h2>
+<p>Pengembang memberi Anda lisensi terbatas, non-eksklusif, tidak dapat dipindahtangankan, dan dapat dicabut: hanya untuk memasang dan menggunakan Aplikasi di perangkat Android Anda untuk keperluan pribadi, non-komersial. Anda tidak boleh mensublisensikan, menyewakan, menjual, mendistribusikan ulang, atau memindahtangankan Aplikasi maupun hak apa pun berdasarkan lisensi ini.</p>
+<h2>3. Larangan</h2>
+<p>Anda menyetujui untuk tidak melakukan hal-hal berikut:</p>
+<ul>
+<li>Melakukan rekayasa balik, mendekompilasi, membongkar, memodifikasi, merusak, atau membuat karya turunan dari Aplikasi;</li>
+<li>Menghapus, mengubah, atau menyembunyikan pemberitahuan hak cipta, merek dagang, atau hak kekayaan intelektual lainnya di dalam Aplikasi;</li>
+<li>Menggunakan Aplikasi untuk tujuan apa pun yang melanggar hukum, merugikan, melanggar hak, atau tidak sah;</li>
+<li>Mencoba mengganggu atau merusak operasi normal Aplikasi.</li>
+</ul>
+<h2>4. Penafian Garansi</h2>
+<p>Aplikasi disediakan "sebagaimana adanya" dan "sebagaimana tersedia" tanpa jaminan apa pun, tersurat maupun tersirat. Pengembang tidak menjamin bahwa Aplikasi tidak akan terganggu, bebas kesalahan, aman, atau memenuhi kebutuhan Anda. Sejauh diizinkan oleh hukum, Pengembang menolak semua jaminan tersirat, termasuk kelayakan dipasarkan dan kesesuaian untuk tujuan tertentu.</p>
+<h2>5. Batasan Tanggung Jawab</h2>
+<p>Sejauh diizinkan oleh hukum, Pengembang tidak bertanggung jawab atas kerugian langsung, tidak langsung, insidental, konsekuensial, atau khusus yang timbul dari penggunaan atau ketidakmampuan Anda menggunakan Aplikasi, meskipun Pengembang telah diberitahu tentang kemungkinan kerugian tersebut.</p>
+<h2>6. Perubahan Syarat</h2>
+<p>Pengembang berhak mengubah Syarat ini sewaktu-waktu. Syarat yang diperbarui akan dipublikasikan di halaman ini dengan tanggal pembaruan yang diperbarui. Melanjutkan penggunaan Aplikasi setelah pembaruan dianggap sebagai penerimaan atas Syarat yang telah diubah.</p>
+<h2>7. Pengakhiran</h2>
+<p>Jika Anda melanggar ketentuan apa pun dalam Syarat ini, lisensi ini berakhir secara otomatis. Setelah berakhir, Anda harus berhenti menggunakan Aplikasi dan menghapus atau mencopot semua salinan dari perangkat. Ketentuan yang menurut sifatnya harus tetap berlaku setelah pengakhiran, seperti penafian garansi dan batasan tanggung jawab, tetap berlaku.</p>
+<h2>8. Kontak</h2>
+<p>Jika Anda memiliki pertanyaan tentang Syarat ini, silakan hubungi pengembang:</p>
+<p>Email: chao86825@gmail.com<br>Pengembang: zhangchaochao</p>
+  </article>
+  <article class="lang-content" data-lang="ur" lang="ur">
+<h1>سروس کی شرائط</h1>
+<p><strong>آخری تازہ کاری: 2026-10-11</strong></p>
+<p>یہ سروس کی شرائط ("شرائط") <strong>zhangchaochao</strong> کے ذریعے تیار اور چلائی جانے والی موبائل ایپ <strong>Local Photo Album / LocalPhotoPro</strong> ("ایپ") تک آپ کی رسائی اور اس کے استعمال کو منظم کرتی ہیں۔ یہ شرائط ان تمام صارفین پر لاگو ہوتی ہیں جو Google Play سے ایپ ڈاؤن لوڈ کر کے Android آلات پر استعمال کرتے ہیں۔</p>
+<h2>1. شرائط کی قبولیت</h2>
+<p>ایپ ڈاؤن لوڈ، انسٹال، رسائی یا استعمال کر کے آپ اس بات کی تصدیق کرتے ہیں کہ آپ نے ان شرائط کی تمام دفعات پڑھ، سمجھ اور ان سے اتفاق کیا ہے۔ اگر آپ کسی دفعہ سے متفق نہیں ہیں تو آپ ایپ انسٹال یا استعمال نہیں کر سکتے اور فوراً استعمال بند کر دیں۔</p>
+<h2>2. استعمال کا لائسنس</h2>
+<p>ڈویلپر آپ کو محدود، غیر خصوصی، ناقابلِ منتقلی، قابلِ تنسیخ لائسنس دیتا ہے: صرف ذاتی، غیر تجارتی مقاصد کے لیے اپنے Android آلے پر ایپ انسٹال اور استعمال کر سکتے ہیں۔ آپ ایپ یا اس لائسنس کے تحت کسی بھی حق کو ذیلی لائسنس، کرایہ، فروخت، دوبارہ تقسیم یا منتقل نہیں کر سکتے۔</p>
+<h2>3. ممنوعہ اعمال</h2>
+<p>آپ اتفاق کرتے ہیں کہ آپ درج ذیل اعمال نہیں کریں گے:</p>
+<ul>
+<li>ایپ کی ریورس انجینئرنگ، ڈی کمپائل، ڈس اسمبل، ترمیم، چھیڑ چھاڑ یا اس سے ماخوذ کام بنانا؛</li>
+<li>ایپ کے اندر کاپی رائٹ، ٹریڈ مارک یا دیگر دانشورانہ املاک کے نوٹس ہٹانا، بدلنا یا چھپانا؛</li>
+<li>ایپ کو کسی غیر قانونی، نقصان دہ، حقوق کی خلاف ورزی یا غیر مجاز مقصد کے لیے استعمال کرنا؛</li>
+<li>ایپ کے معمول کے آپریشن میں مداخلت یا اسے خراب کرنے کی کوشش کرنا۔</li>
+</ul>
+<h2>4. وارنٹی سے دستبرداری</h2>
+<p>ایپ "جیسی ہے" اور "جیسے دستیاب ہے" کی بنیاد پر، کسی بھی صریح یا ضمنی وارنٹی کے بغیر فراہم کی جاتی ہے۔ ڈویلپر اس بات کی ضمانت نہیں دیتا کہ ایپ بلا تعطل، غلطی سے پاک، محفوظ یا آپ کی ضروریات پوری کرے گی۔ قانون کی اجازت کی زیادہ سے زیادہ حد تک، ڈویلپر قابلِ فروخت ہونے اور کسی خاص مقصد کے لیے موزونیت سمیت تمام ضمنی وارنٹیوں سے دستبردار ہے۔</p>
+<h2>5. ذمہ داری کی حد</h2>
+<p>قانون کی اجازت کی زیادہ سے زیادہ حد تک، ڈویلپر ایپ کے آپ کے استعمال یا استعمال میں ناکامی سے پیدا ہونے والے کسی بھی براہِ راست، بالواسطہ، اتفاقی، نتیجہ خیز یا خصوصی نقصان کا ذمہ دار نہیں ہوگا، خواہ ڈویلپر کو ایسے نقصان کے امکان سے پہلے ہی مطلع کر دیا گیا ہو۔</p>
+<h2>6. شرائط میں ترمیم</h2>
+<p>ڈویلپر کسی بھی وقت ان شرائط میں ترمیم کا حق محفوظ رکھتا ہے۔ اپ ڈیٹ شدہ شرائط نظرِ ثانی شدہ اپ ڈیٹ تاریخ کے ساتھ اسی صفحے پر شائع کی جائیں گی۔ اپ ڈیٹ کے بعد ایپ کا استعمال جاری رکھنا ترمیم شدہ شرائط کی قبولیت سمجھا جائے گا۔</p>
+<h2>7. خاتمہ</h2>
+<p>اگر آپ ان شرائط کی کسی دفعہ کی خلاف ورزی کرتے ہیں تو یہ لائسنس خود بخود ختم ہو جائے گا۔ خاتمے کے بعد آپ کو ایپ کا استعمال بند کرنا ہوگا اور اپنے آلے سے تمام کاپیاں حذف یا ان انسٹال کرنی ہوں گی۔ وارنٹی سے دستبرداری اور ذمہ داری کی حد جیسی دفعات جو اپنی نوعیت کے اعتبار سے خاتمے کے بعد بھی نافذ رہنی چاہئیں، برقرار رہیں گی۔</p>
+<h2>8. رابطہ</h2>
+<p>ان شرائط کے بارے میں کوئی سوال ہو تو براہِ کرم ڈویلپر سے رابطہ کریں:</p>
+<p>رابطہ ای میل: chao86825@gmail.com<br>ڈویلپر: zhangchaochao</p>
+  </article>
+  <article class="lang-content" data-lang="pt" lang="pt">
+<h1>Termos de Serviço</h1>
+<p><strong>Última atualização: 2026-10-11</strong></p>
+<p>Estes Termos de Serviço (os "Termos") regem o seu acesso e uso do aplicativo móvel <strong>Local Photo Album / LocalPhotoPro</strong> (o "Aplicativo"), desenvolvido e operado por <strong>zhangchaochao</strong>. Estes Termos aplicam-se a todos os usuários que baixam o Aplicativo no Google Play e o utilizam em dispositivos Android.</p>
+<h2>1. Aceitação dos Termos</h2>
+<p>Ao baixar, instalar, acessar ou usar o Aplicativo, você declara ter lido, compreendido e concordado com todas as disposições destes Termos. Se não aceitar qualquer disposição, você não poderá instalar ou usar o Aplicativo e deverá interromper o uso imediatamente.</p>
+<h2>2. Licença de Uso</h2>
+<p>O desenvolvedor concede a você uma licença limitada, não exclusiva, intransferível e revogável: apenas para instalar e usar o Aplicativo em seu dispositivo Android, para fins pessoais e não comerciais. Você não pode sublicenciar, alugar, vender, redistribuir ou transferir o Aplicativo nem quaisquer direitos concedidos por esta licença.</p>
+<h2>3. Condutas Proibidas</h2>
+<p>Você concorda em não praticar os seguintes atos:</p>
+<ul>
+<li>Fazer engenharia reversa, descompilar, desmontar, modificar, adulterar ou criar obras derivadas do Aplicativo;</li>
+<li>Remover, alterar ou ocultar avisos de direitos autorais, marcas registradas ou outros direitos de propriedade intelectual no Aplicativo;</li>
+<li>Usar o Aplicativo para qualquer finalidade ilegal, prejudicial, infratora ou não autorizada;</li>
+<li>Tentar interferir ou interromper o funcionamento normal do Aplicativo.</li>
+</ul>
+<h2>4. Isenção de Garantias</h2>
+<p>O Aplicativo é fornecido "no estado em que se encontra" e "conforme disponível", sem garantias de qualquer tipo, expressas ou implícitas. O desenvolvedor não garante que o Aplicativo será ininterrupto, livre de erros, seguro ou atenderá às suas necessidades. Na máxima extensão permitida por lei, o desenvolvedor se isenta de todas as garantias implícitas, incluindo comercialibilidade e adequação a uma finalidade específica.</p>
+<h2>5. Limitação de Responsabilidade</h2>
+<p>Na máxima extensão permitida por lei, o desenvolvedor não será responsável por quaisquer danos diretos, indiretos, incidentais, consequenciais ou especiais decorrentes do seu uso ou da impossibilidade de usar o Aplicativo, ainda que o desenvolvedor tenha sido avisado da possibilidade de tais danos.</p>
+<h2>6. Alterações nos Termos</h2>
+<p>O desenvolvedor reserva-se o direito de alterar estes Termos a qualquer momento. Os Termos atualizados serão publicados nesta página com a data de atualização revisada. O uso contínuo do Aplicativo após a atualização constitui aceitação dos Termos revisados.</p>
+<h2>7. Rescisão</h2>
+<p>Se você violar qualquer disposição destes Termos, esta licença será rescindida automaticamente. Após a rescisão, você deve parar de usar o Aplicativo e excluir ou desinstalar todas as cópias do seu dispositivo. As disposições que, por sua natureza, devem sobreviver à rescisão, como isenções de garantia e limitações de responsabilidade, permanecem em vigor.</p>
+<h2>8. Contato</h2>
+<p>Se tiver qualquer dúvida sobre estes Termos, entre em contato com o desenvolvedor:</p>
+<p>E-mail: chao86825@gmail.com<br>Desenvolvedor: zhangchaochao</p>
+  </article>
+  <article class="lang-content" data-lang="bn" lang="bn">
+<h1>পরিষেবার শর্তাবলী</h1>
+<p><strong>সর্বশেষ আপডেট: 2026-10-11</strong></p>
+<p>এই পরিষেবার শর্তাবলী ("শর্তাবলী") <strong>zhangchaochao</strong> দ্বারা উন্নত ও পরিচালিত মোবাইল অ্যাপ <strong>Local Photo Album / LocalPhotoPro</strong> ("অ্যাপ")-এ আপনার প্রবেশ ও ব্যবহার নিয়ন্ত্রণ করে। এই শর্তাবলী সেই সব ব্যবহারকারীর ক্ষেত্রে প্রযোজ্য যারা Google Play থেকে অ্যাপ ডাউনলোড করে Android ডিভাইসে ব্যবহার করেন।</p>
+<h2>1. শর্তাবলী স্বীকার</h2>
+<p>অ্যাপ ডাউনলোড, ইনস্টল, প্রবেশ বা ব্যবহারের মাধ্যমে আপনি নিশ্চিত করেন যে আপনি এই শর্তাবলীর সব বিধান পড়েছেন, বুঝেছেন এবং তাতে সম্মত হয়েছেন। কোনো বিধানে সম্মত না হলে আপনি অ্যাপ ইনস্টল বা ব্যবহার করতে পারবেন না এবং অবিলম্বে ব্যবহার বন্ধ করুন।</p>
+<h2>2. ব্যবহারের লাইসেন্স</h2>
+<p>ডেভেলপার আপনাকে সীমিত, অ-একচেটিয়া, অ-হস্তান্তরযোগ্য, প্রত্যাহারযোগ্য লাইসেন্স প্রদান করে: কেবল ব্যক্তিগত, অ-বাণিজ্যিক উদ্দেশ্যে আপনার Android ডিভাইসে অ্যাপ ইনস্টল ও ব্যবহারের জন্য। আপনি অ্যাপ বা এই লাইসেন্সের অধীনে কোনো অধিকার উপ-লাইসেন্স, ভাড়া, বিক্রয়, পুনর্বণ্টন বা হস্তান্তর করতে পারবেন না।</p>
+<h2>3. নিষিদ্ধ কার্যকলাপ</h2>
+<p>আপনি সম্মত হন যে আপনি নিচের কাজগুলো করবেন না:</p>
+<ul>
+<li>অ্যাপের রিভার্স ইঞ্জিনিয়ারিং, ডিকম্পাইল, ডিসঅ্যাসেম্বল, পরিবর্তন, কারসাজি বা উদ্ভূত কাজ তৈরি করা;</li>
+<li>অ্যাপের মধ্যে কপিরাইট, ট্রেডমার্ক বা অন্য মেধাসম্পদ নোটিশ মুছে ফেলা, বদলানো বা আড়াল করা;</li>
+<li>অ্যাপ কোনো অবৈধ, ক্ষতিকর, অধিকার-লঙ্ঘনকারী বা অননুমোদিত উদ্দেশ্যে ব্যবহার করা;</li>
+<li>অ্যাপের স্বাভাবিক পরিচালনায় হস্তক্ষেপ বা ব্যাঘাত ঘটানোর চেষ্টা করা।</li>
+</ul>
+<h2>4. ওয়ারেন্টি পরিত্যাগ</h2>
+<p>অ্যাপ "যেমন আছে" ও "যেমন পাওয়া যায়" ভিত্তিতে, কোনো প্রকাশ্য বা নিহিত ওয়ারেন্টি ছাড়াই সরবরাহ করা হয়। ডেভেলপার নিশ্চয়তা দেয় না যে অ্যাপ নির্বিঘ্ন, ত্রুটিমুক্ত, নিরাপদ বা আপনার প্রয়োজন মেটাবে। আইন দ্বারা অনুমোদিত সর্বোচ্চ সীমা পর্যন্ত, ডেভেলপার বাণিজ্যিকতা ও নির্দিষ্ট উদ্দেশ্যে উপযুক্ততাসহ সব নিহিত ওয়ারেন্টি পরিত্যাগ করে।</p>
+<h2>5. দায়বদ্ধতার সীমা</h2>
+<p>আইন দ্বারা অনুমোদিত সর্বোচ্চ সীমা পর্যন্ত, অ্যাপ ব্যবহার বা ব্যবহারে অক্ষমতার ফলে সৃষ্ট কোনো প্রত্যক্ষ, পরোক্ষ, আনুষঙ্গিক, ফলস্বরূপ বা বিশেষ ক্ষতির জন্য ডেভেলপার দায়ী হবে না, এমনকি ডেভেলপারকে এ ধরনের ক্ষতির সম্ভাবনা সম্পর্কে আগে জানানো হলেও।</p>
+<h2>6. শর্তাবলীতে সংশোধন</h2>
+<p>ডেভেলপার যেকোনো সময় এই শর্তাবলী সংশোধনের অধিকার সংরক্ষণ করে। হালনাগাদ শর্তাবলী সংশোধিত আপডেট তারিখসহ এই পৃষ্ঠায় প্রকাশ করা হবে। হালনাগাদের পর অ্যাপ ব্যবহার চালিয়ে যাওয়া সংশোধিত শর্তাবলী স্বীকার হিসেবে গণ্য হবে।</p>
+<h2>7. সমাপ্তি</h2>
+<p>আপনি এই শর্তাবলীর কোনো বিধান লঙ্ঘন করলে এই লাইসেন্স স্বয়ংক্রিয়ভাবে সমাপ্ত হবে। সমাপ্তির পর আপনাকে অ্যাপ ব্যবহার বন্ধ করতে হবে এবং ডিভাইস থেকে সব কপি মুছে বা আনইনস্টল করতে হবে। ওয়ারেন্টি পরিত্যাগ ও দায়বদ্ধতার সীমার মতো যে বিধানগুলো স্বভাবতই সমাপ্তির পরও কার্যকর থাকা উচিত, তা বলবৎ থাকবে।</p>
+<h2>8. যোগাযোগ</h2>
+<p>এই শর্তাবলী সম্পর্কে কোনো প্রশ্ন থাকলে, অনুগ্রহ করে ডেভেলপারের সাথে যোগাযোগ করুন:</p>
+<p>যোগাযোগের ইমেল: chao86825@gmail.com<br>ডেভেলপার: zhangchaochao</p>
+  </article>
+  <article class="lang-content" data-lang="ru" lang="ru">
+<h1>Условия использования</h1>
+<p><strong>Последнее обновление: 2026-10-11</strong></p>
+<p>Настоящие Условия использования («Условия») регулируют ваш доступ к мобильному приложению <strong>Local Photo Album / LocalPhotoPro</strong> («Приложение»), разработанному и управляемому <strong>zhangchaochao</strong>, и его использование. Условия применяются ко всем пользователям, загружающим Приложение из Google Play и использующим его на устройствах Android.</p>
+<h2>1. Принятие условий</h2>
+<p>Загружая, устанавливая, открывая или используя Приложение, вы подтверждаете, что прочитали, поняли и согласились со всеми положениями настоящих Условий. Если вы не принимаете какое-либо положение, вы не имеете права устанавливать или использовать Приложение и должны немедленно прекратить его использование.</p>
+<h2>2. Лицензия на использование</h2>
+<p>Разработчик предоставляет вам ограниченную, неисключительную, непередаваемую, отзываемую лицензию: исключительно для установки и использования Приложения на вашем устройстве Android в личных, некоммерческих целях. Вы не можете передавать по сублицензии, сдавать в аренду, продавать, распространять или передавать Приложение либо любые права по настоящей лицензии.</p>
+<h2>3. Запрещённые действия</h2>
+<p>Вы соглашаетесь не совершать следующие действия:</p>
+<ul>
+<li>Проводить обратную разработку, декомпиляцию, дизассемблирование, изменение, модификацию или создание производных работ на основе Приложения;</li>
+<li>Удалять, изменять или скрывать уведомления об авторских правах, товарных знаках или других правах интеллектуальной собственности внутри Приложения;</li>
+<li>Использовать Приложение в любых незаконных, вредоносных, нарушающих права или несанкционированных целях;</li>
+<li>Пытаться вмешиваться в нормальную работу Приложения или нарушать её.</li>
+</ul>
+<h2>4. Отказ от гарантий</h2>
+<p>Приложение предоставляется «как есть» и «как доступно» без каких-либо явных или подразумеваемых гарантий. Разработчик не гарантирует, что Приложение будет работать без перебоев, без ошибок, безопасно или удовлетворит ваши потребности. В максимальной степени, разрешённой законом, Разработчик отказывается от всех подразумеваемых гарантий, включая товарную пригодность и пригодность для конкретной цели.</p>
+<h2>5. Ограничение ответственности</h2>
+<p>В максимальной степени, разрешённой законом, Разработчик не несёт ответственности за любые прямые, косвенные, случайные, последующие или особые убытки, возникшие в результате использования или невозможности использования Приложения, даже если Разработчик был уведомлён о возможности таких убытков.</p>
+<h2>6. Изменение условий</h2>
+<p>Разработчик оставляет за собой право изменять настоящие Условия в любое время. Обновлённые Условия будут опубликованы на этой странице с пересмотренной датой обновления. Продолжение использования Приложения после обновления считается принятием изменённых Условий.</p>
+<h2>7. Прекращение действия</h2>
+<p>При нарушении вами любого положения настоящих Условий эта лицензия прекращается автоматически. После прекращения вы должны прекратить использование Приложения и удалить или деинсталлировать все копии с устройства. Положения, которые по своей природе должны сохранять силу после прекращения, такие как отказ от гарантий и ограничение ответственности, остаются в силе.</p>
+<h2>8. Контакты</h2>
+<p>Если у вас есть вопросы по настоящим Условиям, свяжитесь с разработчиком:</p>
+<p>Электронная почта: chao86825@gmail.com<br>Разработчик: zhangchaochao</p>
+  </article>
+  <article class="lang-content" data-lang="am" lang="am">
+<h1>የአገልግሎት ውሎች</h1>
+<p><strong>ለመጨረሻ ጊዜ የተዘመነ: 2026-10-11</strong></p>
+<p>እነዚህ የአገልግሎት ውሎች ("ውሎች") በ<strong>zhangchaochao</strong> የተገነባና የሚተዳደረውን የሞባይል መተግበሪያ <strong>Local Photo Album / LocalPhotoPro</strong> ("መተግበሪያ") የእርስዎን መዳረሻና አጠቃቀም ይቆጣጠራሉ። እነዚህ ውሎች መተግበሪያውን ከGoogle Play ያወርዱና በAndroid መሣሪያዎች ላይ ለሚጠቀሙ ሁሉም ተጠቃሚዎች ይተገበራሉ።</p>
+<h2>1. ውሎችን መቀበል</h2>
+<p>መተግበሪያውን በማውረድ፣ በመጫን፣ በመድረስ ወይም በመጠቀም የእነዚህን ውሎች ሁሉንም ድንጋጌዎች አንብበው፣ ተረድተውና ተስማምተዋል። ማንኛውንም ድንጋጌ የማይቀበሉ ከሆነ መተግበሪያውን መጫንም ሆነ መጠቀም አይችሉምና ወዲያውኑ አጠቃቀሙን ያቁሙ።</p>
+<h2>2. የአጠቃቀም ፈቃድ</h2>
+<p>ገንቢው ውስን፣ ብቸኛ ያልሆነ፣ የማይተላለፍ፣ ሊሰረዝ የሚችል ፈቃድ ይሰጥዎታል፡ ለግል፣ ለንግድ ያልሆኑ ዓላማዎች ብቻ በእርስዎ Android መሣሪያ ላይ መተግበሪያውን ለመጫንና ለመጠቀም። መተግበሪያውን ወይም በዚህ ፈቃድ ስር የተሰጡትን ማንኛውንም መብቶች ንዑስ ፈቃድ መስጠት፣ ማከራየት፣ መሸጥ፣ እንደገና ማሰራጨት ወይም ማስተላለፍ አይችሉም።</p>
+<h2>3. የተከለከሉ ድርጊቶች</h2>
+<p>የሚከተሉትን ድርጊቶች እንደማይፈጽሙ ተስማምተዋል፡</p>
+<ul>
+<li>የመተግበሪያውን የተገላቢጦሽ ምህንድስና፣ መበተን፣ መፍታት፣ ማሻሻል፣ ማበላሸት ወይም ከእሱ የሚመነጩ ስራዎችን መፍጠር፤</li>
+<li>በመተግበሪያው ውስጥ ያሉ የቅጂ መብት፣ የንግድ ምልክት ወይም ሌሎች የአእምሯዊ ንብረት ማስታወቂያዎችን ማስወገድ፣ መለወጥ ወይም መደበቅ፤</li>
+<li>መተግበሪያውን ለማንኛውም ሕገ-ወጥ፣ ጎጂ፣ መብትን የሚጥስ ወይም ያልተፈቀደ ዓላማ መጠቀም፤</li>
+<li>በመተግበሪያው መደበኛ ስራ ላይ ጣልቃ ለመግባት ወይም ለማወክ መሞከር።</li>
+</ul>
+<h2>4. የዋስትና መከልከል</h2>
+<p>መተግበሪያው "ባለበት ሁኔታ"ና "ባለው አቅርቦት" የሚቀርብ ሲሆን ምንም ዓይነት ግልጽም ሆነ ውስጣዊ ዋስትና አይሰጥም። ገንቢው መተግበሪያው ያለመቋረጥ፣ ስህተት የሌለበት፣ ደህንነቱ የተጠበቀ ወይም ፍላጎትዎን የሚያሟላ መሆኑን አያረጋግጥም። በሕግ በተፈቀደው ከፍተኛ ደረጃ፣ ገንቢው የንግድ ብቃትንና ለአንድ የተወሰነ ዓላማ ተስማሚነትን ጨምሮ ሁሉንም ውስጣዊ ዋስትናዎች ይክዳል።</p>
+<h2>5. የኃላፊነት ገደብ</h2>
+<p>በሕግ በተፈቀደው ከፍተኛ ደረጃ፣ ገንቢው መተግበሪያውን በመጠቀምዎ ወይም ባለመጠቀምዎ ምክንያት ለሚመጣ ማንኛውም ቀጥተኛ፣ ቀጥተኛ ያልሆነ፣ አጋጣሚያዊ፣ ተከታይ ወይም ልዩ ጉዳት ኃላፊነት አይወስድም፣ ስለዚህ ጉዳት ሊኖር ስለሚችልበት አጋጣሚ ገንቢው አስቀድሞ ቢነገረውም ጭምር።</p>
+<h2>6. በውሎች ላይ የሚደረጉ ማሻሻያዎች</h2>
+<p>ገንቢው እነዚህን ውሎች በማንኛውም ጊዜ የማሻሻል መብቱን ያስቀምጣል። የተዘመኑት ውሎች በተሻሻለው የዝማኔ ቀን በዚህ ገጽ ላይ ይታተማሉ። ከዝማኔው በኋላ መተግበሪያውን መጠቀምዎን መቀጠል የተሻሻሉትን ውሎች መቀበል ተደርጎ ይቆጠራል።</p>
+<h2>7. ማቋረጥ</h2>
+<p>የእነዚህን ውሎች ማንኛውንም ድንጋጌ ከጣሱ ይህ ፈቃድ በራስ-ሰር ይቋረጣል። ከተቋረጠ በኋላ መተግበሪያውን መጠቀም ማቆምና ሁሉንም ቅጂዎች ከመሣሪያዎ ማጥፋት ወይም ማራገፍ አለብዎት። የዋስትና መከልከልና የኃላፊነት ገደብ ያሉ በባህሪያቸው ከተቋረጠ በኋላም ሊቀጥሉ የሚገባቸው ድንጋጌዎች ሥራ ላይ ይቆያሉ።</p>
+<h2>8. እውቂያ</h2>
+<p>ስለእነዚህ ውሎች ማንኛውም ጥያቄ ካለዎት፣ እባክዎን ገንቢውን ያነጋግሩ፡</p>
+<p>የእውቂያ ኢሜይል: chao86825@gmail.com<br>ገንቢ: zhangchaochao</p>
+  </article>
+  <article class="lang-content" data-lang="es" lang="es">
+<h1>Términos del Servicio</h1>
+<p><strong>Última actualización: 2026-10-11</strong></p>
+<p>Estos Términos del Servicio (los "Términos") rigen su acceso y uso de la aplicación móvil <strong>Local Photo Album / LocalPhotoPro</strong> (la "Aplicación"), desarrollada y operada por <strong>zhangchaochao</strong>. Estos Términos se aplican a todos los usuarios que descargan la Aplicación desde Google Play y la usan en dispositivos Android.</p>
+<h2>1. Aceptación de los Términos</h2>
+<p>Al descargar, instalar, acceder o usar la Aplicación, usted reconoce que ha leído, comprendido y aceptado todas las disposiciones de estos Términos. Si no acepta alguna disposición, no podrá instalar ni usar la Aplicación y deberá dejar de usarla de inmediato.</p>
+<h2>2. Licencia de Uso</h2>
+<p>El desarrollador le otorga una licencia limitada, no exclusiva, intransferible y revocable: únicamente para instalar y usar la Aplicación en su dispositivo Android, con fines personales y no comerciales. No puede sublicenciar, alquilar, vender, redistribuir ni transferir la Aplicación ni ningún derecho concedido bajo esta licencia.</p>
+<h2>3. Conductas Prohibidas</h2>
+<p>Usted se compromete a no realizar las siguientes acciones:</p>
+<ul>
+<li>Realizar ingeniería inversa, descompilar, desensamblar, modificar, alterar o crear obras derivadas de la Aplicación;</li>
+<li>Eliminar, modificar u ocultar avisos de derechos de autor, marcas registradas u otros derechos de propiedad intelectual dentro de la Aplicación;</li>
+<li>Usar la Aplicación para cualquier fin ilícito, perjudicial, infractor o no autorizado;</li>
+<li>Intentar interferir o interrumpir el funcionamiento normal de la Aplicación.</li>
+</ul>
+<h2>4. Exención de Garantías</h2>
+<p>La Aplicación se ofrece "tal cual" y "según disponibilidad", sin garantías de ningún tipo, expresas o implícitas. El desarrollador no garantiza que la Aplicación sea ininterrumpida, libre de errores, segura o que satisfaga sus necesidades. En la máxima medida permitida por la ley, el desarrollador renuncia a todas las garantías implícitas, incluidas la comerciabilidad y la idoneidad para un fin determinado.</p>
+<h2>5. Limitación de Responsabilidad</h2>
+<p>En la máxima medida permitida por la ley, el desarrollador no será responsable de ningún daño directo, indirecto, incidental, consecuente o especial derivado del uso o la imposibilidad de uso de la Aplicación, incluso si se le ha advertido al desarrollador sobre la posibilidad de tales daños.</p>
+<h2>6. Modificaciones de los Términos</h2>
+<p>El desarrollador se reserva el derecho de modificar estos Términos en cualquier momento. Los Términos actualizados se publicarán en esta página con la fecha de actualización revisada. El uso continuado de la Aplicación tras la actualización constituye la aceptación de los Términos modificados.</p>
+<h2>7. Terminación</h2>
+<p>Si incumple cualquier disposición de estos Términos, esta licencia se rescindirá automáticamente. Tras la resolución, debe dejar de usar la Aplicación y eliminar o desinstalar todas las copias de su dispositivo. Las disposiciones que por su naturaleza deban sobrevivir a la terminación, como las exenciones de garantía y las limitaciones de responsabilidad, permanecerán vigentes.</p>
+<h2>8. Contacto</h2>
+<p>Si tiene alguna pregunta sobre estos Términos, póngase en contacto con el desarrollador:</p>
+<p>Correo electrónico: chao86825@gmail.com<br>Desarrollador: zhangchaochao</p>
+  </article>
+  <article class="lang-content" data-lang="ja" lang="ja">
+<h1>利用規約</h1>
+<p><strong>最終更新日：2026-10-11</strong></p>
+<p>本利用規約（以下「本規約」）は、<strong>zhangchaochao</strong>が開発・運営するモバイルアプリ <strong>Local Photo Album / LocalPhotoPro</strong>（以下「本アプリ」）へのアクセスおよびご利用に適用されます。本規約は、Google Playから本アプリをダウンロードし、Android端末でご利用になるすべてのユーザーに適用されます。</p>
+<h2>1. 規約の同意</h2>
+<p>本アプリをダウンロード、インストール、アクセスまたはご利用になった時点で、お客様は本規約の全条項を読み、理解し、同意したものとみなされます。本規約のいずれかの条項に同意いただけない場合、本アプリをインストール・ご利用になることはできず、直ちにご利用を中止してください。</p>
+<h2>2. 利用許諾</h2>
+<p>開発者は、お客様に対し、個人的かつ非商用の目的に限り、Android端末に本アプリをインストールして使用する、限定的・非独占的・譲渡不可・取消可能な許諾を付与します。お客様は、本アプリおよび本許諾に基づく権利を再許諾、賃貸、販売、再配布または譲渡することはできません。</p>
+<h2>3. 禁止行為</h2>
+<p>お客様は、以下の行為を行わないことに同意するものとします：</p>
+<ul>
+<li>本アプリのリバースエンジニアリング、逆コンパイル、逆アセンブル、変更、改ざん、または派生物の作成；</li>
+<li>本アプリ内の著作権、商標、その他の知的財産権表示の削除、変更、隠蔽；</li>
+<li>本アプリを違法、有害、権利侵害または不正な目的に使用すること；</li>
+<li>本アプリの正常な動作を妨害し、または破壊しようとすること。</li>
+</ul>
+<h2>4. 免責事項</h2>
+<p>本アプリは「現状のまま」「利用可能な状態」で提供され、明示または黙示を問わず、いかなる保証も行いません。開発者は、本アプリが中断なく、エラーなく、安全に、またはお客様の要件を満たして動作することを保証しません。法で認められる最大限の範囲で、開発者は商品性および特定目的への適合性を含む、すべての黙示の保証を否認します。</p>
+<h2>5. 責任の制限</h2>
+<p>法で認められる最大限の範囲で、開発者は、お客様による本アプリの使用または使用不能に起因する、直接、間接、付随、結果的または特別な損害について、かかる損害の可能性を事前に通知されていた場合でも、一切の責任を負いません。</p>
+<h2>6. 規約の変更</h2>
+<p>開発者は、いつでも本規約を改訂する権利を留保します。改訂後の規約は、更新日を付して本ページに掲載されます。改訂後もお客様が本アプリのご利用を継続した場合、改訂後の規約に同意したものとみなされます。</p>
+<h2>7. 規約の終了</h2>
+<p>お客様が本規約のいずれかの条項に違反した場合、本許諾は自動的に終了します。終了後、お客様は本アプリのご利用を中止し、デバイスからすべての複製を削除またはアンインストールしなければなりません。免責事項や責任の制限など、その性質上終了後も存続すべき条項は引き続き有効とします。</p>
+<h2>8. お問い合わせ</h2>
+<p>本規約に関してご質問がある場合は、開発者までお問い合わせください：</p>
+<p>連絡先メール：chao86825@gmail.com<br>開発者：zhangchaochao</p>
+  </article>
+  <article class="lang-content" data-lang="ar" lang="ar">
+<h1>شروط الخدمة</h1>
+<p><strong>آخر تحديث: 2026-10-11</strong></p>
+<p>تحكم شروط الخدمة هذه ("الشروط") وصولك إلى تطبيق الهاتف المحمول <strong>Local Photo Album / LocalPhotoPro</strong> ("التطبيق") الذي طوّره ويشغّله <strong>zhangchaochao</strong> واستخدامك له. تنطبق هذه الشروط على جميع المستخدمين الذين ينزّلون التطبيق من Google Play ويستخدمونه على أجهزة Android.</p>
+<h2>1. قبول الشروط</h2>
+<p>بتنزيل التطبيق أو تثبيته أو الوصول إليه أو استخدامه، فإنك تُقر بأنك قرأت جميع أحكام هذه الشروط وفهمتها ووافقت على الالتزام بها. وإذا لم توافق على أي حكم، فلا يحق لك تثبيت التطبيق أو استخدامه، ويجب عليك التوقف عن استخدامه فورًا.</p>
+<h2>2. ترخيص الاستخدام</h2>
+<p>يمنحك المطوّر ترخيصًا محدودًا وغير حصري وغير قابل للنقل وقابلًا للإلغاء: لتثبيت التطبيق واستخدامه على جهاز Android الخاص بك لأغراض شخصية غير تجارية فقط. ولا يجوز لك منح تراخيص فرعية أو تأجير التطبيق أو بيعه أو إعادة توزيعه أو نقله، ولا أي حقوق بموجب هذا الترخيص.</p>
+<h2>3. السلوكيات المحظورة</h2>
+<p>أنت توافق على عدم القيام بما يلي:</p>
+<ul>
+<li>إجراء هندسة عكسية أو فك ترجمة أو فك تجميع أو تعديل أو عبث بالتطبيق أو إنشاء أعمال مشتقة منه؛</li>
+<li>إزالة أو تغيير أو إخفاء إشعارات حقوق النشر أو العلامات التجارية أو غيرها من حقوق الملكية الفكرية داخل التطبيق؛</li>
+<li>استخدام التطبيق لأي غرض غير قانوني أو ضار أو منتهك للحقوق أو غير مصرح به؛</li>
+<li>محاولة التدخل في التشغيل الطبيعي للتطبيق أو تعطيله.</li>
+</ul>
+<h2>4. إخلاء المسؤولية من الضمانات</h2>
+<p>يُقدَّم التطبيق "كما هو" و"كما هو متاح" دون أي ضمانات صريحة أو ضمنية. ولا يضمن المطوّر أن التطبيق لن ينقطع أو يخلو من الأخطاء أو يكون آمنًا أو يلبي احتياجاتك. وإلى أقصى حد يسمح به القانون، يُخلي المطوّر مسؤوليته من جميع الضمانات الضمنية، بما في ذلك قابلية التسويق والملاءمة لغرض معيّن.</p>
+<h2>5. تحديد المسؤولية</h2>
+<p>إلى أقصى حد يسمح به القانون، لا يتحمل المطوّر مسؤولية أي أضرار مباشرة أو غير مباشرة أو عرضية أو تبعية أو خاصة تنشأ عن استخدامك للتطبيق أو عدم قدرتك على استخدامه، حتى لو كان المطوّر قد أُبلغ باحتمال وقوع مثل هذه الأضرار.</p>
+<h2>6. تعديلات الشروط</h2>
+<p>يحتفظ المطوّر بحق تعديل هذه الشروط في أي وقت. وسيتم نشر الشروط المحدَّثة على هذه الصفحة مع تاريخ تحديث مُعدَّل. ويُعد استمرارك في استخدام التطبيق بعد التحديث قبولًا للشروط المعدَّلة.</p>
+<h2>7. الإنهاء</h2>
+<p>إذا خالفت أي حكم من هذه الشروط، يُنهى هذا الترخيص تلقائيًا. وبعد الإنهاء، يجب عليك التوقف عن استخدام التطبيق وحذف أو إلغاء تثبيت جميع النسخ من جهازك. وتظل الأحكام التي ينبغي بحسب طبيعتها أن تظل سارية بعد الإنهاء، مثل إخلاء المسؤولية من الضمانات وتحديد المسؤولية، نافذة المفعول.</p>
+<h2>8. التواصل</h2>
+<p>إذا كانت لديك أي أسئلة حول هذه الشروط، يرجى التواصل مع المطوّر:</p>
+<p>البريد الإلكتروني: chao86825@gmail.com<br>المطوّر: zhangchaochao</p>
+  </article>
+  <article class="lang-content" data-lang="vi" lang="vi">
+<h1>Điều khoản Dịch vụ</h1>
+<p><strong>Cập nhật lần cuối: 2026-10-11</strong></p>
+<p>Điều khoản Dịch vụ này (gọi là "Điều khoản") điều chỉnh việc bạn truy cập và sử dụng ứng dụng di động <strong>Local Photo Album / LocalPhotoPro</strong> (gọi là "Ứng dụng"), do <strong>zhangchaochao</strong> phát triển và vận hành. Điều khoản này áp dụng cho mọi người dùng tải Ứng dụng từ Google Play và sử dụng trên thiết bị Android.</p>
+<h2>1. Chấp nhận Điều khoản</h2>
+<p>Việc tải xuống, cài đặt, truy cập hoặc sử dụng Ứng dụng đồng nghĩa với việc bạn đã đọc, hiểu và đồng ý tuân thủ mọi điều khoản của Điều khoản này. Nếu bạn không chấp nhận bất kỳ điều khoản nào, bạn không được phép cài đặt hoặc sử dụng Ứng dụng và phải ngừng sử dụng ngay lập tức.</p>
+<h2>2. Cấp phép Sử dụng</h2>
+<p>Nhà phát triển cấp cho bạn quyền sử dụng có giới hạn, không độc quyền, không thể chuyển nhượng và có thể thu hồi: chỉ cài đặt và sử dụng Ứng dụng trên thiết bị Android của bạn cho mục đích cá nhân, phi thương mại. Bạn không được cấp phép lại, cho thuê, bán, phân phối lại hoặc chuyển nhượng Ứng dụng cũng như bất kỳ quyền nào theo giấy phép này.</p>
+<h2>3. Hành vi Bị cấm</h2>
+<p>Bạn cam kết không thực hiện các hành vi sau:</p>
+<ul>
+<li>Dịch ngược, giải mã, tháo rời, sửa đổi, can thiệp hoặc tạo tác phẩm phái sinh từ Ứng dụng;</li>
+<li>Xóa, thay đổi hoặc che giấu các thông báo bản quyền, nhãn hiệu hoặc quyền sở hữu trí tuệ khác trong Ứng dụng;</li>
+<li>Sử dụng Ứng dụng cho bất kỳ mục đích bất hợp pháp, có hại, vi phạm hoặc trái phép nào;</li>
+<li>Cố ý can thiệp hoặc làm gián đoạn hoạt động bình thường của Ứng dụng.</li>
+</ul>
+<h2>4. Miễn trừ Bảo hành</h2>
+<p>Ứng dụng được cung cấp "nguyên trạng" và "theo tình trạng sẵn có" mà không có bất kỳ bảo hành nào, dù rõ ràng hay ngầm định. Nhà phát triển không đảm bảo Ứng dụng sẽ không bị gián đoạn, không lỗi, an toàn hoặc đáp ứng nhu cầu của bạn. Trong phạm vi tối đa pháp luật cho phép, nhà phát triển từ chối mọi bảo hành ngầm định, bao gồm khả năng thương mại và sự phù hợp cho một mục đích cụ thể.</p>
+<h2>5. Giới hạn Trách nhiệm</h2>
+<p>Trong phạm vi tối đa pháp luật cho phép, nhà phát triển không chịu trách nhiệm đối với bất kỳ thiệt hại trực tiếp, gián tiếp, ngẫu nhiên, do hậu quả hoặc đặc biệt nào phát sinh từ việc bạn sử dụng hoặc không thể sử dụng Ứng dụng, ngay cả khi nhà phát triển đã được thông báo về khả năng xảy ra các thiệt hại đó.</p>
+<h2>6. Sửa đổi Điều khoản</h2>
+<p>Nhà phát triển bảo lưu quyền sửa đổi Điều khoản này bất kỳ lúc nào. Điều khoản cập nhật sẽ được đăng trên trang này kèm theo ngày cập nhật mới. Việc bạn tiếp tục sử dụng Ứng dụng sau khi cập nhật được coi là chấp nhận Điều khoản đã sửa đổi.</p>
+<h2>7. Chấm dứt</h2>
+<p>Nếu bạn vi phạm bất kỳ điều khoản nào, giấy phép này sẽ tự động chấm dứt. Sau khi chấm dứt, bạn phải ngừng sử dụng Ứng dụng và xóa hoặc gỡ cài đặt mọi bản sao khỏi thiết bị. Các điều khoản mà theo bản chất cần tiếp tục có hiệu lực sau khi chấm dứt, như miễn trừ bảo hành và giới hạn trách nhiệm, vẫn tiếp tục có hiệu lực.</p>
+<h2>8. Liên hệ</h2>
+<p>Nếu bạn có bất kỳ câu hỏi nào về Điều khoản này, vui lòng liên hệ nhà phát triển:</p>
+<p>Email liên hệ: chao86825@gmail.com<br>Nhà phát triển: zhangchaochao</p>
+  </article>
+  <article class="lang-content" data-lang="fr" lang="fr">
+<h1>Conditions d'utilisation</h1>
+<p><strong>Dernière mise à jour : 2026-10-11</strong></p>
+<p>Les présentes Conditions d'utilisation (les « Conditions ») régissent votre accès et votre utilisation de l'application mobile <strong>Local Photo Album / LocalPhotoPro</strong> (l'« Application »), développée et exploitée par <strong>zhangchaochao</strong>. Ces Conditions s'appliquent à tous les utilisateurs qui téléchargent l'Application depuis Google Play et l'utilisent sur des appareils Android.</p>
+<h2>1. Acceptation des Conditions</h2>
+<p>En téléchargeant, installant, accédant à ou utilisant l'Application, vous reconnaissez avoir lu, compris et accepté l'ensemble des dispositions des présentes Conditions. Si vous n'acceptez pas l'une d'elles, vous n'êtes pas autorisé à installer ou utiliser l'Application et devez cesser immédiatement son utilisation.</p>
+<h2>2. Licence d'utilisation</h2>
+<p>Le développeur vous accorde une licence limitée, non exclusive, non transférable et révocable : uniquement pour installer et utiliser l'Application sur votre appareil Android à des fins personnelles et non commerciales. Vous ne pouvez ni sous-licencier, louer, vendre, redistribuer ou transférer l'Application, ni aucun des droits accordés par la présente licence.</p>
+<h2>3. Comportements interdits</h2>
+<p>Vous vous engagez à ne pas effectuer les actions suivantes :</p>
+<ul>
+<li>Procéder à la rétro-ingénierie, la décompilation, le désassemblage, la modification, l'altération ou la création d'œuvres dérivées de l'Application ;</li>
+<li>Supprimer, modifier ou dissimuler les mentions de droits d'auteur, de marques ou autres droits de propriété intellectuelle dans l'Application ;</li>
+<li>Utiliser l'Application à des fins illégales, nuisibles, contrefaisantes ou non autorisées ;</li>
+<li>Tenter de perturber ou d'entraver le fonctionnement normal de l'Application.</li>
+</ul>
+<h2>4. Exclusion de garanties</h2>
+<p>L'Application est fournie « en l'état » et « selon disponibilité », sans aucune garantie expresse ou implicite. Le développeur ne garantit pas que l'Application sera ininterrompue, exempte d'erreurs, sécurisée ou répondra à vos besoins. Dans toute la mesure permise par la loi, le développeur exclut toutes les garanties implicites, y compris la qualité marchande et l'adéquation à un usage particulier.</p>
+<h2>5. Limitation de responsabilité</h2>
+<p>Dans toute la mesure permise par la loi, le développeur ne saurait être tenu responsable de tout dommage direct, indirect, accessoire, consécutif ou spécial résultant de votre utilisation ou de l'impossibilité d'utiliser l'Application, même si le développeur a été informé de l'éventualité de tels dommages.</p>
+<h2>6. Modification des Conditions</h2>
+<p>Le développeur se réserve le droit de modifier les présentes Conditions à tout moment. Les Conditions mises à jour seront publiées sur cette page avec une date de mise à jour révisée. La poursuite de l'utilisation de l'Application après une mise à jour vaut acceptation des Conditions révisées.</p>
+<h2>7. Résiliation</h2>
+<p>Si vous enfreignez l'une des dispositions des présentes Conditions, la présente licence est résiliée automatiquement. Après la résiliation, vous devez cesser d'utiliser l'Application et supprimer ou désinstaller toutes les copies de votre appareil. Les dispositions qui, de par leur nature, doivent survivre à la résiliation, telles que les exclusions de garanties et les limitations de responsabilité, demeurent en vigueur.</p>
+<h2>8. Contact</h2>
+<p>Pour toute question relative aux présentes Conditions, veuillez contacter le développeur :</p>
+<p>E-mail : chao86825@gmail.com<br>Développeur : zhangchaochao</p>
+  </article>
+  <article class="lang-content" data-lang="fa" lang="fa">
+<h1>شرایط استفاده از خدمات</h1>
+<p><strong>آخرین بهروزرسانی: 2026-10-11</strong></p>
+<p>این شرایط استفاده از خدمات («شرایط») دسترسی و استفادهٔ شما از برنامهٔ موبایل <strong>Local Photo Album / LocalPhotoPro</strong> («برنامه») را که توسط <strong>zhangchaochao</strong> توسعه و اداره میشود، تنظیم میکند. این شرایط برای تمام کاربرانی اعمال میشود که برنامه را از Google Play دانلود کرده و بر روی دستگاههای Android استفاده میکنند.</p>
+<h2>1. پذیرش شرایط</h2>
+<p>با دانلود، نصب، دسترسی یا استفاده از برنامه، شما تأیید میکنید که تمام مفاد این شرایط را خوانده، درک کرده و پذیرفتهاید. اگر هر یک از مفاد را نمیپذیرید، مجاز به نصب یا استفاده از برنامه نیستید و باید فوراً استفاده را متوقف کنید.</p>
+<h2>2. مجوز استفاده</h2>
+<p>توسعهدهنده یک مجوز محدود، غیرانحصاری، غیرقابلانتقال و قابللغو به شما اعطا میکند: صرفاً برای نصب و استفاده از برنامه بر روی دستگاه Android خود، برای مقاصد شخصی و غیرتجاری. شما نمیتوانید برنامه یا هر یک از حقوق اعطاشده تحت این مجوز را به صورت مجوز فرعی واگذار کنید، اجاره دهید، بفروشید، دوباره توزیع کنید یا منتقل نمایید.</p>
+<h2>3. رفتارهای ممنوع</h2>
+<p>شما موافقت میکنید که اقدامات زیر را انجام ندهید:</p>
+<ul>
+<li>مهندسی معکوس، کامپایل معکوس، جداسازی کد، تغییر، دستکاری یا ایجاد آثار مشتق از برنامه؛</li>
+<li>حذف، تغییر یا پنهان کردن اخطارهای حق نشر، علائم تجاری یا سایر حقوق مالکیت فکری درون برنامه؛</li>
+<li>استفاده از برنامه برای هرگونه مقصود غیرقانونی، زیانبار، ناقض حقوق یا غیرمجاز؛</li>
+<li>تلاش برای اختلال یا خرابکاری در عملکرد عادی برنامه.</li>
+</ul>
+<h2>4. سلب ضمانت</h2>
+<p>برنامه «همانگونه که هست» و «همانگونه که در دسترس است» بدون هیچگونه ضمانت صریح یا ضمنی ارائه میشود. توسعهدهنده تضمین نمیکند که برنامه بدون وقفه، بدون خطا، ایمن یا برآورندهٔ نیازهای شما باشد. تا حداکثر میزان مجاز توسط قانون، توسعهدهنده کلیهٔ ضمانتهای ضمنی، از جمله قابلیت عرضه در بازار و تناسب برای هدفی خاص را سلب میکند.</p>
+<h2>5. محدودیت مسئولیت</h2>
+<p>تا حداکثر میزان مجاز توسط قانون، توسعهدهنده در قبال هرگونه خسارت مستقیم، غیرمستقیم، اتفاقی، تبعی یا ویژه ناشی از استفاده یا عدم توانایی شما در استفاده از برنامه مسئولیتی نخواهد داشت، حتی اگر توسعهدهنده از احتمال چنین خسارتهایی مطلع شده باشد.</p>
+<h2>6. اصلاح شرایط</h2>
+<p>توسعهدهنده حق اصلاح این شرایط را در هر زمان برای خود محفوظ میدارد. شرایط بهروزشده با تاریخ بهروزرسانی بازبینیشده در این صفحه منتشر خواهد شد. ادامهٔ استفاده از برنامه پس از بهروزرسانی، به منزلهٔ پذیرش شرایط اصلاحشده تلقی میشود.</p>
+<h2>7. خاتمه</h2>
+<p>در صورت نقض هر یک از مفاد این شرایط، این مجوز بهطور خودکار خاتمه مییابد. پس از خاتمه، باید استفاده از برنامه را متوقف کرده و تمام نسخهها را از دستگاه خود حذف یا حذف نصب کنید. مفادی که بر حسب ماهیت باید پس از خاتمه نیز به قوت خود باقی بمانند، مانند سلب ضمانت و محدودیت مسئولیت، همچنان لازمالاجرا هستند.</p>
+<h2>8. تماس</h2>
+<p>اگر دربارهٔ این شرایط سؤالی دارید، لطفاً با توسعهدهنده تماس بگیرید:</p>
+<p>ایمیل تماس: chao86825@gmail.com<br>توسعهدهنده: zhangchaochao</p>
+  </article>
+  <article class="lang-content" data-lang="tr" lang="tr">
+<h1>Hizmet Koşulları</h1>
+<p><strong>Son güncelleme: 2026-10-11</strong></p>
+<p>Bu Hizmet Koşulları ("Koşullar"), <strong>zhangchaochao</strong> tarafından geliştirilen ve işletilen <strong>Local Photo Album / LocalPhotoPro</strong> mobil uygulamasına ("Uygulama") erişiminizi ve kullanımınızı düzenler. Bu Koşullar, Uygulamayı Google Play üzerinden indirip Android cihazlarda kullanan tüm kullanıcılar için geçerlidir.</p>
+<h2>1. Koşulların Kabulü</h2>
+<p>Uygulamayı indirerek, kurarak, erişerek veya kullanarak, bu Koşulların tüm hükümlerini okuduğunuzu, anladığınızı ve kabul ettiğinizi beyan edersiniz. Herhangi bir hükmü kabul etmiyorsanız Uygulamayı kuramaz veya kullanamazsınız ve kullanımı derhal bırakmalısınız.</p>
+<h2>2. Kullanım Lisansı</h2>
+<p>Geliştirici size sınırlı, münhasır olmayan, devredilemez, iptal edilebilir bir lisans verir: yalnızca kişisel, ticari olmayan amaçlarla Uygulamayı Android cihazınıza kurmak ve kullanmak için. Uygulamayı veya bu lisans kapsamında verilen hakları alt lisanslayamaz, kiralayamaz, satamaz, yeniden dağıtamaz veya devredemezsiniz.</p>
+<h2>3. Yasak Davranışlar</h2>
+<p>Aşağıdaki eylemleri gerçekleştirmeyeceğinizi kabul edersiniz:</p>
+<ul>
+<li>Uygulamanın tersine mühendisliğini yapmak, derlemesini çözmek, sökmek, değiştirmek, kurcalamak veya türev eserler oluşturmak;</li>
+<li>Uygulama içindeki telif hakkı, ticari marka veya diğer fikri mülkiyet bildirimlerini kaldırmak, değiştirmek veya gizlemek;</li>
+<li>Uygulamayı herhangi bir yasa dışı, zararlı, hak ihlali oluşturan veya yetkisiz amaç için kullanmak;</li>
+<li>Uygulamanın normal çalışmasına müdahale etmeye veya bozmaya çalışmak.</li>
+</ul>
+<h2>4. Garanti Reddi</h2>
+<p>Uygulama "olduğu gibi" ve "mevcut olduğu şekliyle", açık veya zımni hiçbir garanti olmaksızın sunulur. Geliştirici, Uygulamanın kesintisiz, hatasız, güvenli veya ihtiyaçlarınızı karşılar olacağını garanti etmez. Yasanın izin verdiği azami ölçüde, Geliştirici satılabilirlik ve belirli bir amaca uygunluk dahil tüm zımni garantileri reddeder.</p>
+<h2>5. Sorumluluk Sınırlaması</h2>
+<p>Yasanın izin verdiği azami ölçüde, Geliştirici; Uygulamayı kullanımınızdan veya kullanamamanızdan doğan doğrudan, dolaylı, arızi, sonuçsal veya özel zararlardan, bu tür zararların olasılığı kendisine önceden bildirilmiş olsa bile, sorumlu tutulamaz.</p>
+<h2>6. Koşullarda Değişiklik</h2>
+<p>Geliştirici, bu Koşulları dilediği zaman değiştirme hakkını saklı tutar. Güncellenen Koşullar, revize edilmiş güncelleme tarihiyle bu sayfada yayımlanır. Güncellemeden sonra Uygulamayı kullanmaya devam etmeniz, değiştirilmiş Koşulları kabul ettiğiniz anlamına gelir.</p>
+<h2>7. Fesih</h2>
+<p>Bu Koşulların herhangi bir hükmünü ihlal ederseniz, bu lisans kendiliğinden sona erer. Fesihten sonra Uygulamayı kullanmayı bırakmalı ve cihazınızdaki tüm kopyaları silmeli veya kaldırmalısınız. Garanti reddi ve sorumluluk sınırlaması gibi mahiyeti gereği fesih sonrasında da yürürlükte kalması gereken hükümler geçerli kalır.</p>
+<h2>8. İletişim</h2>
+<p>Bu Koşullarla ilgili herhangi bir sorunuz varsa, lütfen geliştiriciyle iletişime geçin:</p>
+<p>E-posta: chao86825@gmail.com<br>Geliştirici: zhangchaochao</p>
+  </article>
+  <article class="lang-content" data-lang="de" lang="de">
+<h1>Nutzungsbedingungen</h1>
+<p><strong>Zuletzt aktualisiert: 2026-10-11</strong></p>
+<p>Diese Nutzungsbedingungen (die "Bedingungen") regeln Ihren Zugriff auf die mobile App <strong>Local Photo Album / LocalPhotoPro</strong> (die "App"), die von <strong>zhangchaochao</strong> entwickelt und betrieben wird, sowie deren Nutzung. Diese Bedingungen gelten für alle Nutzer, die die App aus Google Play herunterladen und auf Android-Geräten verwenden.</p>
+<h2>1. Annahme der Bedingungen</h2>
+<p>Indem Sie die App herunterladen, installieren, aufrufen oder nutzen, bestätigen Sie, dass Sie alle Bestimmungen dieser Bedingungen gelesen, verstanden und akzeptiert haben. Wenn Sie eine Bestimmung nicht akzeptieren, dürfen Sie die App nicht installieren oder nutzen und müssen die Nutzung sofort einstellen.</p>
+<h2>2. Nutzungslizenz</h2>
+<p>Der Entwickler gewährt Ihnen eine beschränkte, nicht ausschließliche, nicht übertragbare, widerrufliche Lizenz: ausschließlich zur Installation und Nutzung der App auf Ihrem Android-Gerät für persönliche, nicht kommerzielle Zwecke. Sie dürfen die App oder die im Rahmen dieser Lizenz gewährten Rechte nicht unterlizenzieren, vermieten, verkaufen, weiterverbreiten oder übertragen.</p>
+<h2>3. Untersagte Handlungen</h2>
+<p>Sie verpflichten sich, folgende Handlungen zu unterlassen:</p>
+<ul>
+<li>Reverse Engineering, Dekompilierung, Disassemblierung, Änderung, Manipulation oder Erstellung abgeleiteter Werke der App;</li>
+<li>Entfernen, Ändern oder Verdecken von Urheberrechts-, Marken- oder sonstigen Hinweisen auf geistiges Eigentum innerhalb der App;</li>
+<li>Nutzung der App für rechtswidrige, schädliche, rechtsverletzende oder unbefugte Zwecke;</li>
+<li>Versuche, den normalen Betrieb der App zu stören oder zu beeinträchtigen.</li>
+</ul>
+<h2>4. Gewährleistungsausschluss</h2>
+<p>Die App wird "wie besehen" und "wie verfügbar" ohne ausdrückliche oder stillschweigende Gewährleistungen bereitgestellt. Der Entwickler garantiert nicht, dass die App unterbrechungsfrei, fehlerfrei, sicher oder Ihren Anforderungen entsprechend funktioniert. Soweit gesetzlich maximal zulässig, schließt der Entwickler alle stillschweigenden Gewährleistungen, einschließlich der Marktgängigkeit und der Eignung für einen bestimmten Zweck, aus.</p>
+<h2>5. Haftungsbeschränkung</h2>
+<p>Soweit gesetzlich maximal zulässig, haftet der Entwickler nicht für direkte, indirekte, zufällige, Folge- oder besondere Schäden, die aus Ihrer Nutzung oder der Unmöglichkeit der Nutzung der App entstehen, selbst wenn der Entwickler auf die Möglichkeit solcher Schäden hingewiesen wurde.</p>
+<h2>6. Änderung der Bedingungen</h2>
+<p>Der Entwickler behält sich das Recht vor, diese Bedingungen jederzeit zu ändern. Die aktualisierten Bedingungen werden mit überarbeitetem Aktualisierungsdatum auf dieser Seite veröffentlicht. Die fortgesetzte Nutzung der App nach einer Aktualisierung gilt als Annahme der geänderten Bedingungen.</p>
+<h2>7. Beendigung</h2>
+<p>Wenn Sie eine Bestimmung dieser Bedingungen verletzen, endet diese Lizenz automatisch. Nach der Beendigung müssen Sie die Nutzung der App einstellen und alle Kopien von Ihrem Gerät löschen oder deinstallieren. Bestimmungen, die ihrer Natur nach über die Beendigung hinaus fortgelten sollen, wie Gewährleistungsausschlüsse und Haftungsbeschränkungen, bleiben in Kraft.</p>
+<h2>8. Kontakt</h2>
+<p>Bei Fragen zu diesen Bedingungen wenden Sie sich bitte an den Entwickler:</p>
+<p>E-Mail: chao86825@gmail.com<br>Entwickler: zhangchaochao</p>
+  </article>
+  <article class="lang-content" data-lang="th" lang="th">
+<h1>เงื่อนไขการให้บริการ</h1>
+<p><strong>อัปเดตล่าสุด: 2026-10-11</strong></p>
+<p>เงื่อนไขการให้บริการนี้ ("เงื่อนไข") ควบคุมการเข้าถึงและการใช้งานแอปพลิเคชันมือถือ <strong>Local Photo Album / LocalPhotoPro</strong> ("แอป") ซึ่งพัฒนาและดำเนินการโดย <strong>zhangchaochao</strong> เงื่อนไขนี้ใช้กับผู้ใช้ทุกคนที่ดาวน์โหลดแอปจาก Google Play และใช้งานบนอุปกรณ์ Android</p>
+<h2>1. การยอมรับเงื่อนไข</h2>
+<p>การดาวน์โหลด ติดตั้ง เข้าถึง หรือใช้งานแอป ถือว่าคุณได้อ่าน เข้าใจ และตกลงผูกพันตามข้อกำหนดทั้งหมดของเงื่อนไขนี้ หากคุณไม่ยอมรับข้อกำหนดใด คุณไม่มีสิทธิ์ติดตั้งหรือใช้งานแอป และต้องหยุดใช้งานทันที</p>
+<h2>2. ใบอนุญาตการใช้งาน</h2>
+<p>นักพัฒนาให้ใบอนุญาตแบบจำกัด ไม่ผูกขาด โอนไม่ได้ และเพิกถอนได้แก่คุณ: เพื่อติดตั้งและใช้งานแอปบนอุปกรณ์ Android ของคุณเพื่อวัตถุประสงค์ส่วนบุคคลที่ไม่ใช่เชิงพาณิชย์เท่านั้น คุณต้องไม่ให้ใบอนุญาตช่วง เช่า ขาย แจกจ่ายซ้ำ หรือโอนแอปหรือสิทธิ์ใดๆ ภายใต้ใบอนุญาตนี้</p>
+<h2>3. การกระทำที่ห้าม</h2>
+<p>คุณตกลงว่าจะไม่กระทำการต่อไปนี้:</p>
+<ul>
+<li>ทำวิศวกรรมย้อนกลับ ถอดรหัส ถอดชิ้นส่วน ดัดแปลง แก้ไข หรือสร้างงานดัดแปลงจากแอป;</li>
+<li>ลบ เปลี่ยนแปลง หรือปกปิดประกาศลิขสิทธิ์ เครื่องหมายการค้า หรือสิทธิ์ทรัพย์สินทางปัญญาอื่นๆ ภายในแอป;</li>
+<li>ใช้แอปเพื่อวัตถุประสงค์ที่ผิดกฎหมาย เป็นอันตราย ละเมิดสิทธิ์ หรือไม่ได้รับอนุญาต;</li>
+<li>พยายามรบกวนหรือทำลายการทำงานปกติของแอป</li>
+</ul>
+<h2>4. การปฏิเสธการรับประกัน</h2>
+<p>แอปให้บริการ "ตามสภาพ" และ "ตามที่มีอยู่" โดยไม่มีการรับประกันใดๆ ทั้งโดยชัดแจ้งหรือโดยนัย นักพัฒนาไม่รับประกันว่าแอปจะไม่หยุดชะงัก ปราศจากข้อผิดพลาด ปลอดภัย หรือตอบสนองความต้องการของคุณ ภายใต้ขอบเขตสูงสุดที่กฎหมายอนุญาต นักพัฒนาปฏิเสธการรับประกันโดยนัยทั้งหมด รวมถึงความสามารถในการจำหน่ายและความเหมาะสมสำหรับวัตถุประสงค์เฉพาะ</p>
+<h2>5. การจำกัดความรับผิด</h2>
+<p>ภายใต้ขอบเขตสูงสุดที่กฎหมายอนุญาต นักพัฒนาจะไม่รับผิดต่อความเสียหายทางตรง ทางอ้อม ที่เกิดขึ้นโดยบังเอิญ ที่เป็นผลสืบเนื่อง หรือความเสียหายพิเศษใดๆ อันเกิดจากการใช้หรือไม่สามารถใช้แอปของคุณ แม้ว่านักพัฒนาได้รับแจ้งถึงความเป็นไปได้ของความเสียหายดังกล่าวแล้วก็ตาม</p>
+<h2>6. การแก้ไขเงื่อนไข</h2>
+<p>นักพัฒนาสงวนสิทธิ์ในการแก้ไขเงื่อนไขนี้ได้ตลอดเวลา เงื่อนไขที่ปรับปรุงแล้วจะเผยแพร่บนหน้านี้พร้อมวันที่อัปเดตที่แก้ไข การใช้งานแอปต่อไปหลังการอัปเดตถือว่าคุณยอมรับเงื่อนไขที่แก้ไขแล้ว</p>
+<h2>7. การสิ้นสุด</h2>
+<p>หากคุณละเมิดข้อกำหนดใดของเงื่อนไขนี้ ใบอนุญาตนี้จะสิ้นสุดลงโดยอัตโนมัติ หลังการสิ้นสุด คุณต้องหยุดใช้งานแอปและลบหรือถอนการติดตั้งสำเนาทั้งหมดออกจากอุปกรณ์ ข้อกำหนดที่โดยสภาพแล้วควรมีผลต่อไปหลังการสิ้นสุด เช่น การปฏิเสธการรับประกันและการจำกัดความรับผิด ยังคงมีผลบังคับใช้</p>
+<h2>8. ติดต่อ</h2>
+<p>หากมีคำถามใดๆ เกี่ยวกับเงื่อนไขนี้ กรุณาติดต่อนักพัฒนา:</p>
+<p>อีเมลติดต่อ: chao86825@gmail.com<br>นักพัฒนา: zhangchaochao</p>
+  </article>
+  </div>
+<script>
+(function () {
+  var ORDER = ["hi", "zh", "en", "in", "ur", "pt", "bn", "ru", "am", "es", "ja", "ar", "vi", "fr", "fa", "tr", "de", "th"];
+  var NATIVE = {"hi": "हिन्दी", "zh": "中文", "en": "English", "in": "Bahasa Indonesia", "ur": "اردو", "pt": "Português", "bn": "বাংলা", "ru": "Русский", "am": "አማርኛ", "es": "Español", "ja": "日本語", "ar": "العربية", "vi": "Tiếng Việt", "fr": "Français", "fa": "فارسی", "tr": "Türkçe", "de": "Deutsch", "th": "ไทย"};
+  var NAMES = {"hi": {"hi": "हिन्दी", "zh": "चीनी", "en": "अंग्रेज़ी", "in": "इंडोनेशियाई", "ur": "उर्दू", "pt": "पुर्तगाली", "bn": "बंगाली", "ru": "रूसी", "am": "अम्हेरी", "es": "स्पेनिश", "ja": "जापानी", "ar": "अरबी", "vi": "वियतनामी", "fr": "फ़्रेंच", "fa": "फ़ारसी", "tr": "तुर्की", "de": "जर्मन", "th": "थाई"}, "zh": {"hi": "印地语", "zh": "中文", "en": "英语", "in": "印度尼西亚语", "ur": "乌尔都语", "pt": "葡萄牙语", "bn": "孟加拉语", "ru": "俄语", "am": "阿姆哈拉语", "es": "西班牙语", "ja": "日语", "ar": "阿拉伯语", "vi": "越南语", "fr": "法语", "fa": "波斯语", "tr": "土耳其语", "de": "德语", "th": "泰语"}, "en": {"hi": "Hindi", "zh": "Chinese", "en": "English", "in": "Indonesian", "ur": "Urdu", "pt": "Portuguese", "bn": "Bangla", "ru": "Russian", "am": "Amharic", "es": "Spanish", "ja": "Japanese", "ar": "Arabic", "vi": "Vietnamese", "fr": "French", "fa": "Persian", "tr": "Turkish", "de": "German", "th": "Thai"}, "in": {"hi": "Hindi", "zh": "Tionghoa", "en": "Inggris", "in": "Indonesia", "ur": "Urdu", "pt": "Portugis", "bn": "Bengali", "ru": "Rusia", "am": "Amharik", "es": "Spanyol", "ja": "Jepang", "ar": "Arab", "vi": "Vietnam", "fr": "Prancis", "fa": "Persia", "tr": "Turki", "de": "Jerman", "th": "Thai"}, "ur": {"hi": "ہندی", "zh": "چینی", "en": "انگریزی", "in": "انڈونیثیائی", "ur": "اردو", "pt": "پُرتگالی", "bn": "بنگلہ", "ru": "روسی", "am": "امہاری", "es": "ہسپانوی", "ja": "جاپانی", "ar": "عربی", "vi": "ویتنامی", "fr": "فرانسیسی", "fa": "فارسی", "tr": "ترکی", "de": "جرمن", "th": "تھائی"}, "pt": {"hi": "híndi", "zh": "chinês", "en": "inglês", "in": "indonésio", "ur": "urdu", "pt": "português", "bn": "bengali", "ru": "russo", "am": "amárico", "es": "espanhol", "ja": "japonês", "ar": "árabe", "vi": "vietnamita", "fr": "francês", "fa": "persa", "tr": "turco", "de": "alemão", "th": "tailandês"}, "bn": {"hi": "হিন্দি", "zh": "চীনা", "en": "ইংরেজি", "in": "ইন্দোনেশীয়", "ur": "উর্দু", "pt": "পর্তুগীজ", "bn": "বাংলা", "ru": "রুশ", "am": "আমহারিক", "es": "স্প্যানিশ", "ja": "জাপানি", "ar": "আরবী", "vi": "ভিয়েতনামী", "fr": "ফরাসি", "fa": "ফার্সি", "tr": "তুর্কী", "de": "জার্মান", "th": "থাই"}, "ru": {"hi": "хинди", "zh": "китайский", "en": "английский", "in": "индонезийский", "ur": "урду", "pt": "португальский", "bn": "бенгальский", "ru": "русский", "am": "амхарский", "es": "испанский", "ja": "японский", "ar": "арабский", "vi": "вьетнамский", "fr": "французский", "fa": "персидский", "tr": "турецкий", "de": "немецкий", "th": "тайский"}, "am": {"hi": "ሒንዱኛ", "zh": "ቻይንኛ", "en": "እንግሊዝኛ", "in": "ኢንዶኔዥኛ", "ur": "ኡርዱኛ", "pt": "ፖርቹጋልኛ", "bn": "ቤንጋሊኛ", "ru": "ራሽያኛ", "am": "አማርኛ", "es": "ስፓንሽኛ", "ja": "ጃፓንኛ", "ar": "ዓረብኛ", "vi": "ቪየትናምኛ", "fr": "ፈረንሳይኛ", "fa": "ፐርሺያኛ", "tr": "ቱርክኛ", "de": "ጀርመን", "th": "ታይኛ"}, "es": {"hi": "hindi", "zh": "chino", "en": "inglés", "in": "indonesio", "ur": "urdu", "pt": "portugués", "bn": "bengalí", "ru": "ruso", "am": "amárico", "es": "español", "ja": "japonés", "ar": "árabe", "vi": "vietnamita", "fr": "francés", "fa": "persa", "tr": "turco", "de": "alemán", "th": "tailandés"}, "ja": {"hi": "ヒンディー語", "zh": "中国語", "en": "英語", "in": "インドネシア語", "ur": "ウルドゥー語", "pt": "ポルトガル語", "bn": "ベンガル語", "ru": "ロシア語", "am": "アムハラ語", "es": "スペイン語", "ja": "日本語", "ar": "アラビア語", "vi": "ベトナム語", "fr": "フランス語", "fa": "ペルシア語", "tr": "トルコ語", "de": "ドイツ語", "th": "タイ語"}, "ar": {"hi": "الهندية", "zh": "الصينية", "en": "الإنجليزية", "in": "الإندونيسية", "ur": "الأوردية", "pt": "البرتغالية", "bn": "البنغالية", "ru": "الروسية", "am": "الأمهرية", "es": "الإسبانية", "ja": "اليابانية", "ar": "العربية", "vi": "الفيتنامية", "fr": "الفرنسية", "fa": "الفارسية", "tr": "التركية", "de": "الألمانية", "th": "التايلاندية"}, "vi": {"hi": "Tiếng Hindi", "zh": "Tiếng Trung", "en": "Tiếng Anh", "in": "Tiếng Indonesia", "ur": "Tiếng Urdu", "pt": "Tiếng Bồ Đào Nha", "bn": "Tiếng Bangla", "ru": "Tiếng Nga", "am": "Tiếng Amharic", "es": "Tiếng Tây Ban Nha", "ja": "Tiếng Nhật", "ar": "Tiếng Ả Rập", "vi": "Tiếng Việt", "fr": "Tiếng Pháp", "fa": "Tiếng Ba Tư", "tr": "Tiếng Thổ Nhĩ Kỳ", "de": "Tiếng Đức", "th": "Tiếng Thái"}, "fr": {"hi": "hindi", "zh": "chinois", "en": "anglais", "in": "indonésien", "ur": "ourdou", "pt": "portugais", "bn": "bengali", "ru": "russe", "am": "amharique", "es": "espagnol", "ja": "japonais", "ar": "arabe", "vi": "vietnamien", "fr": "français", "fa": "persan", "tr": "turc", "de": "allemand", "th": "thaï"}, "fa": {"hi": "هندی", "zh": "چینی", "en": "انگلیسی", "in": "اندونزیایی", "ur": "اردو", "pt": "پرتغالی", "bn": "بنگالی", "ru": "روسی", "am": "امهری", "es": "اسپانیایی", "ja": "ژاپنی", "ar": "عربی", "vi": "ویتنامی", "fr": "فرانسوی", "fa": "فارسی", "tr": "ترکی استانبولی", "de": "آلمانی", "th": "تایلندی"}, "tr": {"hi": "Hintçe", "zh": "Çince", "en": "İngilizce", "in": "Endonezce", "ur": "Urduca", "pt": "Portekizce", "bn": "Bengalce", "ru": "Rusça", "am": "Amharca", "es": "İspanyolca", "ja": "Japonca", "ar": "Arapça", "vi": "Vietnamca", "fr": "Fransızca", "fa": "Farsça", "tr": "Türkçe", "de": "Almanca", "th": "Tayca"}, "de": {"hi": "Hindi", "zh": "Chinesisch", "en": "Englisch", "in": "Indonesisch", "ur": "Urdu", "pt": "Portugiesisch", "bn": "Bengalisch", "ru": "Russisch", "am": "Amharisch", "es": "Spanisch", "ja": "Japanisch", "ar": "Arabisch", "vi": "Vietnamesisch", "fr": "Französisch", "fa": "Persisch", "tr": "Türkisch", "de": "Deutsch", "th": "Thailändisch"}, "th": {"hi": "ฮินดี", "zh": "จีน", "en": "อังกฤษ", "in": "อินโดนีเซีย", "ur": "อูรดู", "pt": "โปรตุเกส", "bn": "บังกลา", "ru": "รัสเซีย", "am": "อัมฮารา", "es": "สเปน", "ja": "ญี่ปุ่น", "ar": "อาหรับ", "vi": "เวียดนาม", "fr": "ฝรั่งเศส", "fa": "เปอร์เซีย", "tr": "ตุรกี", "de": "เยอรมัน", "th": "ไทย"}};      // NAMES[displayLang][targetLang] = 该语言在 displayLang 下的译名（CLDR）
+  var RTL = ["ar", "fa", "ur"];
+  var TITLES = {"hi": "सेवा की शर्तें", "zh": "用户服务协议", "en": "Terms of Service", "in": "Syarat Layanan", "ur": "سروس کی شرائط", "pt": "Termos de Serviço", "bn": "পরিষেবার শর্তাবলী", "ru": "Условия использования", "am": "የአገልግሎት ውሎች", "es": "Términos del Servicio", "ja": "利用規約", "ar": "شروط الخدمة", "vi": "Điều khoản Dịch vụ", "fr": "Conditions d'utilisation", "fa": "شرایط استفاده از خدمات", "tr": "Hizmet Koşulları", "de": "Nutzungsbedingungen", "th": "เงื่อนไขการให้บริการ"};
+  var DEFAULT = "en";
+  var APP_SHORT = "LocalPhotoPro";
 
+  function norm(x) {
+    if (!x) return null;
+    x = String(x).trim().toLowerCase().replace(/_/g, "-");
+    var b = x.split("-")[0];
+    if (b === "id") b = "in";                 // 印尼语旧/新代码
+    if (b === "zh") return "zh";              // 所有中文分支
+    return ORDER.indexOf(b) >= 0 ? b : null;
+  }
+  function fromParam() {
+    var m = location.search.match(/[?&]lang=([^&#]*)/);
+    if (m) { var r = norm(decodeURIComponent(m[1].replace(/[+]/g, " "))); if (r) return r; }
+    var h = location.hash.replace(/^#/, "");
+    if (h) {
+      var mm = h.match(/(?:^|&)lang=([^&]*)/);
+      var r2 = norm(decodeURIComponent(mm ? mm[1] : h));
+      if (r2) return r2;
+    }
+    return null;
+  }
+  function fromSystem() {
+    var list = (navigator.languages && navigator.languages.length)
+      ? navigator.languages : [navigator.language || navigator.userLanguage || ""];
+    for (var i = 0; i < list.length; i++) { var r = norm(list[i]); if (r) return r; }
+    return null;
+  }
+  // 优先级：?lang= / #lang （app 打开时传当前生效语言）> 浏览器/系统语言 > 英文
+  var current = fromParam() || fromSystem() || DEFAULT;
+
+  function labelFor(target, display) {
+    var n = NATIVE[target] || target;
+    if (target === display) return n;                 // 当前语言本身不追加译名（与设置页一致）
+    var t = (NAMES[display] && NAMES[display][target]) || "";
+    return (t && t !== n) ? (n + "（" + t + "）") : n;
+  }
+  function apply(lang, updateUrl) {
+    current = lang;
+    var root = document.documentElement;
+    root.setAttribute("lang", lang === "in" ? "id" : lang);
+    root.setAttribute("dir", RTL.indexOf(lang) >= 0 ? "rtl" : "ltr");
+    document.title = (TITLES[lang] || TITLES.en) + " | " + APP_SHORT;
+
+    var secs = document.querySelectorAll(".lang-content");
+    for (var i = 0; i < secs.length; i++) {
+      secs[i].classList.toggle("active", secs[i].getAttribute("data-lang") === lang);
+    }
+    var tabs = document.querySelectorAll(".lang-tab");
+    for (var j = 0; j < tabs.length; j++) {
+      var b = tabs[j], t = b.getAttribute("data-lang"), on = (t === lang);
+      b.classList.toggle("active", on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+      b.textContent = labelFor(t, lang);
+    }
+    if (updateUrl) {
+      try {
+        var u = new URL(location.href);
+        u.searchParams.set("lang", lang);
+        history.replaceState(null, "", u.toString());
+      } catch (e) { /* 忽略不支持 history 的环境 */ }
+    }
+    // 让选中 tab 滚动到可见区域
+    var act = document.querySelector(".lang-tab.active");
+    if (act && act.scrollIntoView) { try { act.scrollIntoView({ block:"nearest", inline:"nearest" }); } catch (e) {} }
+  }
+
+  // 绑定点击
+  var tabs = document.querySelectorAll(".lang-tab");
+  for (var k = 0; k < tabs.length; k++) {
+    (function (b) {
+      b.addEventListener("click", function () { apply(b.getAttribute("data-lang"), true); });
+    })(tabs[k]);
+  }
+  apply(current, false);
+})();
+</script>
 </body>
 </html>
