@@ -3,41 +3,122 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<title>Privacy Policy | LocalPhotoPro</title>
 <style>
-body {
-font-family: Arial, "Microsoft Yahei", sans-serif;
-max-width:820px;
-margin:40px auto;
-padding:0 20px;
-line-height:1.8;
-color:#333;
-background:#fff;
-}
-h1 {
-text-align:center;
-font-size:28px;
-margin-bottom:20px;
-}
-h2 {
-font-size:20px;
-margin-top:30px;
-margin-bottom:12px;
-}
-p {margin:10px 0;font-size:16px;}
-ul {padding-left:22px;}
+  :root { --ink:#1f2430; --sub:#5b6472; --line:#e7e9ef; --accent:#4f46e5; --accent-soft:#eef0ff; --bg:#f6f7fb; --card:#fff; }
+  * { box-sizing:border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+         "Noto Sans", "Microsoft Yahei", sans-serif;
+         max-width:860px; margin:0 auto; padding:0 16px 64px; line-height:1.85; color:var(--ink); background:var(--bg); }
+  /* 顶部语言 tab 栏 */
+  .langbar { position:sticky; top:0; z-index:10; background:rgba(246,247,251,.94);
+             backdrop-filter:saturate(180%) blur(8px); margin:0 -16px 24px; padding:12px 16px 10px;
+             border-bottom:1px solid var(--line); }
+  .langbar-label { font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--sub); margin:0 0 8px 2px; font-weight:600; }
+  .tabs { display:flex; gap:8px; overflow-x:auto; padding:2px 2px 8px; scrollbar-width:thin; }
+  .tabs::-webkit-scrollbar { height:6px; }
+  .tabs::-webkit-scrollbar-thumb { background:#d5d8e3; border-radius:3px; }
+  .lang-tab { flex:0 0 auto; border:1px solid var(--line); background:var(--card); color:var(--ink);
+              font-size:13.5px; padding:8px 14px; border-radius:999px; cursor:pointer; white-space:nowrap;
+              font-family:inherit; transition:all .16s ease; line-height:1.4; }
+  .lang-tab:hover { border-color:#c3c7d6; background:#fafbff; }
+  .lang-tab.active { background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600;
+                     box-shadow:0 3px 10px rgba(79,70,229,.28); }
+  .lang-tab:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  /* 文档 */
+  .doc-shell { background:var(--card); border:1px solid var(--line); border-radius:18px;
+               padding:36px 34px; box-shadow:0 6px 24px rgba(30,40,80,.05); }
+  .lang-content { display:none; }
+  .lang-content.active { display:block; }
+  h1 { text-align:center; font-size:27px; margin:0 0 18px; letter-spacing:-.02em; }
+  h2 { font-size:19px; margin-top:32px; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--line); }
+  p { margin:10px 0; font-size:15.5px; }
+  ul { padding-left:22px; margin:10px 0; }
+  li { margin:6px 0; font-size:15.5px; }
+  strong { font-weight:700; }
+  a { color:var(--accent); word-break:break-all; }
+  html[dir="rtl"] .doc-shell { direction:rtl; text-align:right; }
+  html[dir="rtl"] ul { padding-left:0; padding-right:22px; }
+  html[dir="rtl"] .tabs { direction:ltr; }
+  @media (max-width:600px) {
+    .doc-shell { padding:24px 18px; border-radius:14px; }
+    h1 { font-size:23px; } h2 { font-size:17px; }
+    p, li { font-size:15px; }
+  }
 </style>
 </head>
 <body>
+  <!-- 语言切换 tab：无 JS 时仍可见全部语言名；有 JS 时显示「原生名（当前语言译名）」并自动选中 -->
+  <div class="langbar" dir="ltr">
+    <p class="langbar-label">Language / 语言 / Langue</p>
+    <nav class="tabs" id="tabs" aria-label="Language">
+      <button type="button" class="lang-tab" data-lang="hi" aria-pressed="false">हिन्दी</button>
+      <button type="button" class="lang-tab active" data-lang="zh" aria-pressed="true">中文</button>
+      <button type="button" class="lang-tab" data-lang="en" aria-pressed="false">English</button>
+      <button type="button" class="lang-tab" data-lang="in" aria-pressed="false">Bahasa Indonesia</button>
+      <button type="button" class="lang-tab" data-lang="ur" aria-pressed="false">اردو</button>
+      <button type="button" class="lang-tab" data-lang="pt" aria-pressed="false">Português</button>
+      <button type="button" class="lang-tab" data-lang="bn" aria-pressed="false">বাংলা</button>
+      <button type="button" class="lang-tab" data-lang="ru" aria-pressed="false">Русский</button>
+      <button type="button" class="lang-tab" data-lang="am" aria-pressed="false">አማርኛ</button>
+      <button type="button" class="lang-tab" data-lang="es" aria-pressed="false">Español</button>
+      <button type="button" class="lang-tab" data-lang="ja" aria-pressed="false">日本語</button>
+      <button type="button" class="lang-tab" data-lang="ar" aria-pressed="false">العربية</button>
+      <button type="button" class="lang-tab" data-lang="vi" aria-pressed="false">Tiếng Việt</button>
+      <button type="button" class="lang-tab" data-lang="fr" aria-pressed="false">Français</button>
+      <button type="button" class="lang-tab" data-lang="fa" aria-pressed="false">فارسی</button>
+      <button type="button" class="lang-tab" data-lang="tr" aria-pressed="false">Türkçe</button>
+      <button type="button" class="lang-tab" data-lang="de" aria-pressed="false">Deutsch</button>
+      <button type="button" class="lang-tab" data-lang="th" aria-pressed="false">ไทย</button>
+    </nav>
+  </div>
+
+  <div class="doc-shell">
+    <!-- 无 JS 降级：默认展示中文；搜索引擎/Google Play 抓取亦可读取全部 18 语言内容 -->
+  <article class="lang-content" data-lang="hi" lang="hi">
+<h1>गोपनीयता नीति</h1>
+<p><strong>अंतिम अपडेट: 2 नवंबर 2026</strong></p>
+<p>यह गोपनीयता नीति Android ऐप “Local Photo Album / LocalPhotoPro” (जिसे आगे “यह ऐप” कहा गया है) पर लागू होती है, जिसे zhangchaochao द्वारा विकसित और संचालित किया गया है। संपर्क ईमेल: chao86825@gmail.com। यह नीति Google Play उपयोगकर्ता डेटा नीति के अनुरूप है और बताती है कि ऐप कौन-सी जानकारी एकत्र करता है, उसका उपयोग कैसे किया जाता है, और आपके पास कौन-से गोपनीयता नियंत्रण उपलब्ध हैं।</p>
+<p>ऐप को इंस्टॉल और उपयोग करने का अर्थ है कि आपने इस गोपनीयता नीति के सभी नियम पढ़ लिए हैं और उनसे सहमत हैं। यदि आप इस नीति से सहमत नहीं हैं, तो कृपया तुरंत ऐप को अनइंस्टॉल करें और इसका उपयोग बंद कर दें।</p>
+<h2>1. ऐप का उद्देश्य और फ़ोटो का स्थानीय प्रसंस्करण</h2>
+<p>यह ऐप एक स्थानीय फ़ोटो प्रबंधन टूल है। यह “फ़ोटो और वीडियो” अनुमति (READ_MEDIA_IMAGES) मांगता है, ताकि आपकी गैलरी की छवियाँ पढ़कर डुप्लिकेट फ़ोटो पहचान, समान फ़ोटो समूहीकरण, टाइमलाइन व्यवस्था और स्थानीय खोज जैसी सुविधाएँ प्रदान की जा सकें।</p>
+<p><strong>सभी फ़ोटो विश्लेषण पूरी तरह आपके फ़ोन पर ही किया जाता है। आपकी फ़ोटो किसी सर्वर पर अपलोड या भेजी नहीं जातीं, क्लाउड पर बैकअप नहीं की जातीं, और न ही किसी तीसरे पक्ष के साथ साझा की जाती हैं।</strong><br>आप Android सिस्टम सेटिंग्स में कभी भी गैलरी अनुमति वापस ले सकते हैं; अनुमति हटाने के बाद गैलरी से जुड़ी सुविधाएँ काम करना बंद कर देंगी और ऐप आपकी कोई फ़ोटो डेटा सुरक्षित नहीं रखेगा।</p>
+<h2>2. सूचना संग्रह और Google AdMob विज्ञापन</h2>
+<p>यह ऐप इन-ऐप विज्ञापन दिखाने के लिए Google AdMob का उपयोग करता है। AdMob SDK विज्ञापन सेवा के लिए निम्नलिखित जानकारी स्वतः एकत्र करता है:</p>
+<ul>
+<li>Android विज्ञापन पहचानकर्ता (AD-ID)</li>
+<li>विज्ञापन इंटरैक्शन डेटा: विज्ञापन इम्प्रेशन, क्लिक और विज्ञापन प्रदर्शन से संबंधित संकेत</li>
+</ul>
+<p>इस डेटा का उपयोग विज्ञापन वितरण, वैयक्तिकृत विज्ञापन, विज्ञापन प्रभाव मापन और विज्ञापन धोखाधड़ी रोकथाम के लिए किया जाता है।<strong>सभी विज्ञापन-संबंधी डेटा प्रसंस्करण Google AdMob द्वारा किया जाता है।</strong></p>
+<p>आप अपने फ़ोन की सिस्टम सेटिंग्स में विज्ञापन पहचानकर्ता को रीसेट या बंद करके वैयक्तिकृत विज्ञापन बंद कर सकते हैं। ऐसा करने के बाद भी आपको गैर-वैयक्तिकृत विज्ञापन दिखाई देंगे।</p>
+<p><strong>AdMob SDK द्वारा स्वतः प्राप्त विज्ञापन-संबंधी डेटा के अलावा, ऐप स्वयं किसी अन्य व्यक्तिगत जानकारी को सक्रिय रूप से एकत्र, संग्रहित या अपलोड नहीं करता।</strong><br>यह ऐप IMEI, Android ID, MAC पता, स्थान, माइक्रोफ़ोन, संपर्क, ब्राउज़िंग इतिहास, रन लॉग आदि जानकारी एकत्र नहीं करता।</p>
+<h2>3. तृतीय-पक्ष सेवा: Google AdMob</h2>
+<p>ऐप में एकीकृत एकमात्र तृतीय-पक्ष SDK Google AdMob (विज्ञापन सेवा) है। AdMob का डेटा प्रसंस्करण Google की आधिकारिक गोपनीयता नीति का पालन करता है, जिसे आप यहाँ देख सकते हैं:<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></p>
+<h2>4. डेटा संग्रहण</h2>
+<p>फ़ोटो सामग्री केवल फ़ोन की मेमोरी में अस्थायी रूप से संसाधित होती है, बाहर सहेजी नहीं जाती। ऐप केवल थोड़ी सी कॉन्फ़िगरेशन जानकारी स्थानीय कैश में रखता है, जिसे आप ऐप सेटिंग्स से कैश साफ़ करके या ऐप अनइंस्टॉल करके हटा सकते हैं। ऐप किसी भी उपयोगकर्ता डेटा को क्लाउड पर सिंक या अपलोड नहीं करता।</p>
+<p>विज्ञापन पहचानकर्ता और विज्ञापन इवेंट डेटा Google द्वारा संसाधित और संग्रहित किया जाता है, जो Google के अपने डेटा प्रतिधारण नियमों के अधीन है।</p>
+<h2>5. बच्चों की गोपनीयता</h2>
+<p>यह ऐप सामान्य वयस्क उपयोगकर्ताओं के लिए है और 13 वर्ष से कम उम्र के बच्चों के लिए नहीं है। हम जानबूझकर नाबालिगों की व्यक्तिगत जानकारी एकत्र नहीं करते। यदि आपको लगता है कि हमने बच्चे की जानकारी एकत्र की है, तो कृपया हमसे संपर्क करें; हम संबंधित डेटा तुरंत हटा देंगे।</p>
+<h2>6. आपके गोपनीयता नियंत्रण</h2>
+<ul>
+<li>सिस्टम सेटिंग्स में गैलरी अनुमति वापस लें, ताकि ऐप आपकी फ़ोटो तक न पहुँच सके;</li>
+<li>विज्ञापन पहचानकर्ता बंद/रीसेट करें और वैयक्तिकृत विज्ञापन अस्वीकार करें;</li>
+<li>ऐप कैश साफ़ करें या ऐप अनइंस्टॉल करके स्थानीय कॉन्फ़िगरेशन डेटा हटाएँ।</li>
+</ul>
+<h2>7. गोपनीयता नीति में अपडेट</h2>
+<p>हम समय-समय पर इस गोपनीयता नीति को अपडेट कर सकते हैं; अपडेट किया गया संस्करण इसी वेब पेज पर प्रकाशित किया जाएगा। अपडेट के बाद ऐप का उपयोग जारी रखने का अर्थ है कि आप संशोधित नियमों से सहमत हैं।</p>
+<h2>8. संपर्क</h2>
+<p>डेवलपर: zhangchaochao<br>संपर्क ईमेल: chao86825@gmail.com</p>
+  </article>
+  <article class="lang-content active" data-lang="zh" lang="zh">
 <h1>隐私政策</h1>
 <p><strong>更新日期：2026年11月2日</strong></p>
 <p>本隐私政策适用于安卓应用【Local Photo Album / LocalPhotoPro】（以下简称“本应用”），由 zhangchaochao 开发运营，联系邮箱：chao86825@gmail.com。本政策符合 Google Play 用户数据政策，向您说明应用收集哪些信息、信息如何使用，以及您拥有的隐私控制权利。</p>
 <p>安装并使用本应用，即代表您阅读并同意本隐私政策全部条款；如果您不同意本政策内容，请立即卸载并停止使用本应用。</p>
-
 <h2>一、应用用途与本地照片处理</h2>
 <p>本应用是本地相册管理工具，会申请【照片和视频权限（READ_MEDIA_IMAGES）】，用于读取您相册内图片，实现重复照片识别、相似照片归类、时间线整理、本地检索等功能。</p>
-<p><strong>所有照片分析全部在您的手机本地完成，您的照片不会上传、发送至任何服务器、云端备份，也不会分享给任何第三方。</strong>
-您可以随时在安卓系统设置中撤回相册权限；权限撤销后，相册相关功能会停止工作，应用不会留存您的照片数据。</p>
-
+<p><strong>所有照片分析全部在您的手机本地完成，您的照片不会上传、发送至任何服务器、云端备份，也不会分享给任何第三方。</strong><br>您可以随时在安卓系统设置中撤回相册权限；权限撤销后，相册相关功能会停止工作，应用不会留存您的照片数据。</p>
 <h2>二、信息收集与 Google AdMob 广告说明</h2>
 <p>本应用接入 Google AdMob 展示应用内广告。AdMob SDK 会自动收集以下信息用于广告服务：</p>
 <ul>
@@ -46,33 +127,670 @@ ul {padding-left:22px;}
 </ul>
 <p>这些数据用于广告投放、提供个性化广告、统计广告效果、广告反作弊。<strong>所有广告相关的数据处理由 Google AdMob 负责。</strong></p>
 <p>您可以在手机系统设置中重置或关闭广告标识符，以此关闭个性化广告。关闭个性化广告之后，您依然会看到非个性化广告。</p>
-<p><strong>除 AdMob SDK 自动获取的广告相关数据以外，应用本身不会主动收集、存储、上传任何其他个人信息。</strong>
-本应用不会收集 IMEI、Android ID、MAC地址、位置信息、麦克风、通讯录、浏览记录、运行日志等信息。</p>
-
+<p><strong>除 AdMob SDK 自动获取的广告相关数据以外，应用本身不会主动收集、存储、上传任何其他个人信息。</strong><br>本应用不会收集 IMEI、Android ID、MAC地址、位置信息、麦克风、通讯录、浏览记录、运行日志等信息。</p>
 <h2>三、第三方服务：Google AdMob</h2>
-<p>本应用唯一集成的第三方SDK为 Google AdMob（广告服务）。AdMob 的数据处理遵循 Google 官方隐私政策，您可以访问查看：
-<a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a>
-</p>
-
+<p>本应用唯一集成的第三方SDK为 Google AdMob（广告服务）。AdMob 的数据处理遵循 Google 官方隐私政策，您可以访问查看：<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></p>
 <h2>四、数据存储说明</h2>
 <p>照片内容仅在手机内存临时处理，不会向外保存。应用仅在本地缓存中保存少量配置信息，您可以通过应用设置清除缓存或者直接卸载应用，清除这些本地配置。应用不会向云端同步、上传任何用户数据。</p>
 <p>广告标识符和广告事件数据由 Google 处理和存储，遵循 Google 自身的数据留存规则。</p>
-
 <h2>五、儿童隐私保护</h2>
 <p>本应用面向普通成年用户，不是面向13周岁以下儿童的产品。我们不会刻意收集未成年人的个人信息。如果您认为我们收集了儿童信息，请联系我们，我们会及时删除相关数据。</p>
-
 <h2>六、您的隐私控制方式</h2>
 <ul>
 <li>在系统设置中撤回相册权限，停止应用访问相册；</li>
 <li>关闭/重置广告标识符，拒绝个性化广告；</li>
 <li>清除应用缓存或卸载应用，删除本地配置数据。</li>
 </ul>
-
 <h2>七、隐私政策更新</h2>
 <p>我们可能会不定期更新本隐私政策，更新后的版本会发布在本网页上。政策更新后继续使用应用，代表您接受更新后的条款。</p>
-
 <h2>八、联系方式</h2>
-<p>开发者：zhangchaochao<br>
-联系邮箱：chao86825@gmail.com</p>
+<p>开发者：zhangchaochao<br>联系邮箱：chao86825@gmail.com</p>
+  </article>
+  <article class="lang-content" data-lang="en" lang="en">
+<h1>Privacy Policy</h1>
+<p><strong>Last updated: November 2, 2026</strong></p>
+<p>This Privacy Policy applies to the Android app “Local Photo Album / LocalPhotoPro” (the “App”), developed and operated by zhangchaochao, contact email: chao86825@gmail.com. In line with the Google Play User Data Policy, it explains what information the App collects, how it is used, and the privacy controls you have.</p>
+<p>By installing and using the App, you acknowledge that you have read and agreed to all terms of this Privacy Policy. If you do not agree, please uninstall and stop using the App immediately.</p>
+<h2>1. App Purpose and Local Photo Processing</h2>
+<p>The App is a local photo management tool. It requests the “Photos and videos” permission (READ_MEDIA_IMAGES) to read images in your gallery and provide features such as duplicate photo detection, similar photo grouping, timeline organization, and local search.</p>
+<p><strong>All photo analysis is performed entirely on your device. Your photos are never uploaded, sent to any server, backed up to the cloud, or shared with any third party.</strong><br>You can revoke the gallery permission at any time in Android system settings; after revocation, gallery-related features will stop working and the App will not retain any of your photo data.</p>
+<h2>2. Information Collection and Google AdMob Advertising</h2>
+<p>The App integrates Google AdMob to display in-app ads. The AdMob SDK automatically collects the following information for advertising:</p>
+<ul>
+<li>Android Advertising ID (AD-ID)</li>
+<li>Ad interaction data: ad impressions, clicks, and ad performance signals</li>
+</ul>
+<p>This data is used for ad delivery, personalized advertising, ad performance measurement, and ad fraud prevention.<strong>All ad-related data processing is handled by Google AdMob.</strong></p>
+<p>You can reset or disable the Advertising ID in your phone&#x27;s system settings to turn off personalized ads. After doing so, you will still see non-personalized ads.</p>
+<p><strong>Apart from the ad-related data automatically obtained by the AdMob SDK, the App itself does not actively collect, store, or upload any other personal information.</strong><br>The App does not collect IMEI, Android ID, MAC address, location, microphone, contacts, browsing history, or runtime logs.</p>
+<h2>3. Third-Party Service: Google AdMob</h2>
+<p>The only third-party SDK integrated in the App is Google AdMob (advertising). AdMob&#x27;s data handling follows Google&#x27;s official Privacy Policy, which you can review at:<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></p>
+<h2>4. Data Storage</h2>
+<p>Photo content is processed only temporarily in your device&#x27;s memory and is never stored externally. The App keeps only a small amount of configuration data in local cache; you can clear it via the App settings or by uninstalling the App. The App does not sync or upload any user data to the cloud.</p>
+<p>The Advertising ID and ad event data are processed and stored by Google in accordance with Google&#x27;s own data retention rules.</p>
+<h2>5. Children&#x27;s Privacy</h2>
+<p>The App is intended for general adult users and is not directed at children under 13. We do not knowingly collect personal information from minors. If you believe we have collected information from a child, please contact us and we will promptly delete the relevant data.</p>
+<h2>6. Your Privacy Controls</h2>
+<ul>
+<li>Revoke the gallery permission in system settings to stop the App from accessing your photos;</li>
+<li>Disable or reset the Advertising ID to opt out of personalized ads;</li>
+<li>Clear the App cache or uninstall the App to delete local configuration data.</li>
+</ul>
+<h2>7. Updates to This Policy</h2>
+<p>We may update this Privacy Policy from time to time, and the updated version will be published on this page. Continuing to use the App after an update means you accept the updated terms.</p>
+<h2>8. Contact</h2>
+<p>Developer: zhangchaochao<br>Contact email: chao86825@gmail.com</p>
+  </article>
+  <article class="lang-content" data-lang="in" lang="id">
+<h1>Kebijakan Privasi</h1>
+<p><strong>Terakhir diperbarui: 2 November 2026</strong></p>
+<p>Kebijakan Privasi ini berlaku untuk aplikasi Android “Local Photo Album / LocalPhotoPro” (selanjutnya disebut “Aplikasi”), yang dikembangkan dan dioperasikan oleh zhangchaochao, email kontak: chao86825@gmail.com. Sesuai dengan Kebijakan Data Pengguna Google Play, kebijakan ini menjelaskan informasi apa yang dikumpulkan Aplikasi, bagaimana informasi tersebut digunakan, serta kontrol privasi yang Anda miliki.</p>
+<p>Dengan memasang dan menggunakan Aplikasi, Anda dianggap telah membaca dan menyetujui seluruh ketentuan Kebijakan Privasi ini. Jika Anda tidak setuju, harap segera hapus pemasangan dan berhenti menggunakan Aplikasi.</p>
+<h2>1. Tujuan Aplikasi dan Pemrosesan Foto Lokal</h2>
+<p>Aplikasi ini adalah alat pengelola foto lokal. Aplikasi meminta izin “Foto dan video” (READ_MEDIA_IMAGES) untuk membaca gambar di galeri Anda guna menyediakan fitur seperti deteksi foto duplikat, pengelompokan foto serupa, penataan linimasa, dan pencarian lokal.</p>
+<p><strong>Semua analisis foto dilakukan sepenuhnya di perangkat Anda. Foto Anda tidak pernah diunggah, dikirim ke server mana pun, dicadangkan ke cloud, atau dibagikan kepada pihak ketiga mana pun.</strong><br>Anda dapat mencabut izin galeri kapan saja melalui pengaturan sistem Android; setelah izin dicabut, fitur terkait galeri akan berhenti berfungsi dan Aplikasi tidak akan menyimpan data foto Anda.</p>
+<h2>2. Pengumpulan Informasi dan Iklan Google AdMob</h2>
+<p>Aplikasi mengintegrasikan Google AdMob untuk menampilkan iklan dalam aplikasi. AdMob SDK secara otomatis mengumpulkan informasi berikut untuk layanan iklan:</p>
+<ul>
+<li>ID Iklan Android (AD-ID)</li>
+<li>Data interaksi iklan: tayangan iklan, klik, dan sinyal terkait kinerja iklan</li>
+</ul>
+<p>Data ini digunakan untuk penayangan iklan, iklan yang dipersonalisasi, pengukuran kinerja iklan, dan pencegahan kecurangan iklan.<strong>Semua pemrosesan data terkait iklan dilakukan oleh Google AdMob.</strong></p>
+<p>Anda dapat mengatur ulang atau menonaktifkan ID Iklan di pengaturan sistem ponsel untuk mematikan iklan yang dipersonalisasi. Setelah itu, Anda tetap akan melihat iklan yang tidak dipersonalisasi.</p>
+<p><strong>Selain data terkait iklan yang diperoleh otomatis oleh AdMob SDK, Aplikasi sendiri tidak secara aktif mengumpulkan, menyimpan, atau mengunggah informasi pribadi lainnya.</strong><br>Aplikasi tidak mengumpulkan IMEI, Android ID, alamat MAC, lokasi, mikrofon, kontak, riwayat penelusuran, log proses, dan sebagainya.</p>
+<h2>3. Layanan Pihak Ketiga: Google AdMob</h2>
+<p>Satu-satunya SDK pihak ketiga yang terintegrasi dalam Aplikasi adalah Google AdMob (layanan iklan). Pemrosesan data oleh AdMob mengikuti Kebijakan Privasi resmi Google, yang dapat Anda tinjau di:<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></p>
+<h2>4. Penyimpanan Data</h2>
+<p>Konten foto hanya diproses sementara di memori ponsel dan tidak disimpan ke luar. Aplikasi hanya menyimpan sedikit data konfigurasi dalam cache lokal; Anda dapat menghapusnya melalui pengaturan Aplikasi atau dengan menghapus pemasangan Aplikasi. Aplikasi tidak menyinkronkan atau mengunggah data pengguna apa pun ke cloud.</p>
+<p>ID Iklan dan data peristiwa iklan diproses dan disimpan oleh Google sesuai aturan retensi data Google sendiri.</p>
+<h2>5. Privasi Anak</h2>
+<p>Aplikasi ditujukan untuk pengguna dewasa pada umumnya dan tidak ditujukan bagi anak di bawah 13 tahun. Kami tidak dengan sengaja mengumpulkan informasi pribadi anak di bawah umur. Jika Anda merasa kami telah mengumpulkan informasi anak, silakan hubungi kami dan kami akan segera menghapus data terkait.</p>
+<h2>6. Kontrol Privasi Anda</h2>
+<ul>
+<li>Cabut izin galeri di pengaturan sistem untuk menghentikan Aplikasi mengakses foto Anda;</li>
+<li>Nonaktifkan/atur ulang ID Iklan untuk menolak iklan yang dipersonalisasi;</li>
+<li>Hapus cache Aplikasi atau hapus pemasangan Aplikasi untuk menghapus data konfigurasi lokal.</li>
+</ul>
+<h2>7. Pembaruan Kebijakan Privasi</h2>
+<p>Kami dapat memperbarui Kebijakan Privasi ini dari waktu ke waktu; versi terbaru akan diterbitkan pada halaman web ini. Melanjutkan penggunaan Aplikasi setelah pembaruan berarti Anda menerima ketentuan yang telah diperbarui.</p>
+<h2>8. Kontak</h2>
+<p>Pengembang: zhangchaochao<br>Email kontak: chao86825@gmail.com</p>
+  </article>
+  <article class="lang-content" data-lang="ur" lang="ur">
+<h1>رازداری کی پالیسی</h1>
+<p><strong>آخری تازہ کاری: 2 نومبر 2026</strong></p>
+<p>یہ رازداری کی پالیسی اینڈرائیڈ ایپ “Local Photo Album / LocalPhotoPro” (جسے آگے “یہ ایپ” کہا گیا ہے) پر لاگو ہوتی ہے، جسے zhangchaochao نے تیار اور چلایا ہے۔ رابطہ ای میل: chao86825@gmail.com۔ یہ پالیسی Google Play صارف ڈیٹا پالیسی کے مطابق ہے اور بتاتی ہے کہ ایپ کون سی معلومات جمع کرتی ہے، ان کا استعمال کیسے ہوتا ہے، اور آپ کے پاس کون سے رازداری کے اختیارات ہیں۔</p>
+<p>ایپ انسٹال کرنے اور استعمال کرنے کا مطلب ہے کہ آپ نے اس رازداری پالیسی کی تمام شرائط پڑھ لی ہیں اور ان سے متفق ہیں۔ اگر آپ اس پالیسی سے متفق نہیں ہیں تو براہِ کرم فوراً ایپ ان انسٹال کریں اور اس کا استعمال بند کر دیں۔</p>
+<h2>1. ایپ کا مقصد اور تصاویر کی مقامی پروسیسنگ</h2>
+<p>یہ ایپ مقامی تصاویر کے انتظام کا ٹول ہے۔ یہ “تصاویر اور ویڈیوز” کی اجازت (READ_MEDIA_IMAGES) مانگتی ہے تاکہ آپ کی گیلری کی تصاویر پڑھ کر ڈپلیکیٹ تصاویر کی پہچان، ملتی جلتی تصاویر کی درجہ بندی، ٹائم لائن ترتیب اور مقامی تلاش جیسی سہولیات فراہم کر سکے۔</p>
+<p><strong>تصاویر کا تمام تجزیہ مکمل طور پر آپ کے فون پر ہی ہوتا ہے۔ آپ کی تصاویر کسی سرور پر اپ لوڈ یا بھیجی نہیں جاتیں، کلاؤڈ پر بیک اپ نہیں ہوتیں، اور نہ ہی کسی تیسرے فریق کے ساتھ شیئر کی جاتی ہیں۔</strong><br>آپ اینڈرائیڈ سسٹم سیٹنگز میں کسی بھی وقت گیلری کی اجازت واپس لے سکتے ہیں؛ اجازت ختم ہونے کے بعد گیلری سے متعلق خصوصیات کام کرنا بند کر دیں گی اور ایپ آپ کی تصاویر کا کوئی ڈیٹا محفوظ نہیں رکھے گی۔</p>
+<h2>2. معلومات کا مجموعہ اور Google AdMob اشتہارات</h2>
+<p>یہ ایپ ایپ کے اندر اشتہارات دکھانے کے لیے Google AdMob استعمال کرتی ہے۔ AdMob SDK اشتہاری خدمات کے لیے درج ذیل معلومات خود بخود جمع کرتا ہے:</p>
+<ul>
+<li>اینڈرائیڈ اشتہاری شناخت کنندہ (AD-ID)</li>
+<li>اشتہاری تعامل کا ڈیٹا: اشتہار کی نمائش، کلکس اور اشتہاری کارکردگی سے متعلق اشارے</li>
+</ul>
+<p>یہ ڈیٹا اشتہار کی ترسیل، ذاتی نوعیت کے اشتہارات، اشتہاری کارکردگی کی پیمائش اور اشتہاری دھوکہ دہی کی روک تھام کے لیے استعمال ہوتا ہے۔<strong>تمام اشتہار سے متعلق ڈیٹا پروسیسنگ Google AdMob کرتا ہے۔</strong></p>
+<p>آپ اپنے فون کی سسٹم سیٹنگز میں اشتہاری شناخت کنندہ کو ری سیٹ یا بند کر کے ذاتی نوعیت کے اشتہارات بند کر سکتے ہیں۔ اس کے بعد بھی آپ کو غیر ذاتی نوعیت کے اشتہارات نظر آئیں گے۔</p>
+<p><strong>AdMob SDK کے خود بخود حاصل کردہ اشتہاری ڈیٹا کے علاوہ، ایپ خود کسی دوسری ذاتی معلومات کو فعال طور پر جمع، ذخیرہ یا اپ لوڈ نہیں کرتی۔</strong><br>یہ ایپ IMEI، Android ID، MAC ایڈریس، مقام، مائیکروفون، رابطے، براؤزنگ ہسٹری، رن لاگز وغیرہ جمع نہیں کرتی۔</p>
+<h2>3. تیسرے فریق کی خدمت: Google AdMob</h2>
+<p>ایپ میں ضم کیا گیا واحد تیسرے فریق کا SDK Google AdMob (اشتہاری خدمت) ہے۔ AdMob کی ڈیٹا پروسیسنگ Google کی سرکاری رازداری پالیسی کی پیروی کرتی ہے، جسے آپ یہاں دیکھ سکتے ہیں:<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></p>
+<h2>4. ڈیٹا کا ذخیرہ</h2>
+<p>تصاویر کا مواد صرف فون کی میموری میں عارضی طور پر پروسیس ہوتا ہے، باہر محفوظ نہیں ہوتا۔ ایپ صرف تھوڑی سی کنفیگریشن معلومات مقامی کیشے میں رکھتی ہے، جسے آپ ایپ سیٹنگز سے کیشے صاف کر کے یا ایپ ان انسٹال کر کے حذف کر سکتے ہیں۔ ایپ کسی بھی صارف ڈیٹا کو کلاؤڈ پر سنک یا اپ لوڈ نہیں کرتی۔</p>
+<p>اشتہاری شناخت کنندہ اور اشتہاری ایونٹ ڈیٹا Google کے ذریعے پروسیس اور محفوظ ہوتا ہے، جو Google کے اپنے ڈیٹا برقرار رکھنے کے اصولوں کے تابع ہے۔</p>
+<h2>5. بچوں کی رازداری</h2>
+<p>یہ ایپ عام بالغ صارفین کے لیے ہے اور 13 سال سے کم عمر بچوں کے لیے نہیں۔ ہم جان بوجھ کر نابالغوں کی ذاتی معلومات جمع نہیں کرتے۔ اگر آپ سمجھتے ہیں کہ ہم نے کسی بچے کی معلومات جمع کی ہیں تو براہِ کرم ہم سے رابطہ کریں؛ ہم متعلقہ ڈیٹا فوراً حذف کر دیں گے۔</p>
+<h2>6. آپ کے رازداری کے اختیارات</h2>
+<ul>
+<li>سسٹم سیٹنگز میں گیلری کی اجازت واپس لیں تاکہ ایپ آپ کی تصاویر تک نہ پہنچ سکے؛</li>
+<li>اشتہاری شناخت کنندہ بند/ری سیٹ کریں اور ذاتی نوعیت کے اشتہارات مسترد کریں؛</li>
+<li>ایپ کا کیشہ صاف کریں یا ایپ ان انسٹال کر کے مقامی کنفیگریشن ڈیٹا حذف کریں۔</li>
+</ul>
+<h2>7. رازداری پالیسی میں اپ ڈیٹ</h2>
+<p>ہم وقتاً فوقتاً اس رازداری پالیسی کو اپ ڈیٹ کر سکتے ہیں؛ اپ ڈیٹ شدہ ورژن اسی ویب صفحے پر شائع کیا جائے گا۔ اپ ڈیٹ کے بعد ایپ کا استعمال جاری رکھنے کا مطلب ہے کہ آپ نظرِ ثانی شدہ شرائط سے متفق ہیں۔</p>
+<h2>8. رابطہ</h2>
+<p>ڈویلپر: zhangchaochao<br>رابطہ ای میل: chao86825@gmail.com</p>
+  </article>
+  <article class="lang-content" data-lang="pt" lang="pt">
+<h1>Política de Privacidade</h1>
+<p><strong>Última atualização: 2 de novembro de 2026</strong></p>
+<p>Esta Política de Privacidade aplica-se ao aplicativo Android “Local Photo Album / LocalPhotoPro” (o “Aplicativo”), desenvolvido e operado por zhangchaochao, e-mail de contato: chao86825@gmail.com. Em conformidade com a Política de Dados do Usuário do Google Play, ela explica quais informações o Aplicativo coleta, como são usadas e quais controles de privacidade você possui.</p>
+<p>Ao instalar e usar o Aplicativo, você declara que leu e concorda com todos os termos desta Política de Privacidade. Se não concordar, desinstale o Aplicativo e pare de usá-lo imediatamente.</p>
+<h2>1. Finalidade do Aplicativo e processamento local de fotos</h2>
+<p>O Aplicativo é uma ferramenta de gerenciamento local de fotos. Ele solicita a permissão “Fotos e vídeos” (READ_MEDIA_IMAGES) para ler as imagens da sua galeria e oferecer recursos como detecção de fotos duplicadas, agrupamento de fotos semelhantes, organização por linha do tempo e busca local.</p>
+<p><strong>Toda a análise de fotos é feita integralmente no seu dispositivo. Suas fotos nunca são enviadas a servidores, armazenadas em nuvem ou compartilhadas com terceiros.</strong><br>Você pode revogar a permissão da galeria a qualquer momento nas configurações do sistema Android; após a revogação, os recursos relacionados à galeria deixarão de funcionar e o Aplicativo não manterá nenhum dado das suas fotos.</p>
+<h2>2. Coleta de informações e publicidade do Google AdMob</h2>
+<p>O Aplicativo integra o Google AdMob para exibir anúncios no aplicativo. O SDK do AdMob coleta automaticamente as seguintes informações para veiculação de anúncios:</p>
+<ul>
+<li>ID de publicidade do Android (AD-ID)</li>
+<li>Dados de interação com anúncios: impressões, cliques e sinais relacionados ao desempenho dos anúncios</li>
+</ul>
+<p>Esses dados são usados para veiculação de anúncios, anúncios personalizados, medição de desempenho e prevenção de fraudes publicitárias.<strong>Todo o processamento de dados relacionados a anúncios é feito pelo Google AdMob.</strong></p>
+<p>Você pode redefinir ou desativar o ID de publicidade nas configurações do sistema do celular para desativar anúncios personalizados. Depois disso, você continuará vendo anúncios não personalizados.</p>
+<p><strong>Além dos dados relacionados a anúncios obtidos automaticamente pelo SDK do AdMob, o Aplicativo não coleta, armazena ou envia ativamente nenhuma outra informação pessoal.</strong><br>O Aplicativo não coleta IMEI, Android ID, endereço MAC, localização, microfone, contatos, histórico de navegação, logs de execução etc.</p>
+<h2>3. Serviço de terceiros: Google AdMob</h2>
+<p>O único SDK de terceiros integrado ao Aplicativo é o Google AdMob (serviço de publicidade). O tratamento de dados do AdMob segue a Política de Privacidade oficial do Google, que você pode consultar em:<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></p>
+<h2>4. Armazenamento de dados</h2>
+<p>O conteúdo das fotos é processado apenas temporariamente na memória do celular e nunca é salvo externamente. O Aplicativo mantém apenas uma pequena quantidade de dados de configuração no cache local, que você pode limpar nas configurações do Aplicativo ou desinstalando-o. O Aplicativo não sincroniza nem envia nenhum dado do usuário para a nuvem.</p>
+<p>O ID de publicidade e os dados de eventos de anúncios são processados e armazenados pelo Google, conforme as próprias regras de retenção de dados do Google.</p>
+<h2>5. Privacidade de crianças</h2>
+<p>O Aplicativo destina-se a usuários adultos em geral e não é voltado a crianças menores de 13 anos. Não coletamos intencionalmente informações pessoais de menores. Se você acredita que coletamos informações de uma criança, entre em contato e excluiremos os dados prontamente.</p>
+<h2>6. Seus controles de privacidade</h2>
+<ul>
+<li>Revogue a permissão da galeria nas configurações do sistema para impedir o acesso do Aplicativo às suas fotos;</li>
+<li>Desative/redefina o ID de publicidade para recusar anúncios personalizados;</li>
+<li>Limpe o cache do Aplicativo ou desinstale-o para excluir os dados de configuração local.</li>
+</ul>
+<h2>7. Atualizações desta política</h2>
+<p>Podemos atualizar esta Política de Privacidade periodicamente; a versão atualizada será publicada nesta página. Continuar usando o Aplicativo após uma atualização significa que você aceita os termos atualizados.</p>
+<h2>8. Contato</h2>
+<p>Desenvolvedor: zhangchaochao<br>E-mail de contato: chao86825@gmail.com</p>
+  </article>
+  <article class="lang-content" data-lang="bn" lang="bn">
+<h1>গোপনীয়তা নীতি</h1>
+<p><strong>সর্বশেষ আপডেট: ২ নভেম্বর ২০২৬</strong></p>
+<p>এই গোপনীয়তা নীতি Android অ্যাপ “Local Photo Album / LocalPhotoPro” (এর পরে “অ্যাপ” বলা হয়েছে)-এর ক্ষেত্রে প্রযোজ্য, যা zhangchaochao দ্বারা উন্নত ও পরিচালিত। যোগাযোগের ইমেল: chao86825@gmail.com। এই নীতি Google Play ব্যবহারকারী ডেটা নীতি মেনে তৈরি এবং ব্যাখ্যা করে যে অ্যাপ কী তথ্য সংগ্রহ করে, তা কীভাবে ব্যবহৃত হয় এবং আপনার কী কী গোপনীয়তা নিয়ন্ত্রণ রয়েছে।</p>
+<p>অ্যাপটি ইনস্টল ও ব্যবহার করার মাধ্যমে আপনি এই গোপনীয়তা নীতির সব শর্ত পড়েছেন ও সম্মত হয়েছেন বলে গণ্য হবেন। আপনি যদি এই নীতিতে সম্মত না হন, অনুগ্রহ করে অবিলম্বে অ্যাপটি আনইনস্টল করুন এবং ব্যবহার বন্ধ করুন।</p>
+<h2>১. অ্যাপের উদ্দেশ্য ও ছবির স্থানীয় প্রক্রিয়াকরণ</h2>
+<p>অ্যাপটি একটি স্থানীয় ছবি ব্যবস্থাপনার টুল। এটি আপনার গ্যালারির ছবি পড়তে “ছবি ও ভিডিও” অনুমতি (READ_MEDIA_IMAGES) চায়, যাতে নকল ছবি শনাক্তকরণ, একই রকম ছবির দলবদ্ধকরণ, টাইমলাইন সাজানো এবং স্থানীয় অনুসন্ধানের মতো সুবিধা দেওয়া যায়।</p>
+<p><strong>সব ছবি বিশ্লেষণ সম্পূর্ণভাবে আপনার ফোনেই সম্পন্ন হয়। আপনার ছবি কোনো সার্ভারে আপলোড বা পাঠানো হয় না, ক্লাউডে ব্যাকআপ নেওয়া হয় না এবং কোনো তৃতীয় পক্ষের সাথে শেয়ার করা হয় না।</strong><br>আপনি Android সিস্টেম সেটিংসে যেকোনো সময় গ্যালারির অনুমতি প্রত্যাহার করতে পারেন; অনুমতি প্রত্যাহারের পর গ্যালারি-সংক্রান্ত সুবিধাগুলো কাজ করা বন্ধ করবে এবং অ্যাপ আপনার কোনো ছবির ডেটা সংরক্ষণ করবে না।</p>
+<h2>২. তথ্য সংগ্রহ ও Google AdMob বিজ্ঞাপন</h2>
+<p>অ্যাপে বিজ্ঞাপন দেখাতে অ্যাপটি Google AdMob সংযুক্ত করেছে। AdMob SDK বিজ্ঞাপন পরিষেবার জন্য নিচের তথ্যগুলো স্বয়ংক্রিয়ভাবে সংগ্রহ করে:</p>
+<ul>
+<li>Android বিজ্ঞাপন শনাক্তকারী (AD-ID)</li>
+<li>বিজ্ঞাপন ইন্টারঅ্যাকশন ডেটা: বিজ্ঞাপন প্রদর্শন, ক্লিক এবং বিজ্ঞাপন কার্যকারিতা-সংক্রান্ত সংকেত</li>
+</ul>
+<p>এই ডেটা বিজ্ঞাপন সরবরাহ, ব্যক্তিগতকৃত বিজ্ঞাপন, বিজ্ঞাপন কার্যকারিতা পরিমাপ ও বিজ্ঞাপন জালিয়াতি প্রতিরোধে ব্যবহৃত হয়।<strong>বিজ্ঞাপন-সংক্রান্ত সব ডেটা প্রক্রিয়াকরণ Google AdMob করে।</strong></p>
+<p>আপনি ফোনের সিস্টেম সেটিংসে বিজ্ঞাপন শনাক্তকারী রিসেট বা বন্ধ করে ব্যক্তিগতকৃত বিজ্ঞাপন বন্ধ করতে পারেন। তার পরেও আপনি অ-ব্যক্তিগতকৃত বিজ্ঞাপন দেখতে পাবেন।</p>
+<p><strong>AdMob SDK স্বয়ংক্রিয়ভাবে পাওয়া বিজ্ঞাপন-সংক্রান্ত ডেটা ছাড়া, অ্যাপ নিজে অন্য কোনো ব্যক্তিগত তথ্য সক্রিয়ভাবে সংগ্রহ, সংরক্ষণ বা আপলোড করে না।</strong><br>অ্যাপটি IMEI, Android ID, MAC ঠিকানা, অবস্থান, মাইক্রোফোন, পরিচিতি, ব্রাউজিং ইতিহাস, রান লগ ইত্যাদি সংগ্রহ করে না।</p>
+<h2>৩. তৃতীয় পক্ষের পরিষেবা: Google AdMob</h2>
+<p>অ্যাপে সংযুক্ত একমাত্র তৃতীয় পক্ষের SDK হলো Google AdMob (বিজ্ঞাপন পরিষেবা)। AdMob-এর ডেটা প্রক্রিয়াকরণ Google-এর দাপ্তরিক গোপনীয়তা নীতি অনুসরণ করে, যা আপনি এখানে দেখতে পারেন:<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></p>
+<h2>৪. ডেটা সংরক্ষণ</h2>
+<p>ছবির বিষয়বস্তু শুধু ফোনের মেমোরিতে সাময়িকভাবে প্রক্রিয়াজাত হয়, বাইরে সংরক্ষিত হয় না। অ্যাপ শুধু অল্প পরিমাণ কনফিগারেশন তথ্য স্থানীয় ক্যাশে রাখে, যা আপনি অ্যাপ সেটিংস থেকে ক্যাশ পরিষ্কার করে বা অ্যাপ আনইনস্টল করে মুছে ফেলতে পারেন। অ্যাপ কোনো ব্যবহারকারী ডেটা ক্লাউডে সিঙ্ক বা আপলোড করে না।</p>
+<p>বিজ্ঞাপন শনাক্তকারী ও বিজ্ঞাপন ইভেন্ট ডেটা Google দ্বারা প্রক্রিয়াজাত ও সংরক্ষিত হয়, যা Google-এর নিজস্ব ডেটা ধরে রাখার নিয়ম মেনে চলে।</p>
+<h2>৫. শিশুদের গোপনীয়তা</h2>
+<p>অ্যাপটি সাধারণ প্রাপ্তবয়স্ক ব্যবহারকারীদের জন্য এবং ১৩ বছরের কম বয়সী শিশুদের উদ্দেশ্যে নয়। আমরা ইচ্ছাকৃতভাবে অপ্রাপ্তবয়স্কদের ব্যক্তিগত তথ্য সংগ্রহ করি না। আপনি যদি মনে করেন আমরা কোনো শিশুর তথ্য সংগ্রহ করেছি, অনুগ্রহ করে আমাদের সাথে যোগাযোগ করুন; আমরা দ্রুত সংশ্লিষ্ট ডেটা মুছে ফেলব।</p>
+<h2>৬. আপনার গোপনীয়তা নিয়ন্ত্রণ</h2>
+<ul>
+<li>সিস্টেম সেটিংসে গ্যালারির অনুমতি প্রত্যাহার করুন, যাতে অ্যাপ আপনার ছবিতে প্রবেশ না করতে পারে;</li>
+<li>বিজ্ঞাপন শনাক্তকারী বন্ধ/রিসেট করুন এবং ব্যক্তিগতকৃত বিজ্ঞাপন প্রত্যাখ্যান করুন;</li>
+<li>অ্যাপের ক্যাশ পরিষ্কার করুন বা অ্যাপ আনইনস্টল করে স্থানীয় কনফিগারেশন ডেটা মুছুন।</li>
+</ul>
+<h2>৭. গোপনীয়তা নীতি হালনাগাদ</h2>
+<p>আমরা সময়ে সময়ে এই গোপনীয়তা নীতি হালনাগাদ করতে পারি; হালনাগাদকৃত সংস্করণ এই ওয়েব পৃষ্ঠায় প্রকাশিত হবে। হালনাগাদের পর অ্যাপ ব্যবহার চালিয়ে যাওয়া মানে আপনি সংশোধিত শর্ত মেনে নিয়েছেন।</p>
+<h2>৮. যোগাযোগ</h2>
+<p>ডেভেলপার: zhangchaochao<br>যোগাযোগের ইমেল: chao86825@gmail.com</p>
+  </article>
+  <article class="lang-content" data-lang="ru" lang="ru">
+<h1>Политика конфиденциальности</h1>
+<p><strong>Последнее обновление: 2 ноября 2026 г.</strong></p>
+<p>Настоящая Политика конфиденциальности применяется к приложению для Android “Local Photo Album / LocalPhotoPro” (далее — «Приложение»), разработанному и поддерживаемому zhangchaochao, контактный e-mail: chao86825@gmail.com. Политика соответствует Правилам обработки данных пользователей Google Play и объясняет, какие данные собирает Приложение, как они используются и какие средства контроля конфиденциальности вам доступны.</p>
+<p>Устанавливая и используя Приложение, вы подтверждаете, что прочитали и согласны со всеми условиями настоящей Политики конфиденциальности. Если вы не согласны, немедленно удалите Приложение и прекратите его использование.</p>
+<h2>1. Назначение приложения и локальная обработка фото</h2>
+<p>Приложение — это инструмент для локального управления фотографиями. Оно запрашивает разрешение «Фото и видео» (READ_MEDIA_IMAGES), чтобы считывать изображения из вашей галереи и предоставлять такие функции, как поиск дубликатов, группировка похожих фото, упорядочивание по хронологии и локальный поиск.</p>
+<p><strong>Весь анализ фотографий выполняется полностью на вашем устройстве. Ваши фото никогда не загружаются на серверы, не отправляются третьим лицам, не сохраняются в облако и не передаются никому другому.</strong><br>Вы можете в любой момент отозвать доступ к галерее в системных настройках Android; после отзыва функции, связанные с галереей, перестанут работать, а Приложение не сохранит никаких данных ваших фотографий.</p>
+<h2>2. Сбор информации и реклама Google AdMob</h2>
+<p>Приложение использует Google AdMob для показа рекламы. AdMob SDK автоматически собирает следующие данные для показа рекламы:</p>
+<ul>
+<li>Рекламный идентификатор Android (AD-ID)</li>
+<li>Данные взаимодействия с рекламой: показы, клики и сигналы об эффективности рекламы</li>
+</ul>
+<p>Эти данные используются для показа рекламы, персонализированной рекламы, измерения её эффективности и борьбы с рекламным мошенничеством.<strong>Вся обработка данных, связанных с рекламой, осуществляется Google AdMob.</strong></p>
+<p>Вы можете сбросить или отключить рекламный идентификатор в системных настройках телефона, чтобы отключить персонализированную рекламу. После этого вы по-прежнему будете видеть неперсонализированную рекламу.</p>
+<p><strong>Кроме данных, связанных с рекламой и автоматически получаемых AdMob SDK, само Приложение не собирает, не хранит и не загружает активно никакую другую личную информацию.</strong><br>Приложение не собирает IMEI, Android ID, MAC-адрес, местоположение, данные микрофона, контакты, историю просмотров, журналы работы и т. п.</p>
+<h2>3. Сторонний сервис: Google AdMob</h2>
+<p>Единственный сторонний SDK, интегрированный в Приложение, — Google AdMob (рекламный сервис). Обработка данных AdMob соответствует официальной Политике конфиденциальности Google, с которой можно ознакомиться здесь:<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></p>
+<h2>4. Хранение данных</h2>
+<p>Содержимое фотографий обрабатывается только временно в памяти телефона и не сохраняется вовне. Приложение хранит лишь небольшой объём настроек в локальном кэше; вы можете удалить их через настройки Приложения или удалив Приложение. Приложение не синхронизирует и не загружает никакие данные пользователя в облако.</p>
+<p>Рекламный идентификатор и данные рекламных событий обрабатываются и хранятся Google в соответствии с его собственными правилами хранения данных.</p>
+<h2>5. Конфиденциальность детей</h2>
+<p>Приложение предназначено для обычных взрослых пользователей и не ориентировано на детей младше 13 лет. Мы сознательно не собираем личную информацию несовершеннолетних. Если вы считаете, что мы собрали данные ребёнка, свяжитесь с нами, и мы оперативно удалим соответствующие данные.</p>
+<h2>6. Ваши средства контроля конфиденциальности</h2>
+<ul>
+<li>Отзовите доступ к галерее в системных настройках, чтобы Приложение не могло обращаться к вашим фото;</li>
+<li>Отключите/сбросьте рекламный идентификатор, чтобы отказаться от персонализированной рекламы;</li>
+<li>Очистите кэш Приложения или удалите Приложение, чтобы стереть локальные настройки.</li>
+</ul>
+<h2>7. Обновления политики</h2>
+<p>Мы можем время от времени обновлять настоящую Политику конфиденциальности; обновлённая версия будет опубликована на этой странице. Продолжение использования Приложения после обновления означает ваше согласие с изменёнными условиями.</p>
+<h2>8. Контактная информация</h2>
+<p>Разработчик: zhangchaochao<br>Контактный e-mail: chao86825@gmail.com</p>
+  </article>
+  <article class="lang-content" data-lang="am" lang="am">
+<h1>የግላዊነት ፖሊሲ</h1>
+<p><strong>ለመጨረሻ ጊዜ የተዘመነ፡ ኖቬምበር 2፣ 2026</strong></p>
+<p>ይህ የግላዊነት ፖሊሲ በzhangchaochao የተገነባና የሚተዳደረው የAndroid መተግበሪያ “Local Photo Album / LocalPhotoPro” (ከዚህ በኋላ “መተግበሪያው” እየተባለ) ላይ ይተገበራል። የመገናኛ ኢሜይል፡ chao86825@gmail.com። ፖሊሲው ከGoogle Play የተጠቃሚ ውሂብ ፖሊሲ ጋር የሚስማማ ሲሆን መተግበሪያው ምን መረጃ እንደሚሰበስብ፣ እንዴት ጥቅም ላይ እንደሚውል እና ያሉዎትን የግላዊነት መቆጣጠሪያዎች ያብራራል።</p>
+<p>መተግበሪያውን በመጫንና በመጠቀም የዚህን የግላዊነት ፖሊሲ ሁሉንም ውሎች አንብበው የተስማሙ መሆናቸው ይቆጠራል። ካልተስማሙ እባክዎን ወዲያውኑ መተግበሪያውን ያስወግዱና መጠቀም ያቁሙ።</p>
+<h2>1. የመተግበሪያው ዓላማና የፎቶዎች አካባቢያዊ ሂደት</h2>
+<p>መተግበሪያው የአካባቢያዊ የፎቶ አስተዳደር መሳሪያ ነው። በጋለሪዎ ውስጥ ያሉ ምስሎችን ለማንበብ የ“ፎቶዎችና ቪዲዮዎች” ፈቃድ (READ_MEDIA_IMAGES) ይጠይቃል፤ ይህም ተደጋጋሚ ፎቶዎችን መለየት፣ ተመሳሳይ ፎቶዎችን መደብ፣ የጊዜ መስመር ማደራጀትና አካባቢያዊ ፍለጋ የመሳሰሉ ባህሪያትን ለማቅረብ ነው።</p>
+<p><strong>ሁሉም የፎቶ ትንተና ሙሉ በሙሉ በስልክዎ ላይ ይከናወናል። ፎቶዎችዎ ወደ ማንኛውም አገልጋይ አይሰቀሉም፣ አይላኩም፣ ወደ ደመና አይቀመጡም፣ እንዲሁም ለማንኛውም ሦስተኛ ወገን አይጋሩም።</strong><br>የጋለሪውን ፈቃድ በማንኛውም ጊዜ በAndroid የሥርዓት ቅንብሮች ውስጥ መሰረዝ ይችላሉ፤ ፈቃዱ ከተሰረዘ በኋላ ከጋለሪ ጋር የተያያዙ ባህሪያት መሥራት ያቆማሉ፣ መተግበሪያውም የፎቶ ውሂብዎን አያስቀምጥም።</p>
+<h2>2. የመረጃ ስብስብና የGoogle AdMob ማስታወቂያ</h2>
+<p>መተግበሪያው በመተግበሪያ ውስጥ ማስታወቂያዎችን ለማሳየት Google AdMobን ያዋህዳል። AdMob SDK ለማስታወቂያ አገልግሎት የሚከተለውን መረጃ በራስ-ሰር ይሰበስባል፡</p>
+<ul>
+<li>የAndroid የማስታወቂያ መለያ (AD-ID)</li>
+<li>የማስታወቂያ ግንኙነት ውሂብ፡ የማስታወቂያ እይታዎች፣ ጠቅታዎች እና ከማስታወቂያ አፈጻጸም ጋር የተያያዙ ምልክቶች</li>
+</ul>
+<p>ይህ ውሂብ ለማስታወቂያ ስርጭት፣ ለግል የተበጁ ማስታወቂያዎች፣ የአፈጻጸም መለኪያና የማስታወቂያ ማጭበርበር መከላከል ጥቅም ላይ ይውላል።<strong>ከማስታወቂያ ጋር የተያያዘ ሁሉም የውሂብ ሂደት የሚከናወነው በGoogle AdMob ነው።</strong></p>
+<p>ለግል የተበጁ ማስታወቂያዎችን ለማጥፋት የማስታወቂያ መለያውን በስልክዎ የሥርዓት ቅንብሮች ውስጥ ዳግም ማስጀመር ወይም ማጥፋት ይችላሉ። ከዚያ በኋላም ለግል ያልተበጁ ማስታወቂያዎችን ማየትዎን ይቀጥላሉ።</p>
+<p><strong>AdMob SDK በራስ-ሰር ከሚያገኘው ከማስታወቂያ ጋር ከተያያዘ ውሂብ በስተቀር፣ መተግበሪያው ራሱ ሌላ የግል መረጃን በንቃት አይሰበስብም፣ አያከማችም ወይም አይሰቅልም።</strong><br>መተግበሪያው IMEI፣ Android ID፣ የMAC አድራሻ፣ አካባቢ፣ ማይክሮፎን፣ እውቂያዎች፣ የአሰሳ ታሪክ፣ የሩጫ ምዝግብ ማስታወሻዎች ወዘተ አይሰበስብም።</p>
+<h2>3. የሦስተኛ ወገን አገልግሎት፡ Google AdMob</h2>
+<p>በመተግበሪያው ውስጥ የተዋሃደ ብቸኛው የሦስተኛ ወገን SDK Google AdMob (የማስታወቂያ አገልግሎት) ነው። የAdMob የውሂብ አያያዝ የGoogleን ይፋዊ የግላዊነት ፖሊሲ ይከተላል፤ እዚህ ማየት ይችላሉ፡<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></p>
+<h2>4. የውሂብ ማከማቻ</h2>
+<p>የፎቶዎች ይዘት ለጊዜው በስልኩ ማህደረ ትውስታ ውስጥ ብቻ ይሰራል፣ ወደ ውጭ አይቀመጥም። መተግበሪያው ጥቂት የውቅረት መረጃን ብቻ በአካባቢያዊ መሸጎጫ ውስጥ ያስቀምጣል፤ በመተግበሪያ ቅንብሮች መሸጎጫውን በማጽዳት ወይም መተግበሪያውን በማስወገድ ሊሰርዙት ይችላሉ። መተግበሪያው ማንኛውንም የተጠቃሚ ውሂብ ወደ ደመና አያመሳስልም ወይም አይሰቅልም።</p>
+<p>የማስታወቂያ መለያና የማስታወቂያ ክስተት ውሂብ በGoogle የሚሰራና የሚከማች ሲሆን፣ የGoogleን የራሱ የውሂብ ማቆያ ደንቦች ይከተላል።</p>
+<h2>5. የሕፃናት ግላዊነት</h2>
+<p>መተግበሪያው ለአጠቃላይ ጎልማሳ ተጠቃሚዎች የታሰበ ሲሆን ከ13 ዓመት በታች ለሆኑ ሕፃናት አይደለም። የዕድሜ ባልደረሱ ልጆች የግል መረጃ ሆን ብለን አንሰበስብም። የልጅ መረጃ እንደሰበሰብን ካሰቡ እባክዎን ያግኙን፤ ተዛማጅ ውሂቡን በፍጥነት እናስወግዳለን።</p>
+<h2>6. የእርስዎ የግላዊነት መቆጣጠሪያዎች</h2>
+<ul>
+<li>መተግበሪያው ፎቶዎችዎን እንዳያገኝ በሥርዓት ቅንብሮች ውስጥ የጋለሪውን ፈቃድ ይሰርዙ፤</li>
+<li>ለግል የተበጁ ማስታወቂያዎችን ለመከልከል የማስታወቂያ መለያውን ያጥፉ/ዳግም ያስጀምሩ፤</li>
+<li>የአካባቢያዊ ውቅረት ውሂብን ለመሰረዝ የመተግበሪያውን መሸጎጫ ያጽዱ ወይም መተግበሪያውን ያስወግዱ።</li>
+</ul>
+<h2>7. የግላዊነት ፖሊሲ ዝመናዎች</h2>
+<p>ይህንን የግላዊነት ፖሊሲ ከጊዜ ወደ ጊዜ ልናዘምነው እንችላለን፤ የተዘመነው ስሪት በዚህ ድረ ገጽ ላይ ይታተማል። ከዝመና በኋላ መተግበሪያውን መጠቀም መቀጠል የተሻሻሉትን ውሎች መቀበልዎን ያመለክታል።</p>
+<h2>8. ዕውቂያ</h2>
+<p>ገንቢ፡ zhangchaochao<br>የመገናኛ ኢሜይል፡ chao86825@gmail.com</p>
+  </article>
+  <article class="lang-content" data-lang="es" lang="es">
+<h1>Política de Privacidad</h1>
+<p><strong>Última actualización: 2 de noviembre de 2026</strong></p>
+<p>Esta Política de Privacidad se aplica a la aplicación Android “Local Photo Album / LocalPhotoPro” (la “Aplicación”), desarrollada y operada por zhangchaochao, correo de contacto: chao86825@gmail.com. De acuerdo con la Política de Datos del Usuario de Google Play, explica qué información recopila la Aplicación, cómo se utiliza y qué controles de privacidad tienes a tu disposición.</p>
+<p>Al instalar y utilizar la Aplicación, reconoces que has leído y aceptas todos los términos de esta Política de Privacidad. Si no estás de acuerdo, desinstala la Aplicación y deja de usarla de inmediato.</p>
+<h2>1. Finalidad de la aplicación y procesamiento local de fotos</h2>
+<p>La Aplicación es una herramienta de gestión local de fotos. Solicita el permiso “Fotos y vídeos” (READ_MEDIA_IMAGES) para leer las imágenes de tu galería y ofrecer funciones como detección de fotos duplicadas, agrupación de fotos similares, organización por cronología y búsqueda local.</p>
+<p><strong>Todo el análisis de fotos se realiza íntegramente en tu dispositivo. Tus fotos nunca se suben a servidores, se envían a la nube ni se comparten con terceros.</strong><br>Puedes revocar el permiso de galería en cualquier momento desde los ajustes del sistema Android; tras la revocación, las funciones relacionadas con la galería dejarán de funcionar y la Aplicación no conservará ningún dato de tus fotos.</p>
+<h2>2. Recopilación de información y publicidad de Google AdMob</h2>
+<p>La Aplicación integra Google AdMob para mostrar anuncios dentro de la app. El SDK de AdMob recopila automáticamente la siguiente información para los servicios publicitarios:</p>
+<ul>
+<li>ID de publicidad de Android (AD-ID)</li>
+<li>Datos de interacción con anuncios: impresiones, clics y señales relacionadas con el rendimiento de los anuncios</li>
+</ul>
+<p>Estos datos se utilizan para la entrega de anuncios, anuncios personalizados, medición del rendimiento y prevención del fraude publicitario.<strong>Todo el tratamiento de datos relacionados con anuncios lo realiza Google AdMob.</strong></p>
+<p>Puedes restablecer o desactivar el ID de publicidad en los ajustes del sistema del teléfono para desactivar los anuncios personalizados. Después de hacerlo, seguirás viendo anuncios no personalizados.</p>
+<p><strong>Aparte de los datos relacionados con anuncios que obtiene automáticamente el SDK de AdMob, la Aplicación por sí misma no recopila, almacena ni sube activamente ninguna otra información personal.</strong><br>La Aplicación no recopila IMEI, Android ID, dirección MAC, ubicación, micrófono, contactos, historial de navegación, registros de ejecución, etc.</p>
+<h2>3. Servicio de terceros: Google AdMob</h2>
+<p>El único SDK de terceros integrado en la Aplicación es Google AdMob (servicio de publicidad). El tratamiento de datos de AdMob sigue la Política de Privacidad oficial de Google, que puedes consultar en:<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></p>
+<h2>4. Almacenamiento de datos</h2>
+<p>El contenido de las fotos se procesa solo temporalmente en la memoria del teléfono y nunca se guarda fuera. La Aplicación conserva únicamente una pequeña cantidad de datos de configuración en la caché local, que puedes borrar desde los ajustes de la Aplicación o desinstalándola. La Aplicación no sincroniza ni sube ningún dato del usuario a la nube.</p>
+<p>El ID de publicidad y los datos de eventos publicitarios son procesados y almacenados por Google según sus propias normas de conservación de datos.</p>
+<h2>5. Privacidad de los menores</h2>
+<p>La Aplicación está dirigida a usuarios adultos en general y no está pensada para menores de 13 años. No recopilamos deliberadamente información personal de menores. Si crees que hemos recopilado datos de un menor, contacta con nosotros y eliminaremos los datos correspondientes de inmediato.</p>
+<h2>6. Tus controles de privacidad</h2>
+<ul>
+<li>Revoca el permiso de galería en los ajustes del sistema para impedir que la Aplicación acceda a tus fotos;</li>
+<li>Desactiva/restablece el ID de publicidad para rechazar los anuncios personalizados;</li>
+<li>Borra la caché de la Aplicación o desinstálala para eliminar los datos de configuración local.</li>
+</ul>
+<h2>7. Actualizaciones de la política</h2>
+<p>Podemos actualizar esta Política de Privacidad de vez en cuando; la versión actualizada se publicará en esta página. Seguir utilizando la Aplicación tras una actualización implica que aceptas los términos actualizados.</p>
+<h2>8. Contacto</h2>
+<p>Desarrollador: zhangchaochao<br>Correo de contacto: chao86825@gmail.com</p>
+  </article>
+  <article class="lang-content" data-lang="ja" lang="ja">
+<h1>プライバシーポリシー</h1>
+<p><strong>最終更新日：2026年11月2日</strong></p>
+<p>本プライバシーポリシーは、zhangchaochao が開発・運営する Android アプリ「Local Photo Album / LocalPhotoPro」（以下「本アプリ」）に適用されます。連絡先メールアドレス：chao86825@gmail.com。本ポリシーは Google Play ユーザーデータ ポリシーに準拠し、本アプリが収集する情報、その使用方法、およびお客様が有するプライバシー管理の権利について説明します。</p>
+<p>本アプリをインストールして使用することで、本プライバシーポリシーの全条項を読み、同意したものとみなされます。本ポリシーに同意できない場合は、直ちに本アプリをアンインストールし、使用を中止してください。</p>
+<h2>1. アプリの用途と写真のローカル処理</h2>
+<p>本アプリはローカル写真管理ツールです。「写真と動画」の権限（READ_MEDIA_IMAGES）を要求し、端末内のアルバム画像を読み取って、重複写真の検出、類似写真の分類、タイムライン整理、ローカル検索などの機能を提供します。</p>
+<p><strong>すべての写真分析はお使いの端末内で完結します。写真がサーバーへアップロード・送信されたり、クラウドにバックアップされたり、第三者と共有されたりすることは一切ありません。</strong><br>アルバム権限は Android のシステム設定からいつでも取り消せます。取り消すとアルバム関連機能は停止し、本アプリがお客様の写真データを保持することはありません。</p>
+<h2>2. 情報の収集と Google AdMob 広告について</h2>
+<p>本アプリはアプリ内広告を表示するため Google AdMob を導入しています。AdMob SDK は広告提供のために以下の情報を自動的に収集します。</p>
+<ul>
+<li>Android 広告識別子（AD-ID）</li>
+<li>広告インタラクションデータ：広告の表示回数、クリック、および広告効果に関するシグナル</li>
+</ul>
+<p>これらのデータは広告の配信、パーソナライズ広告の提供、広告効果の計測、広告不正の防止に使用されます。<strong>広告に関するすべてのデータ処理は Google AdMob が担当します。</strong></p>
+<p>端末のシステム設定で広告識別子をリセットまたは無効にすることで、パーソナライズ広告をオフにできます。オフにした後も、非パーソナライズ広告は引き続き表示されます。</p>
+<p><strong>AdMob SDK が自動的に取得する広告関連データを除き、本アプリ自体がその他の個人情報を能動的に収集・保存・アップロードすることはありません。</strong><br>本アプリは IMEI、Android ID、MAC アドレス、位置情報、マイク、連絡先、閲覧履歴、実行ログなどを収集しません。</p>
+<h2>3. 第三者サービス：Google AdMob</h2>
+<p>本アプリに統合されている唯一のサードパーティ SDK は Google AdMob（広告サービス）です。AdMob のデータ処理は Google の公式プライバシーポリシーに従います。以下からご確認いただけます。<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></p>
+<h2>4. データの保存について</h2>
+<p>写真の内容は端末のメモリ内で一時的に処理されるだけで、外部に保存されることはありません。本アプリは少量の設定情報をローカルキャッシュに保存するのみで、アプリ設定からキャッシュを消去するか、アプリをアンインストールすることで削除できます。本アプリがユーザーデータをクラウドと同期・アップロードすることはありません。</p>
+<p>広告識別子と広告イベントデータは Google により処理・保存され、Google 自身のデータ保持ルールに従います。</p>
+<h2>5. 子どものプライバシー保護</h2>
+<p>本アプリは一般の成人ユーザーを対象としており、13 歳未満の子どもを対象とした製品ではありません。未成年者の個人情報を意図的に収集することはありません。子どもの情報を収集したと思われる場合はご連絡ください。速やかに関連データを削除します。</p>
+<h2>6. お客様のプライバシー管理方法</h2>
+<ul>
+<li>システム設定でアルバム権限を取り消し、本アプリによる写真アクセスを停止する；</li>
+<li>広告識別子を無効化／リセットし、パーソナライズ広告を拒否する；</li>
+<li>アプリのキャッシュを消去、またはアプリをアンインストールしてローカル設定データを削除する。</li>
+</ul>
+<h2>7. プライバシーポリシーの更新</h2>
+<p>本プライバシーポリシーは予告なく更新される場合があり、更新版は本ページに掲載されます。更新後も本アプリの使用を続けた場合、更新後の条項に同意したものとみなされます。</p>
+<h2>8. お問い合わせ</h2>
+<p>開発者：zhangchaochao<br>連絡先メールアドレス：chao86825@gmail.com</p>
+  </article>
+  <article class="lang-content" data-lang="ar" lang="ar">
+<h1>سياسة الخصوصية</h1>
+<p><strong>آخر تحديث: 2 نوفمبر 2026</strong></p>
+<p>تنطبق سياسة الخصوصية هذه على تطبيق Android “Local Photo Album / LocalPhotoPro” (ويُشار إليه فيما بعد بـ«التطبيق»)، الذي طوّره ويشغّله zhangchaochao، البريد الإلكتروني للتواصل: chao86825@gmail.com. تتوافق هذه السياسة مع سياسة بيانات المستخدمين في Google Play، وتوضّح المعلومات التي يجمعها التطبيق وكيفية استخدامها وأدوات التحكم بالخصوصية المتاحة لك.</p>
+<p>بتثبيت التطبيق واستخدامه، فإنك تُقر بأنك قد قرأت جميع بنود سياسة الخصوصية هذه ووافقت عليها. إذا كنت لا توافق على هذه السياسة، فيُرجى إلغاء تثبيت التطبيق والتوقف عن استخدامه فورًا.</p>
+<h2>1. الغرض من التطبيق والمعالجة المحلية للصور</h2>
+<p>التطبيق أداة لإدارة الصور محليًا. يطلب إذن «الصور والفيديو» (READ_MEDIA_IMAGES) لقراءة الصور في معرضك وتوفير ميزات مثل اكتشاف الصور المكرّرة وتجميع الصور المتشابهة وترتيب المخطط الزمني والبحث المحلي.</p>
+<p><strong>تتم جميع عمليات تحليل الصور بالكامل على هاتفك. لا يتم رفع صورك أو إرسالها إلى أي خادم أو نسخها احتياطيًا إلى السحابة أو مشاركتها مع أي طرف ثالث.</strong><br>يمكنك سحب إذن المعرض في أي وقت من إعدادات نظام Android؛ وبعد السحب تتوقف الميزات المرتبطة بالمعرض عن العمل ولا يحتفظ التطبيق بأي بيانات لصورك.</p>
+<h2>2. جمع المعلومات وإعلانات Google AdMob</h2>
+<p>يستخدم التطبيق Google AdMob لعرض الإعلانات داخل التطبيق. تجمع حزمة AdMob SDK تلقائيًا المعلومات التالية لخدمة الإعلانات:</p>
+<ul>
+<li>معرّف إعلانات Android (AD-ID)</li>
+<li>بيانات التفاعل مع الإعلانات: مرّات الظهور والنقرات والإشارات المتعلقة بأداء الإعلانات</li>
+</ul>
+<p>تُستخدم هذه البيانات لعرض الإعلانات والإعلانات المخصّصة وقياس أداء الإعلانات ومكافحة الاحتيال الإعلاني.<strong>تتم جميع عمليات معالجة البيانات المتعلقة بالإعلانات بواسطة Google AdMob.</strong></p>
+<p>يمكنك إعادة تعيين معرّف الإعلانات أو إيقافه من إعدادات نظام الهاتف لإيقاف الإعلانات المخصّصة. بعد ذلك ستستمر في رؤية إعلانات غير مخصّصة.</p>
+<p><strong>بخلاف البيانات المتعلقة بالإعلانات التي تحصل عليها حزمة AdMob SDK تلقائيًا، لا يجمع التطبيق نفسه ولا يخزّن ولا يرفع بشكل نشط أي معلومات شخصية أخرى.</strong><br>لا يجمع التطبيق IMEI أو Android ID أو عنوان MAC أو الموقع أو الميكروفون أو جهات الاتصال أو سجل التصفّح أو سجلات التشغيل وغيرها.</p>
+<h2>3. خدمة الطرف الثالث: Google AdMob</h2>
+<p>حزمة SDK الوحيدة من طرف ثالث المدمجة في التطبيق هي Google AdMob (خدمة الإعلانات). تخضع معالجة البيانات في AdMob لسياسة الخصوصية الرسمية من Google، ويمكنك الاطّلاع عليها هنا:<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></p>
+<h2>4. تخزين البيانات</h2>
+<p>تُعالَج محتويات الصور مؤقتًا في ذاكرة الهاتف فقط ولا تُحفظ خارجيًا. يحتفظ التطبيق بقدر ضئيل فقط من بيانات الإعدادات في الذاكرة المؤقتة المحلية، ويمكنك حذفها عبر إعدادات التطبيق أو بإلغاء تثبيته. لا يزامن التطبيق أي بيانات للمستخدم مع السحابة ولا يرفعها إليها.</p>
+<p>تُعالَج بيانات معرّف الإعلانات وأحداث الإعلانات وتُخزَّن بواسطة Google وفق قواعد الاحتفاظ بالبيانات الخاصة بـ Google نفسها.</p>
+<h2>5. خصوصية الأطفال</h2>
+<p>التطبيق موجّه للمستخدمين البالغين عمومًا وليس موجّهًا للأطفال دون سن 13 عامًا. لا نجمع عن قصد معلومات شخصية من القاصرين. إذا كنت تعتقد أننا جمعنا معلومات طفل، فيُرجى التواصل معنا وسنحذف البيانات ذات الصلة على الفور.</p>
+<h2>6. أدوات التحكم بالخصوصية</h2>
+<ul>
+<li>اسحب إذن المعرض من إعدادات النظام لمنع التطبيق من الوصول إلى صورك؛</li>
+<li>أوقف/أعد تعيين معرّف الإعلانات لرفض الإعلانات المخصّصة؛</li>
+<li>امسح الذاكرة المؤقتة للتطبيق أو ألغِ تثبيته لحذف بيانات الإعدادات المحلية.</li>
+</ul>
+<h2>7. تحديثات سياسة الخصوصية</h2>
+<p>قد نحدّث سياسة الخصوصية هذه من حين لآخر، وسيُنشر الإصدار المحدَّث على هذه الصفحة. استمرار استخدام التطبيق بعد التحديث يعني قبولك للبنود المعدَّلة.</p>
+<h2>8. التواصل</h2>
+<p>المطوّر: zhangchaochao<br>البريد الإلكتروني للتواصل: chao86825@gmail.com</p>
+  </article>
+  <article class="lang-content" data-lang="vi" lang="vi">
+<h1>Chính sách Quyền riêng tư</h1>
+<p><strong>Cập nhật lần cuối: ngày 2 tháng 11 năm 2026</strong></p>
+<p>Chính sách Quyền riêng tư này áp dụng cho ứng dụng Android “Local Photo Album / LocalPhotoPro” (sau đây gọi là “Ứng dụng”), do zhangchaochao phát triển và vận hành, email liên hệ: chao86825@gmail.com. Chính sách tuân thủ Chính sách Dữ liệu Người dùng của Google Play, giải thích những thông tin Ứng dụng thu thập, cách sử dụng và các quyền kiểm soát quyền riêng tư mà bạn có.</p>
+<p>Việc cài đặt và sử dụng Ứng dụng đồng nghĩa với việc bạn đã đọc và đồng ý với toàn bộ điều khoản của Chính sách này. Nếu không đồng ý, vui lòng gỡ cài đặt và ngừng sử dụng Ứng dụng ngay lập tức.</p>
+<h2>1. Mục đích Ứng dụng và xử lý ảnh trên thiết bị</h2>
+<p>Ứng dụng là công cụ quản lý ảnh cục bộ, yêu cầu quyền “Ảnh và video” (READ_MEDIA_IMAGES) để đọc hình ảnh trong thư viện của bạn, nhằm phát hiện ảnh trùng lặp, nhóm ảnh tương tự, sắp xếp theo dòng thời gian và tìm kiếm cục bộ.</p>
+<p><strong>Mọi phân tích ảnh đều được thực hiện hoàn toàn trên điện thoại của bạn. Ảnh của bạn không bao giờ được tải lên, gửi tới bất kỳ máy chủ nào, sao lưu lên đám mây, hay chia sẻ với bất kỳ bên thứ ba nào.</strong><br>Bạn có thể thu hồi quyền truy cập thư viện bất kỳ lúc nào trong Cài đặt hệ thống Android; sau khi thu hồi, các tính năng liên quan đến thư viện sẽ ngừng hoạt động và Ứng dụng không lưu giữ dữ liệu ảnh của bạn.</p>
+<h2>2. Thu thập thông tin và quảng cáo Google AdMob</h2>
+<p>Ứng dụng tích hợp Google AdMob để hiển thị quảng cáo trong ứng dụng. AdMob SDK tự động thu thập các thông tin sau để phục vụ quảng cáo:</p>
+<ul>
+<li>Mã định danh quảng cáo Android (AD-ID)</li>
+<li>Dữ liệu tương tác quảng cáo: lượt hiển thị, lượt nhấp và các tín hiệu liên quan đến hiệu quả quảng cáo</li>
+</ul>
+<p>Các dữ liệu này được dùng để phân phối quảng cáo, cung cấp quảng cáo cá nhân hóa, đo lường hiệu quả và chống gian lận quảng cáo.<strong>Mọi hoạt động xử lý dữ liệu liên quan đến quảng cáo do Google AdMob chịu trách nhiệm.</strong></p>
+<p>Bạn có thể đặt lại hoặc tắt mã định danh quảng cáo trong Cài đặt hệ thống của điện thoại để tắt quảng cáo cá nhân hóa. Sau khi tắt, bạn vẫn sẽ thấy quảng cáo không cá nhân hóa.</p>
+<p><strong>Ngoài các dữ liệu liên quan đến quảng cáo mà AdMob SDK tự động thu thập, bản thân Ứng dụng không chủ động thu thập, lưu trữ hay tải lên bất kỳ thông tin cá nhân nào khác.</strong><br>Ứng dụng không thu thập IMEI, Android ID, địa chỉ MAC, vị trí, micrô, danh bạ, lịch sử duyệt web, nhật ký chạy ứng dụng, v.v.</p>
+<h2>3. Dịch vụ bên thứ ba: Google AdMob</h2>
+<p>SDK bên thứ ba duy nhất được tích hợp trong Ứng dụng là Google AdMob (dịch vụ quảng cáo). Việc xử lý dữ liệu của AdMob tuân theo Chính sách Quyền riêng tư chính thức của Google, bạn có thể xem tại:<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></p>
+<h2>4. Lưu trữ dữ liệu</h2>
+<p>Nội dung ảnh chỉ được xử lý tạm thời trong bộ nhớ điện thoại, không lưu ra bên ngoài. Ứng dụng chỉ lưu một lượng nhỏ thông tin cấu hình trong bộ nhớ đệm cục bộ; bạn có thể xóa qua Cài đặt Ứng dụng hoặc bằng cách gỡ cài đặt. Ứng dụng không đồng bộ hay tải bất kỳ dữ liệu người dùng nào lên đám mây.</p>
+<p>Mã định danh quảng cáo và dữ liệu sự kiện quảng cáo do Google xử lý và lưu trữ, tuân theo quy tắc lưu giữ dữ liệu riêng của Google.</p>
+<h2>5. Bảo vệ quyền riêng tư của trẻ em</h2>
+<p>Ứng dụng dành cho người dùng trưởng thành nói chung, không hướng tới trẻ em dưới 13 tuổi. Chúng tôi không cố ý thu thập thông tin cá nhân của trẻ vị thành niên. Nếu bạn cho rằng chúng tôi đã thu thập thông tin của trẻ, vui lòng liên hệ để chúng tôi kịp thời xóa dữ liệu liên quan.</p>
+<h2>6. Cách bạn kiểm soát quyền riêng tư</h2>
+<ul>
+<li>Thu hồi quyền thư viện trong Cài đặt hệ thống để ngăn Ứng dụng truy cập ảnh;</li>
+<li>Tắt/đặt lại mã định danh quảng cáo để từ chối quảng cáo cá nhân hóa;</li>
+<li>Xóa bộ nhớ đệm hoặc gỡ cài đặt Ứng dụng để xóa dữ liệu cấu hình cục bộ.</li>
+</ul>
+<h2>7. Cập nhật Chính sách Quyền riêng tư</h2>
+<p>Chúng tôi có thể cập nhật Chính sách này định kỳ; phiên bản mới sẽ được đăng trên trang web này. Việc tiếp tục sử dụng Ứng dụng sau khi cập nhật đồng nghĩa với việc bạn chấp nhận các điều khoản đã cập nhật.</p>
+<h2>8. Thông tin liên hệ</h2>
+<p>Nhà phát triển: zhangchaochao<br>Email liên hệ: chao86825@gmail.com</p>
+  </article>
+  <article class="lang-content" data-lang="fr" lang="fr">
+<h1>Politique de confidentialité</h1>
+<p><strong>Dernière mise à jour : 2 novembre 2026</strong></p>
+<p>La présente Politique de confidentialité s&#x27;applique à l&#x27;application Android “Local Photo Album / LocalPhotoPro” (l&#x27;« Application »), développée et exploitée par zhangchaochao, e-mail de contact : chao86825@gmail.com. Conforme aux Règles relatives aux données utilisateur de Google Play, elle explique quelles informations l&#x27;Application collecte, comment elles sont utilisées et quels contrôles de confidentialité vous disposez.</p>
+<p>En installant et en utilisant l&#x27;Application, vous reconnaissez avoir lu et accepté l&#x27;intégralité des termes de la présente Politique de confidentialité. Si vous n&#x27;êtes pas d&#x27;accord, veuillez immédiatement désinstaller l&#x27;Application et cesser de l&#x27;utiliser.</p>
+<h2>1. Objet de l&#x27;application et traitement local des photos</h2>
+<p>L&#x27;Application est un outil de gestion locale des photos. Elle demande l&#x27;autorisation « Photos et vidéos » (READ_MEDIA_IMAGES) pour lire les images de votre galerie et fournir des fonctionnalités telles que la détection de photos en double, le regroupement de photos similaires, l&#x27;organisation de la chronologie et la recherche locale.</p>
+<p><strong>Toute l&#x27;analyse des photos est effectuée intégralement sur votre appareil. Vos photos ne sont jamais téléversées, envoyées à un serveur, sauvegardées dans le cloud ni partagées avec un tiers.</strong><br>Vous pouvez révoquer l&#x27;autorisation d&#x27;accès à la galerie à tout moment dans les paramètres système d&#x27;Android ; après révocation, les fonctionnalités liées à la galerie cesseront de fonctionner et l&#x27;Application ne conservera aucune donnée de vos photos.</p>
+<h2>2. Collecte d&#x27;informations et publicité Google AdMob</h2>
+<p>L&#x27;Application intègre Google AdMob pour afficher des publicités dans l&#x27;application. Le SDK AdMob collecte automatiquement les informations suivantes pour les services publicitaires :</p>
+<ul>
+<li>Identifiant publicitaire Android (AD-ID)</li>
+<li>Données d&#x27;interaction publicitaire : impressions, clics et signaux liés aux performances des annonces</li>
+</ul>
+<p>Ces données servent à la diffusion des annonces, à la publicité personnalisée, à la mesure des performances et à la lutte contre la fraude publicitaire.<strong>Tout le traitement des données liées aux publicités est assuré par Google AdMob.</strong></p>
+<p>Vous pouvez réinitialiser ou désactiver l&#x27;identifiant publicitaire dans les paramètres système du téléphone pour désactiver les publicités personnalisées. Vous continuerez ensuite à voir des publicités non personnalisées.</p>
+<p><strong>Hormis les données liées aux publicités obtenues automatiquement par le SDK AdMob, l&#x27;Application elle-même ne collecte, ne stocke ni ne téléverse activement aucune autre information personnelle.</strong><br>L&#x27;Application ne collecte pas l&#x27;IMEI, l&#x27;Android ID, l&#x27;adresse MAC, la localisation, le microphone, les contacts, l&#x27;historique de navigation, les journaux d&#x27;exécution, etc.</p>
+<h2>3. Service tiers : Google AdMob</h2>
+<p>Le seul SDK tiers intégré à l&#x27;Application est Google AdMob (service publicitaire). Le traitement des données par AdMob suit la Politique de confidentialité officielle de Google, que vous pouvez consulter ici :<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></p>
+<h2>4. Stockage des données</h2>
+<p>Le contenu des photos n&#x27;est traité que temporairement dans la mémoire du téléphone et n&#x27;est jamais enregistré à l&#x27;extérieur. L&#x27;Application ne conserve qu&#x27;une petite quantité de données de configuration dans le cache local, que vous pouvez effacer via les paramètres de l&#x27;Application ou en la désinstallant. L&#x27;Application ne synchronise ni ne téléverse aucune donnée utilisateur vers le cloud.</p>
+<p>L&#x27;identifiant publicitaire et les données d&#x27;événements publicitaires sont traités et stockés par Google, conformément à ses propres règles de conservation des données.</p>
+<h2>5. Confidentialité des enfants</h2>
+<p>L&#x27;Application s&#x27;adresse aux utilisateurs adultes en général et n&#x27;est pas destinée aux enfants de moins de 13 ans. Nous ne collectons pas sciemment d&#x27;informations personnelles sur les mineurs. Si vous pensez que nous avons collecté des données concernant un enfant, contactez-nous et nous supprimerons rapidement les données concernées.</p>
+<h2>6. Vos contrôles de confidentialité</h2>
+<ul>
+<li>Révoquez l&#x27;autorisation d&#x27;accès à la galerie dans les paramètres système pour empêcher l&#x27;Application d&#x27;accéder à vos photos ;</li>
+<li>Désactivez/réinitialisez l&#x27;identifiant publicitaire pour refuser les publicités personnalisées ;</li>
+<li>Effacez le cache de l&#x27;Application ou désinstallez-la pour supprimer les données de configuration locales.</li>
+</ul>
+<h2>7. Mises à jour de la politique</h2>
+<p>Nous pouvons mettre à jour la présente Politique de confidentialité de temps à autre ; la version mise à jour sera publiée sur cette page. Continuer à utiliser l&#x27;Application après une mise à jour signifie que vous acceptez les termes révisés.</p>
+<h2>8. Contact</h2>
+<p>Développeur : zhangchaochao<br>E-mail de contact : chao86825@gmail.com</p>
+  </article>
+  <article class="lang-content" data-lang="fa" lang="fa">
+<h1>سیاست حفظ حریم خصوصی</h1>
+<p><strong>آخرین بهروزرسانی: ۲ نوامبر ۲۰۲۶</strong></p>
+<p>این سیاست حفظ حریم خصوصی در مورد برنامهٔ Android «Local Photo Album / LocalPhotoPro» (که از این پس «برنامه» نامیده میشود) اعمال میشود که توسط zhangchaochao توسعه و اداره میشود؛ ایمیل تماس: chao86825@gmail.com. این سیاست مطابق با خطمشی دادههای کاربر Google Play است و توضیح میدهد که برنامه چه اطلاعاتی جمعآوری میکند، چگونه استفاده میشوند و چه کنترلهای حریم خصوصی در اختیار شما است.</p>
+<p>با نصب و استفاده از برنامه، میپذیرید که تمام مفاد این سیاست حفظ حریم خصوصی را خوانده و با آنها موافقهاید. اگر موافق نیستید، لطفاً فوراً برنامه را حذف نصب کرده و استفاده از آن را متوقف کنید.</p>
+<h2>۱. هدف برنامه و پردازش محلی عکسها</h2>
+<p>برنامه ابزاری برای مدیریت محلی عکسها است. برای خواندن تصاویر گالری شما مجوز «عکسها و ویدئوها» (READ_MEDIA_IMAGES) را درخواست میکند تا قابلیتهایی مانند تشخیص عکسهای تکراری، گروهبندی عکسهای مشابه، مرتبسازی خط زمانی و جستجوی محلی را فراهم کند.</p>
+<p><strong>تمام تحلیل عکسها کاملاً روی دستگاه شما انجام میشود. عکسهای شما هرگز به سروری بارگذاری یا ارسال نمیشوند، در ابر پشتیبانگیری نمیشوند و با هیچ شخص ثالثی به اشتراک گذاشته نمیشوند.</strong><br>میتوانید هر زمان در تنظیمات سیستم Android مجوز گالری را لغو کنید؛ پس از لغو، قابلیتهای مرتبط با گالری از کار میافتند و برنامه هیچ دادهای از عکسهای شما را نگه نمیدارد.</p>
+<h2>۲. جمعآوری اطلاعات و تبلیغات Google AdMob</h2>
+<p>برنامه برای نمایش تبلیغات درونبرنامهای از Google AdMob استفاده میکند. SDK ادوب بهطور خودکار اطلاعات زیر را برای خدمات تبلیغاتی جمعآوری میکند:</p>
+<ul>
+<li>شناسهٔ تبلیغاتی Android (AD-ID)</li>
+<li>دادههای تعامل با تبلیغات: نمایش تبلیغ، کلیکها و سیگنالهای مربوط به عملکرد تبلیغات</li>
+</ul>
+<p>این دادهها برای تحویل تبلیغات، تبلیغات شخصیسازیشده، سنجش عملکرد و جلوگیری از تقلب تبلیغاتی استفاده میشوند.<strong>تمام پردازش دادههای مربوط به تبلیغات توسط Google AdMob انجام میشود.</strong></p>
+<p>میتوانید شناسهٔ تبلیغاتی را در تنظیمات سیستم تلفن بازنشانی یا غیرفعال کنید تا تبلیغات شخصیسازیشده خاموش شود. پس از آن همچنان تبلیغات غیرشخصیسازیشده خواهید دید.</p>
+<p><strong>بهجز دادههای مربوط به تبلیغات که SDK ادوب بهطور خودکار دریافت میکند، خود برنامه هیچ اطلاعات شخصی دیگری را بهطور فعال جمعآوری، ذخیره یا بارگذاری نمیکند.</strong><br>برنامه IMEI، Android ID، آدرس MAC، موقعیت مکانی، میکروفون، مخاطبان، سابقهٔ مرور، گزارشهای اجرا و نظایر آن را جمعآوری نمیکند.</p>
+<h2>۳. سرویس شخص ثالث: Google AdMob</h2>
+<p>تنها SDK شخص ثالث یکپارچهشده در برنامه Google AdMob (سرویس تبلیغاتی) است. پردازش دادههای AdMob تابع سیاست حفظ حریم خصوصی رسمی Google است که میتوانید آن را اینجا ببینید:<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></p>
+<h2>۴. ذخیرهسازی دادهها</h2>
+<p>محتوای عکسها فقط بهطور موقت در حافظهٔ تلفن پردازش میشود و بیرون از آن ذخیره نمیشود. برنامه تنها مقدار کمی اطلاعات پیکربندی را در حافظهٔ پنهان محلی نگه میدارد که میتوانید از طریق تنظیمات برنامه یا با حذف نصب، آن را پاک کنید. برنامه هیچ دادهای از کاربر را با ابر همگامسازی یا به آن بارگذاری نمیکند.</p>
+<p>شناسهٔ تبلیغاتی و دادههای رویدادهای تبلیغاتی توسط Google پردازش و ذخیره میشوند و تابع قواعد نگهداری دادههای خود Google هستند.</p>
+<h2>۵. حریم خصوصی کودکان</h2>
+<p>برنامه برای کاربران بزرگسال عادی طراحی شده و مخاطب آن کودکان زیر ۱۳ سال نیستند. ما آگاهانه اطلاعات شخصی افراد زیر سن قانونی را جمعآوری نمیکنیم. اگر فکر میکنید اطلاعات کودکی را جمعآوری کردهایم، لطفاً با ما تماس بگیرید تا دادههای مربوطه را سریعاً حذف کنیم.</p>
+<h2>۶. کنترلهای حریم خصوصی شما</h2>
+<ul>
+<li>مجوز گالری را در تنظیمات سیستم لغو کنید تا برنامه به عکسهای شما دسترسی نداشته باشد؛</li>
+<li>شناسهٔ تبلیغاتی را غیرفعال/بازنشانی کنید تا تبلیغات شخصیسازیشده را رد کنید؛</li>
+<li>حافظهٔ پنهان برنامه را پاک کنید یا برنامه را حذف نصب کنید تا دادههای پیکربندی محلی حذف شوند.</li>
+</ul>
+<h2>۷. بهروزرسانی سیاست حفظ حریم خصوصی</h2>
+<p>ممکن است این سیاست حفظ حریم خصوصی را گهگاه بهروزرسانی کنیم؛ نسخهٔ بهروزشده در همین صفحه منتشر خواهد شد. ادامهٔ استفاده از برنامه پس از بهروزرسانی بهمعنای پذیرش مفاد اصلاحشده است.</p>
+<h2>۸. تماس</h2>
+<p>توسعهدهنده: zhangchaochao<br>ایمیل تماس: chao86825@gmail.com</p>
+  </article>
+  <article class="lang-content" data-lang="tr" lang="tr">
+<h1>Gizlilik Politikası</h1>
+<p><strong>Son güncelleme: 2 Kasım 2026</strong></p>
+<p>Bu Gizlilik Politikası, zhangchaochao tarafından geliştirilen ve işletilen “Local Photo Album / LocalPhotoPro” adlı Android uygulaması (“Uygulama”) için geçerlidir; iletişim e-postası: chao86825@gmail.com. Google Play Kullanıcı Verileri Politikası ile uyumlu olan bu politika, Uygulamanın hangi bilgileri topladığını, bunların nasıl kullanıldığını ve sahip olduğunuz gizlilik kontrollerini açıklar.</p>
+<p>Uygulamayı yükleyip kullanarak bu Gizlilik Politikasının tüm koşullarını okuduğunuzu ve kabul ettiğinizi beyan etmiş olursunuz. Kabul etmiyorsanız lütfen Uygulamayı hemen kaldırın ve kullanmayı bırakın.</p>
+<h2>1. Uygulamanın Amacı ve Fotoğrafların Yerel İşlenmesi</h2>
+<p>Uygulama, yerel fotoğraf yönetimi aracıdır. Galerinizdeki görüntüleri okumak için “Fotoğraflar ve videolar” iznini (READ_MEDIA_IMAGES) ister; böylece yinelenen fotoğrafları algılama, benzer fotoğrafları gruplama, zaman çizelgesi düzenleme ve yerel arama gibi özellikler sunar.</p>
+<p><strong>Tüm fotoğraf analizi tamamen cihazınızda gerçekleştirilir. Fotoğraflarınız hiçbir zaman bir sunucuya yüklenmez, buluta yedeklenmez veya üçüncü taraflarla paylaşılmaz.</strong><br>Galeri iznini Android sistem ayarlarından dilediğiniz zaman geri alabilirsiniz; izin geri alındıktan sonra galeriyle ilgili özellikler çalışmayı durdurur ve Uygulama fotoğraf verilerinizi saklamaz.</p>
+<h2>2. Bilgi Toplama ve Google AdMob Reklamları</h2>
+<p>Uygulama, uygulama içi reklamları göstermek için Google AdMob&#x27;u entegre eder. AdMob SDK, reklam hizmetleri için aşağıdaki bilgileri otomatik olarak toplar:</p>
+<ul>
+<li>Android Reklam Kimliği (AD-ID)</li>
+<li>Reklam etkileşim verileri: reklam gösterimleri, tıklamalar ve reklam performansıyla ilgili sinyaller</li>
+</ul>
+<p>Bu veriler reklam sunumu, kişiselleştirilmiş reklamlar, reklam performansı ölçümü ve reklam sahtekârlığının önlenmesi için kullanılır.<strong>Reklamlarla ilgili tüm veri işleme Google AdMob tarafından yapılır.</strong></p>
+<p>Kişiselleştirilmiş reklamları kapatmak için telefonunuzun sistem ayarlarından Reklam Kimliğini sıfırlayabilir veya devre dışı bırakabilirsiniz. Bundan sonra kişiselleştirilmemiş reklamlar görmeye devam edersiniz.</p>
+<p><strong>AdMob SDK&#x27;nın otomatik olarak elde ettiği reklamla ilgili veriler dışında, Uygulamanın kendisi başka hiçbir kişisel bilgiyi etkin biçimde toplamaz, saklamaz veya yüklemez.</strong><br>Uygulama IMEI, Android ID, MAC adresi, konum, mikrofon, kişiler, tarama geçmişi, çalışma günlükleri vb. bilgileri toplamaz.</p>
+<h2>3. Üçüncü Taraf Hizmeti: Google AdMob</h2>
+<p>Uygulamaya entegre edilen tek üçüncü taraf SDK, Google AdMob&#x27;dur (reklam hizmeti). AdMob&#x27;un veri işlemesi Google&#x27;ın resmi Gizlilik Politikasına uyar; buradan inceleyebilirsiniz:<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></p>
+<h2>4. Veri Saklama</h2>
+<p>Fotoğraf içeriği yalnızca telefonun belleğinde geçici olarak işlenir ve dışarı kaydedilmez. Uygulama yalnızca az miktarda yapılandırma bilgisini yerel önbellekte tutar; bunu Uygulama ayarlarından önbelleği temizleyerek veya Uygulamayı kaldırarak silebilirsiniz. Uygulama hiçbir kullanıcı verisini bulutla eşitlemez veya buluta yüklemez.</p>
+<p>Reklam Kimliği ve reklam etkinliği verileri Google tarafından işlenir ve saklanır; Google&#x27;ın kendi veri saklama kurallarına tabidir.</p>
+<h2>5. Çocukların Gizliliği</h2>
+<p>Uygulama genel yetişkin kullanıcılara yöneliktir ve 13 yaşından küçük çocuklara yönelik değildir. Reşit olmayanların kişisel bilgilerini kasten toplamıyoruz. Bir çocuğa ait bilgi topladığımızı düşünüyorsanız lütfen bizimle iletişime geçin; ilgili verileri derhal sileceğiz.</p>
+<h2>6. Gizlilik Kontrolleriniz</h2>
+<ul>
+<li>Uygulamanın fotoğraflarınıza erişmesini engellemek için sistem ayarlarından galeri iznini geri alın;</li>
+<li>Kişiselleştirilmiş reklamları reddetmek için Reklam Kimliğini devre dışı bırakın/sıfırlayın;</li>
+<li>Yerel yapılandırma verilerini silmek için Uygulama önbelleğini temizleyin veya Uygulamayı kaldırın.</li>
+</ul>
+<h2>7. Politika Güncellemeleri</h2>
+<p>Bu Gizlilik Politikasını zaman zaman güncelleyebiliriz; güncellenen sürüm bu sayfada yayımlanacaktır. Güncellemeden sonra Uygulamayı kullanmaya devam etmek, güncellenen koşulları kabul ettiğiniz anlamına gelir.</p>
+<h2>8. İletişim</h2>
+<p>Geliştirici: zhangchaochao<br>İletişim e-postası: chao86825@gmail.com</p>
+  </article>
+  <article class="lang-content" data-lang="de" lang="de">
+<h1>Datenschutzerklärung</h1>
+<p><strong>Zuletzt aktualisiert: 2. November 2026</strong></p>
+<p>Diese Datenschutzerklärung gilt für die Android-App “Local Photo Album / LocalPhotoPro” (im Folgenden „die App“), die von zhangchaochao entwickelt und betrieben wird; Kontakt-E-Mail: chao86825@gmail.com. Sie entspricht den Google Play-Richtlinien zu Nutzerdaten und erläutert, welche Informationen die App erhebt, wie sie verwendet werden und welche Datenschutzkontrollen Ihnen zur Verfügung stehen.</p>
+<p>Mit der Installation und Nutzung der App bestätigen Sie, dass Sie alle Bestimmungen dieser Datenschutzerklärung gelesen haben und ihnen zustimmen. Wenn Sie nicht zustimmen, deinstallieren Sie die App bitte sofort und beenden Sie die Nutzung.</p>
+<h2>1. Zweck der App und lokale Fotoverarbeitung</h2>
+<p>Die App ist ein Werkzeug zur lokalen Fotoverwaltung. Sie fordert die Berechtigung „Fotos und Videos“ (READ_MEDIA_IMAGES) an, um die Bilder in Ihrer Galerie zu lesen und Funktionen wie die Erkennung doppelter Fotos, die Gruppierung ähnlicher Fotos, die chronologische Sortierung und die lokale Suche bereitzustellen.</p>
+<p><strong>Die gesamte Fotoanalyse erfolgt vollständig auf Ihrem Gerät. Ihre Fotos werden niemals auf einen Server hochgeladen, in die Cloud gesichert oder an Dritte weitergegeben.</strong><br>Sie können die Galerieberechtigung jederzeit in den Android-Systemeinstellungen widerrufen; nach dem Widerruf funktionieren die galeriebezogenen Funktionen nicht mehr und die App speichert keine Ihrer Fotodaten.</p>
+<h2>2. Datenerhebung und Google AdMob-Werbung</h2>
+<p>Die App integriert Google AdMob zur Anzeige von In-App-Werbung. Das AdMob SDK erhebt automatisch die folgenden Daten für Werbedienste:</p>
+<ul>
+<li>Android-Werbe-ID (AD-ID)</li>
+<li>Werbeinteraktionsdaten: Anzeigenimpressionen, Klicks und Signale zur Anzeigenleistung</li>
+</ul>
+<p>Diese Daten werden für die Anzeigenauslieferung, personalisierte Werbung, die Messung der Anzeigenleistung und die Bekämpfung von Werbebetrug verwendet.<strong>Die gesamte Verarbeitung werbebezogener Daten erfolgt durch Google AdMob.</strong></p>
+<p>Sie können die Werbe-ID in den Systemeinstellungen des Telefons zurücksetzen oder deaktivieren, um personalisierte Werbung abzuschalten. Danach sehen Sie weiterhin nicht personalisierte Werbung.</p>
+<p><strong>Abgesehen von den werbebezogenen Daten, die das AdMob SDK automatisch erhebt, erhebt, speichert oder lädt die App selbst aktiv keine weiteren personenbezogenen Daten.</strong><br>Die App erhebt keine IMEI, Android ID, MAC-Adresse, Standort-, Mikrofon-, Kontakt-, Browserverlauf- oder Laufzeitprotokolldaten usw.</p>
+<h2>3. Drittanbieterdienst: Google AdMob</h2>
+<p>Das einzige in die App integrierte Drittanbieter-SDK ist Google AdMob (Werbedienst). Die Datenverarbeitung durch AdMob folgt der offiziellen Datenschutzerklärung von Google, die Sie hier einsehen können:<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></p>
+<h2>4. Datenspeicherung</h2>
+<p>Fotoinhalte werden nur vorübergehend im Speicher des Telefons verarbeitet und nicht extern gespeichert. Die App bewahrt lediglich eine geringe Menge an Konfigurationsdaten im lokalen Cache auf, die Sie über die App-Einstellungen oder durch Deinstallation der App löschen können. Die App synchronisiert oder lädt keinerlei Nutzerdaten in die Cloud.</p>
+<p>Die Werbe-ID und Werbeereignisdaten werden von Google verarbeitet und gespeichert und unterliegen den eigenen Datenaufbewahrungsregeln von Google.</p>
+<h2>5. Datenschutz für Kinder</h2>
+<p>Die App richtet sich an allgemeine erwachsene Nutzer und ist nicht an Kinder unter 13 Jahren gerichtet. Wir erheben nicht wissentlich personenbezogene Daten Minderjähriger. Wenn Sie glauben, dass wir Daten eines Kindes erhoben haben, kontaktieren Sie uns bitte; wir löschen die betreffenden Daten umgehend.</p>
+<h2>6. Ihre Datenschutzkontrollen</h2>
+<ul>
+<li>Widerrufen Sie die Galerieberechtigung in den Systemeinstellungen, um den Zugriff der App auf Ihre Fotos zu beenden;</li>
+<li>Deaktivieren/setzen Sie die Werbe-ID zurück, um personalisierte Werbung abzulehnen;</li>
+<li>Leeren Sie den App-Cache oder deinstallieren Sie die App, um lokale Konfigurationsdaten zu löschen.</li>
+</ul>
+<h2>7. Änderungen dieser Erklärung</h2>
+<p>Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren; die aktualisierte Fassung wird auf dieser Seite veröffentlicht. Die weitere Nutzung der App nach einer Aktualisierung bedeutet, dass Sie die geänderten Bestimmungen akzeptieren.</p>
+<h2>8. Kontakt</h2>
+<p>Entwickler: zhangchaochao<br>Kontakt-E-Mail: chao86825@gmail.com</p>
+  </article>
+  <article class="lang-content" data-lang="th" lang="th">
+<h1>นโยบายความเป็นส่วนตัว</h1>
+<p><strong>อัปเดตล่าสุด: 2 พฤศจิกายน 2026</strong></p>
+<p>นโยบายความเป็นส่วนตัวนี้ใช้กับแอป Android “Local Photo Album / LocalPhotoPro” (ต่อไปเรียกว่า “แอป”) ซึ่งพัฒนาและดำเนินการโดย zhangchaochao อีเมลติดต่อ: chao86825@gmail.com นโยบายนี้สอดคล้องกับนโยบายข้อมูลผู้ใช้ของ Google Play และอธิบายว่าแอปเก็บรวบรวมข้อมูลใดบ้าง ใช้ข้อมูลอย่างไร และคุณมีการควบคุมความเป็นส่วนตัวแบบใดบ้าง</p>
+<p>การติดตั้งและใช้งานแอปถือว่าคุณได้อ่านและยอมรับข้อกำหนดทั้งหมดของนโยบายความเป็นส่วนตัวนี้แล้ว หากไม่เห็นด้วย โปรดถอนการติดตั้งและหยุดใช้งานแอปทันที</p>
+<h2>1. วัตถุประสงค์ของแอปและการประมวลผลภาพบนเครื่อง</h2>
+<p>แอปนี้เป็นเครื่องมือจัดการภาพถ่ายบนเครื่อง โดยขอสิทธิ์ “รูปภาพและวิดีโอ” (READ_MEDIA_IMAGES) เพื่ออ่านภาพในแกลเลอรีของคุณ และให้ฟีเจอร์ต่างๆ เช่น ตรวจจับภาพซ้ำ จัดกลุ่มภาพที่คล้ายกัน จัดเรียงไทม์ไลน์ และค้นหาบนเครื่อง</p>
+<p><strong>การวิเคราะห์ภาพทั้งหมดดำเนินการบนโทรศัพท์ของคุณเท่านั้น ภาพถ่ายของคุณจะไม่ถูกอัปโหลด ส่งไปยังเซิร์ฟเวอร์ใดๆ สำรองข้อมูลบนคลาวด์ หรือแชร์กับบุคคลที่สามใดๆ</strong><br>คุณสามารถเพิกถอนสิทธิ์แกลเลอรีได้ทุกเมื่อในการตั้งค่าระบบ Android หลังจากเพิกถอนแล้ว ฟีเจอร์ที่เกี่ยวข้องกับแกลเลอรีจะหยุดทำงาน และแอปจะไม่เก็บข้อมูลภาพถ่ายของคุณไว้</p>
+<h2>2. การเก็บรวบรวมข้อมูลและโฆษณา Google AdMob</h2>
+<p>แอปผสานรวม Google AdMob เพื่อแสดงโฆษณาภายในแอป AdMob SDK จะเก็บรวบรวมข้อมูลต่อไปนี้โดยอัตโนมัติเพื่อให้บริการโฆษณา:</p>
+<ul>
+<li>ตัวระบุโฆษณา Android (AD-ID)</li>
+<li>ข้อมูลการโต้ตอบกับโฆษณา: การแสดงโฆษณา การคลิก และสัญญาณที่เกี่ยวข้องกับประสิทธิภาพโฆษณา</li>
+</ul>
+<p>ข้อมูลนี้ใช้สำหรับการส่งโฆษณา โฆษณาแบบปรับตามผู้ใช้ การวัดประสิทธิภาพโฆษณา และการป้องกันการทุจริตโฆษณา<strong>การประมวลผลข้อมูลที่เกี่ยวข้องกับโฆษณาทั้งหมดดำเนินการโดย Google AdMob</strong></p>
+<p>คุณสามารถรีเซ็ตหรือปิดตัวระบุโฆษณาในการตั้งค่าระบบของโทรศัพท์เพื่อปิดโฆษณาแบบปรับตามผู้ใช้ได้ หลังจากนั้นคุณจะยังคงเห็นโฆษณาแบบไม่ปรับตามผู้ใช้</p>
+<p><strong>นอกเหนือจากข้อมูลที่เกี่ยวข้องกับโฆษณาซึ่ง AdMob SDK ได้รับโดยอัตโนมัติ ตัวแอปเองจะไม่เก็บรวบรวม จัดเก็บ หรืออัปโหลดข้อมูลส่วนบุคคลอื่นใดอย่างจงใจ</strong><br>แอปไม่เก็บรวบรวม IMEI, Android ID, ที่อยู่ MAC, ตำแหน่งที่ตั้ง, ไมโครโฟน, รายชื่อติดต่อ, ประวัติการเรียกดู, บันทึกการทำงาน ฯลฯ</p>
+<h2>3. บริการของบุคคลที่สาม: Google AdMob</h2>
+<p>SDK ของบุคคลที่สามเพียงรายเดียวที่ผสานรวมในแอปคือ Google AdMob (บริการโฆษณา) การประมวลผลข้อมูลของ AdMob เป็นไปตามนโยบายความเป็นส่วนตัวอย่างเป็นทางการของ Google ซึ่งคุณสามารถดูได้ที่:<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></p>
+<h2>4. การจัดเก็บข้อมูล</h2>
+<p>เนื้อหาภาพถ่ายจะถูกประมวลผลชั่วคราวในหน่วยความจำของโทรศัพท์เท่านั้น และไม่ถูกบันทึกออกไปภายนอก แอปเก็บข้อมูลการตั้งค่าเพียงเล็กน้อยในแคชบนเครื่อง ซึ่งคุณสามารถลบได้ผ่านการตั้งค่าแอปหรือโดยการถอนการติดตั้งแอป แอปไม่ซิงก์หรืออัปโหลดข้อมูลผู้ใช้ใดๆ ขึ้นคลาวด์</p>
+<p>ตัวระบุโฆษณาและข้อมูลเหตุการณ์โฆษณาจะถูกประมวลผลและจัดเก็บโดย Google ตามกฎการเก็บรักษาข้อมูลของ Google เอง</p>
+<h2>5. ความเป็นส่วนตัวของเด็ก</h2>
+<p>แอปนี้มีไว้สำหรับผู้ใช้ที่เป็นผู้ใหญ่ทั่วไป และไม่ได้มุ่งเป้าไปที่เด็กอายุต่ำกว่า 13 ปี เราไม่ได้จงใจเก็บรวบรวมข้อมูลส่วนบุคคลของผู้เยาว์ หากคุณเชื่อว่าเราได้เก็บข้อมูลของเด็ก โปรดติดต่อเรา และเราจะลบข้อมูลที่เกี่ยวข้องโดยเร็ว</p>
+<h2>6. การควบคุมความเป็นส่วนตัวของคุณ</h2>
+<ul>
+<li>เพิกถอนสิทธิ์แกลเลอรีในการตั้งค่าระบบเพื่อหยุดไม่ให้แอปเข้าถึงภาพถ่ายของคุณ;</li>
+<li>ปิด/รีเซ็ตตัวระบุโฆษณาเพื่อปฏิเสธโฆษณาแบบปรับตามผู้ใช้;</li>
+<li>ล้างแคชของแอปหรือถอนการติดตั้งแอปเพื่อลบข้อมูลการตั้งค่าบนเครื่อง</li>
+</ul>
+<h2>7. การอัปเดตนโยบายความเป็นส่วนตัว</h2>
+<p>เราอาจอัปเดตนโยบายความเป็นส่วนตัวนี้เป็นครั้งคราว โดยเวอร์ชันที่อัปเดตจะเผยแพร่บนหน้าเว็บนี้ การใช้งานแอปต่อไปหลังจากมีการอัปเดตถือว่าคุณยอมรับข้อกำหนดที่แก้ไขแล้ว</p>
+<h2>8. ติดต่อ</h2>
+<p>ผู้พัฒนา: zhangchaochao<br>อีเมลติดต่อ: chao86825@gmail.com</p>
+  </article>
+  </div>
+
+<script>
+(function () {
+  var ORDER = ["hi", "zh", "en", "in", "ur", "pt", "bn", "ru", "am", "es", "ja", "ar", "vi", "fr", "fa", "tr", "de", "th"];
+  var NATIVE = {"hi": "हिन्दी", "zh": "中文", "en": "English", "in": "Bahasa Indonesia", "ur": "اردو", "pt": "Português", "bn": "বাংলা", "ru": "Русский", "am": "አማርኛ", "es": "Español", "ja": "日本語", "ar": "العربية", "vi": "Tiếng Việt", "fr": "Français", "fa": "فارسی", "tr": "Türkçe", "de": "Deutsch", "th": "ไทย"};
+  var NAMES = {"hi": {"hi": "हिन्दी", "zh": "चीनी", "en": "अंग्रेज़ी", "in": "इंडोनेशियाई", "ur": "उर्दू", "pt": "पुर्तगाली", "bn": "बंगाली", "ru": "रूसी", "am": "अम्हेरी", "es": "स्पेनिश", "ja": "जापानी", "ar": "अरबी", "vi": "वियतनामी", "fr": "फ़्रेंच", "fa": "फ़ारसी", "tr": "तुर्की", "de": "जर्मन", "th": "थाई"}, "zh": {"hi": "印地语", "zh": "中文", "en": "英语", "in": "印度尼西亚语", "ur": "乌尔都语", "pt": "葡萄牙语", "bn": "孟加拉语", "ru": "俄语", "am": "阿姆哈拉语", "es": "西班牙语", "ja": "日语", "ar": "阿拉伯语", "vi": "越南语", "fr": "法语", "fa": "波斯语", "tr": "土耳其语", "de": "德语", "th": "泰语"}, "en": {"hi": "Hindi", "zh": "Chinese", "en": "English", "in": "Indonesian", "ur": "Urdu", "pt": "Portuguese", "bn": "Bangla", "ru": "Russian", "am": "Amharic", "es": "Spanish", "ja": "Japanese", "ar": "Arabic", "vi": "Vietnamese", "fr": "French", "fa": "Persian", "tr": "Turkish", "de": "German", "th": "Thai"}, "in": {"hi": "Hindi", "zh": "Tionghoa", "en": "Inggris", "in": "Indonesia", "ur": "Urdu", "pt": "Portugis", "bn": "Bengali", "ru": "Rusia", "am": "Amharik", "es": "Spanyol", "ja": "Jepang", "ar": "Arab", "vi": "Vietnam", "fr": "Prancis", "fa": "Persia", "tr": "Turki", "de": "Jerman", "th": "Thai"}, "ur": {"hi": "ہندی", "zh": "چینی", "en": "انگریزی", "in": "انڈونیثیائی", "ur": "اردو", "pt": "پُرتگالی", "bn": "بنگلہ", "ru": "روسی", "am": "امہاری", "es": "ہسپانوی", "ja": "جاپانی", "ar": "عربی", "vi": "ویتنامی", "fr": "فرانسیسی", "fa": "فارسی", "tr": "ترکی", "de": "جرمن", "th": "تھائی"}, "pt": {"hi": "híndi", "zh": "chinês", "en": "inglês", "in": "indonésio", "ur": "urdu", "pt": "português", "bn": "bengali", "ru": "russo", "am": "amárico", "es": "espanhol", "ja": "japonês", "ar": "árabe", "vi": "vietnamita", "fr": "francês", "fa": "persa", "tr": "turco", "de": "alemão", "th": "tailandês"}, "bn": {"hi": "হিন্দি", "zh": "চীনা", "en": "ইংরেজি", "in": "ইন্দোনেশীয়", "ur": "উর্দু", "pt": "পর্তুগীজ", "bn": "বাংলা", "ru": "রুশ", "am": "আমহারিক", "es": "স্প্যানিশ", "ja": "জাপানি", "ar": "আরবী", "vi": "ভিয়েতনামী", "fr": "ফরাসি", "fa": "ফার্সি", "tr": "তুর্কী", "de": "জার্মান", "th": "থাই"}, "ru": {"hi": "хинди", "zh": "китайский", "en": "английский", "in": "индонезийский", "ur": "урду", "pt": "португальский", "bn": "бенгальский", "ru": "русский", "am": "амхарский", "es": "испанский", "ja": "японский", "ar": "арабский", "vi": "вьетнамский", "fr": "французский", "fa": "персидский", "tr": "турецкий", "de": "немецкий", "th": "тайский"}, "am": {"hi": "ሒንዱኛ", "zh": "ቻይንኛ", "en": "እንግሊዝኛ", "in": "ኢንዶኔዥኛ", "ur": "ኡርዱኛ", "pt": "ፖርቹጋልኛ", "bn": "ቤንጋሊኛ", "ru": "ራሽያኛ", "am": "አማርኛ", "es": "ስፓንሽኛ", "ja": "ጃፓንኛ", "ar": "ዓረብኛ", "vi": "ቪየትናምኛ", "fr": "ፈረንሳይኛ", "fa": "ፐርሺያኛ", "tr": "ቱርክኛ", "de": "ጀርመን", "th": "ታይኛ"}, "es": {"hi": "hindi", "zh": "chino", "en": "inglés", "in": "indonesio", "ur": "urdu", "pt": "portugués", "bn": "bengalí", "ru": "ruso", "am": "amárico", "es": "español", "ja": "japonés", "ar": "árabe", "vi": "vietnamita", "fr": "francés", "fa": "persa", "tr": "turco", "de": "alemán", "th": "tailandés"}, "ja": {"hi": "ヒンディー語", "zh": "中国語", "en": "英語", "in": "インドネシア語", "ur": "ウルドゥー語", "pt": "ポルトガル語", "bn": "ベンガル語", "ru": "ロシア語", "am": "アムハラ語", "es": "スペイン語", "ja": "日本語", "ar": "アラビア語", "vi": "ベトナム語", "fr": "フランス語", "fa": "ペルシア語", "tr": "トルコ語", "de": "ドイツ語", "th": "タイ語"}, "ar": {"hi": "الهندية", "zh": "الصينية", "en": "الإنجليزية", "in": "الإندونيسية", "ur": "الأوردية", "pt": "البرتغالية", "bn": "البنغالية", "ru": "الروسية", "am": "الأمهرية", "es": "الإسبانية", "ja": "اليابانية", "ar": "العربية", "vi": "الفيتنامية", "fr": "الفرنسية", "fa": "الفارسية", "tr": "التركية", "de": "الألمانية", "th": "التايلاندية"}, "vi": {"hi": "Tiếng Hindi", "zh": "Tiếng Trung", "en": "Tiếng Anh", "in": "Tiếng Indonesia", "ur": "Tiếng Urdu", "pt": "Tiếng Bồ Đào Nha", "bn": "Tiếng Bangla", "ru": "Tiếng Nga", "am": "Tiếng Amharic", "es": "Tiếng Tây Ban Nha", "ja": "Tiếng Nhật", "ar": "Tiếng Ả Rập", "vi": "Tiếng Việt", "fr": "Tiếng Pháp", "fa": "Tiếng Ba Tư", "tr": "Tiếng Thổ Nhĩ Kỳ", "de": "Tiếng Đức", "th": "Tiếng Thái"}, "fr": {"hi": "hindi", "zh": "chinois", "en": "anglais", "in": "indonésien", "ur": "ourdou", "pt": "portugais", "bn": "bengali", "ru": "russe", "am": "amharique", "es": "espagnol", "ja": "japonais", "ar": "arabe", "vi": "vietnamien", "fr": "français", "fa": "persan", "tr": "turc", "de": "allemand", "th": "thaï"}, "fa": {"hi": "هندی", "zh": "چینی", "en": "انگلیسی", "in": "اندونزیایی", "ur": "اردو", "pt": "پرتغالی", "bn": "بنگالی", "ru": "روسی", "am": "امهری", "es": "اسپانیایی", "ja": "ژاپنی", "ar": "عربی", "vi": "ویتنامی", "fr": "فرانسوی", "fa": "فارسی", "tr": "ترکی استانبولی", "de": "آلمانی", "th": "تایلندی"}, "tr": {"hi": "Hintçe", "zh": "Çince", "en": "İngilizce", "in": "Endonezce", "ur": "Urduca", "pt": "Portekizce", "bn": "Bengalce", "ru": "Rusça", "am": "Amharca", "es": "İspanyolca", "ja": "Japonca", "ar": "Arapça", "vi": "Vietnamca", "fr": "Fransızca", "fa": "Farsça", "tr": "Türkçe", "de": "Almanca", "th": "Tayca"}, "de": {"hi": "Hindi", "zh": "Chinesisch", "en": "Englisch", "in": "Indonesisch", "ur": "Urdu", "pt": "Portugiesisch", "bn": "Bengalisch", "ru": "Russisch", "am": "Amharisch", "es": "Spanisch", "ja": "Japanisch", "ar": "Arabisch", "vi": "Vietnamesisch", "fr": "Französisch", "fa": "Persisch", "tr": "Türkisch", "de": "Deutsch", "th": "Thailändisch"}, "th": {"hi": "ฮินดี", "zh": "จีน", "en": "อังกฤษ", "in": "อินโดนีเซีย", "ur": "อูรดู", "pt": "โปรตุเกส", "bn": "บังกลา", "ru": "รัสเซีย", "am": "อัมฮารา", "es": "สเปน", "ja": "ญี่ปุ่น", "ar": "อาหรับ", "vi": "เวียดนาม", "fr": "ฝรั่งเศส", "fa": "เปอร์เซีย", "tr": "ตุรกี", "de": "เยอรมัน", "th": "ไทย"}};      // NAMES[displayLang][targetLang] = 该语言在 displayLang 下的译名（CLDR）
+  var RTL = ["ar", "fa", "ur"];
+  var TITLES = {"hi": "गोपनीयता नीति", "zh": "隐私政策", "en": "Privacy Policy", "in": "Kebijakan Privasi", "ur": "رازداری کی پالیسی", "pt": "Política de Privacidade", "bn": "গোপনীয়তা নীতি", "ru": "Политика конфиденциальности", "am": "የግላዊነት ፖሊሲ", "es": "Política de Privacidad", "ja": "プライバシーポリシー", "ar": "سياسة الخصوصية", "vi": "Chính sách Quyền riêng tư", "fr": "Politique de confidentialité", "fa": "سیاست حفظ حریم خصوصی", "tr": "Gizlilik Politikası", "de": "Datenschutzerklärung", "th": "นโยบายความเป็นส่วนตัว"};
+  var DEFAULT = "en";
+  var APP_SHORT = "LocalPhotoPro";
+
+  function norm(x) {
+    if (!x) return null;
+    x = String(x).trim().toLowerCase().replace(/_/g, "-");
+    var b = x.split("-")[0];
+    if (b === "id") b = "in";                 // 印尼语旧/新代码
+    if (b === "zh") return "zh";              // 所有中文分支
+    return ORDER.indexOf(b) >= 0 ? b : null;
+  }
+  function fromParam() {
+    var m = location.search.match(/[?&]lang=([^&#]*)/);
+    if (m) { var r = norm(decodeURIComponent(m[1].replace(/[+]/g, " "))); if (r) return r; }
+    var h = location.hash.replace(/^#/, "");
+    if (h) {
+      var mm = h.match(/(?:^|&)lang=([^&]*)/);
+      var r2 = norm(decodeURIComponent(mm ? mm[1] : h));
+      if (r2) return r2;
+    }
+    return null;
+  }
+  function fromSystem() {
+    var list = (navigator.languages && navigator.languages.length)
+      ? navigator.languages : [navigator.language || navigator.userLanguage || ""];
+    for (var i = 0; i < list.length; i++) { var r = norm(list[i]); if (r) return r; }
+    return null;
+  }
+  // 优先级：?lang= / #lang （app 打开时传当前生效语言）> 浏览器/系统语言 > 英文
+  var current = fromParam() || fromSystem() || DEFAULT;
+
+  function labelFor(target, display) {
+    var n = NATIVE[target] || target;
+    if (target === display) return n;                 // 当前语言本身不追加译名（与设置页一致）
+    var t = (NAMES[display] && NAMES[display][target]) || "";
+    return (t && t !== n) ? (n + "（" + t + "）") : n;
+  }
+  function apply(lang, updateUrl) {
+    current = lang;
+    var root = document.documentElement;
+    root.setAttribute("lang", lang === "in" ? "id" : lang);
+    root.setAttribute("dir", RTL.indexOf(lang) >= 0 ? "rtl" : "ltr");
+    document.title = (TITLES[lang] || TITLES.en) + " | " + APP_SHORT;
+
+    var secs = document.querySelectorAll(".lang-content");
+    for (var i = 0; i < secs.length; i++) {
+      secs[i].classList.toggle("active", secs[i].getAttribute("data-lang") === lang);
+    }
+    var tabs = document.querySelectorAll(".lang-tab");
+    for (var j = 0; j < tabs.length; j++) {
+      var b = tabs[j], t = b.getAttribute("data-lang"), on = (t === lang);
+      b.classList.toggle("active", on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+      b.textContent = labelFor(t, lang);
+    }
+    if (updateUrl) {
+      try {
+        var u = new URL(location.href);
+        u.searchParams.set("lang", lang);
+        history.replaceState(null, "", u.toString());
+      } catch (e) { /* 忽略不支持 history 的环境 */ }
+    }
+    // 让选中 tab 滚动到可见区域
+    var act = document.querySelector(".lang-tab.active");
+    if (act && act.scrollIntoView) { try { act.scrollIntoView({ block:"nearest", inline:"nearest" }); } catch (e) {} }
+  }
+
+  // 绑定点击
+  var tabs = document.querySelectorAll(".lang-tab");
+  for (var k = 0; k < tabs.length; k++) {
+    (function (b) {
+      b.addEventListener("click", function () { apply(b.getAttribute("data-lang"), true); });
+    })(tabs[k]);
+  }
+  apply(current, false);
+})();
+</script>
 </body>
 </html>
